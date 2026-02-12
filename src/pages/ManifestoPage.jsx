@@ -8,6 +8,7 @@ import SectionHeader from '../components/SectionHeader';
 import DecryptText from '../components/DecryptText';
 import { ArrowIcon } from '../components/icons';
 import BootSequence from '../components/BootSequence';
+import NotifyForm from '../components/NotifyForm';
 import en from '../content/en';
 
 function Animate({ children, className = '', delay = 0 }) {
@@ -388,11 +389,9 @@ function ManifestoPage() {
             </div>
           </Animate>
           <Animate delay={4}>
-            <div className="zv-closing-substack">
-              <p className="zv-closing-substack-text">{home.closing.substack.text}</p>
-              <a href={home.closing.substack.url} target="_blank" rel="noopener noreferrer" className="zv-cta">
-                {home.closing.substack.cta} <ArrowIcon size={14} />
-              </a>
+            <div className="zv-closing-notify">
+              <p className="zv-closing-notify-text">Get notified when new Zero Vector content drops.</p>
+              <NotifyForm variant="dark" tag="zerovector" />
             </div>
           </Animate>
         </div>

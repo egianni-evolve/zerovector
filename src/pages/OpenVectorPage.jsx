@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useInView } from '../hooks/useInView';
+import NotifyForm from '../components/NotifyForm';
 import '../styles/site.css';
 import en from '../content/en';
 
@@ -59,6 +60,9 @@ function OpenVectorPage() {
             <div className="ov-launch-content">
               <div className="ov-launch-label">Coming Soon</div>
               <div className="ov-launch-date">The Open Vector launches March 2nd</div>
+              <div className="ov-launch-notify">
+                <NotifyForm variant="dark" tag="zerovector" />
+              </div>
             </div>
           </div>
 
