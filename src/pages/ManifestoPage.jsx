@@ -394,7 +394,7 @@ function ManifestoPage() {
           <Animate delay={4}>
             <div className="zv-closing-notify">
               <p className="zv-closing-notify-text">Get notified when new Zero Vector content drops.</p>
-              <NotifyForm variant="dark" tag="zerovector" />
+              <NotifyForm variant="light" tag="zerovector" />
             </div>
           </Animate>
         </div>

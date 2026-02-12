@@ -675,6 +675,9 @@ a:hover {
 .zv-closing-notify {
   text-align: center;
   margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .zv-closing-notify-text {
@@ -691,6 +694,7 @@ a:hover {
   display: flex;
   gap: 8px;
   max-width: 460px;
+  width: 100%;
 }
 
 .zv-notify-input {
