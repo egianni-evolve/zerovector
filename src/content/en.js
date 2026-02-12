@@ -1032,8 +1032,8 @@ const en = {
 
     hero: {
       label: 'A Zero-Vector Scaffold',
-      title: ['Build Real', 'Things'],
-      subtitle: 'Architecture that teaches your AI to write clean code. Clone it. Open Claude Code. Start building.',
+      title: ['The Next', 'Step'],
+      subtitle: 'Infuse your intent with Investiture. Architecture that teaches your AI to write clean code. Clone it. Open Claude Code. Start building.',
       badge: 'Free & Open Source',
     },
 
@@ -1100,7 +1100,7 @@ const en = {
 
     cta: {
       title: 'Start Building',
-      body: 'The scaffold is free. The knowledge is free. The only cost is your willingness to start.',
+      body: 'The scaffold is free. The knowledge is free. The only cost is your willingness to start your journey... journey before destination.',
       primaryCta: 'Clone the Repo',
       primaryUrl: 'https://github.com/erikaflowers/investiture',
       secondaryCta: 'Read the Docs',

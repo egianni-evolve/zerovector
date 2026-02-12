@@ -54,6 +54,14 @@ function OpenVectorPage() {
             <span className="ov-hero-heavy">{open.hero.title[1]}</span>
             <span className="ov-hero-heavy">{open.hero.title[2]}</span>
           </h1>
+          <div className="ov-launch-banner">
+            <div className="ov-launch-beacon" aria-hidden="true" />
+            <div className="ov-launch-content">
+              <div className="ov-launch-label">Coming Soon</div>
+              <div className="ov-launch-date">The Open Vector launches March 2nd</div>
+            </div>
+          </div>
+
           <p className="ov-body">
             {open.hero.body1} <strong>{open.hero.body1Bold}</strong>
           </p>

@@ -3312,6 +3312,99 @@ a:hover {
   padding-bottom: 80px;
 }
 
+/* --- Launch Banner --- */
+.ov-launch-banner {
+  position: relative;
+  background: #0055ff;
+  color: #fff;
+  padding: 24px 32px;
+  margin-bottom: 48px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Blueprint grid overlay */
+.ov-launch-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Scanning light sweep */
+.ov-launch-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  animation: ov-scan 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ov-scan {
+  0%, 100% { left: -40%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Pulsing beacon dot */
+.ov-launch-beacon {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  animation: ov-beacon 2s ease-in-out infinite;
+}
+
+@keyframes ov-beacon {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); }
+  50% { opacity: 1; box-shadow: 0 0 16px rgba(255, 255, 255, 0.6); }
+}
+
+.ov-launch-content {
+  position: relative;
+  z-index: 1;
+}
+
+.ov-launch-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.ov-launch-date {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov-launch-banner::after,
+  .ov-launch-beacon {
+    animation: none;
+  }
+  .ov-launch-beacon {
+    opacity: 1;
+  }
+}
+
 .ov-hero-title {
   font-family: var(--font-display);
   line-height: 0.95;
@@ -4027,7 +4120,8 @@ a:hover {
   .inv-section--blueprint::after,
   .inv-badge,
   .inv-terminal-dots span,
-  .inv-rule--diamond::after {
+  .inv-rule--diamond::after,
+  .inv-cta-inverted::before {
     animation: none;
   }
   .inv-label::before {
@@ -4482,14 +4576,42 @@ a:hover {
   background: #ffffff;
   padding: 48px;
   text-align: center;
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  box-shadow:
+    0 0 40px rgba(201, 168, 76, 0.08),
+    0 0 80px rgba(201, 168, 76, 0.04),
+    inset 0 0 60px rgba(201, 168, 76, 0.03);
+  overflow: hidden;
+}
+
+/* Stormlight sweep — gold light passes across the box */
+.inv-cta-inverted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.07), transparent);
+  animation: inv-cta-sweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes inv-cta-sweep {
+  0%, 100% { left: -60%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
 }
 
 .inv-cta-inverted-title {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: #111;
+  color: #1a1408;
   margin: 0 0 12px;
+  text-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
 }
 
 .inv-cta-inverted-body {
@@ -4508,24 +4630,27 @@ a:hover {
 }
 
 .inv-btn--dark {
-  background: #111;
-  color: #fff;
+  background: linear-gradient(135deg, #1a1408 0%, #2a2010 50%, #1a1408 100%);
+  color: #c9a84c;
+  border: 1px solid rgba(201, 168, 76, 0.3);
 }
 
 .inv-btn--dark:hover {
-  background: #333;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #2a2010 0%, #3a3020 50%, #2a2010 100%);
+  box-shadow: 0 4px 24px rgba(201, 168, 76, 0.2), 0 0 12px rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.5);
 }
 
 .inv-btn--dark-outline {
   background: transparent;
-  border: 1px solid #333;
-  color: #111;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: #8a7a3c;
 }
 
 .inv-btn--dark-outline:hover {
-  background: #111;
-  color: #fff;
+  background: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.6);
+  color: #7a6a2c;
 }
 
 @media (max-width: 768px) {
