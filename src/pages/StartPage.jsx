@@ -41,8 +41,32 @@ function StartPage() {
         </div>
       </section>
 
-      {/* Announcement Placeholder */}
+      {/* Two Big CTAs — Investiture + Open Vector */}
       <section className="zv-section" style={{ paddingTop: 0 }}>
+        <div className="zv-container">
+          <div className="zv-start-actions">
+            <Animate>
+              <Link to={start.actions.investiture.url} className="zv-start-action-card">
+                <div className="zv-start-action-eyebrow">{start.actions.investiture.eyebrow}</div>
+                <h3 className="zv-start-action-title">{start.actions.investiture.title}</h3>
+                <p className="zv-start-action-desc">{start.actions.investiture.description}</p>
+                <span className="zv-start-action-cta">{start.actions.investiture.cta} <ArrowIcon size={16} /></span>
+              </Link>
+            </Animate>
+            <Animate delay={1}>
+              <Link to={start.actions.openVector.url} className="zv-start-action-card">
+                <div className="zv-start-action-eyebrow">{start.actions.openVector.eyebrow}</div>
+                <h3 className="zv-start-action-title">{start.actions.openVector.title}</h3>
+                <p className="zv-start-action-desc">{start.actions.openVector.description}</p>
+                <span className="zv-start-action-cta">{start.actions.openVector.cta} <ArrowIcon size={16} /></span>
+              </Link>
+            </Animate>
+          </div>
+        </div>
+      </section>
+
+      {/* Announcement Placeholder */}
+      <section className="zv-section">
         <div className="zv-container">
           <Animate>
             <div className={`zv-start-announcement ${start.announcement.placeholder ? 'zv-start-announcement-placeholder' : ''}`}>
@@ -77,30 +101,6 @@ function StartPage() {
                 </a>
               </Animate>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Two Big CTAs — Investiture + Open Vector */}
-      <section className="zv-section">
-        <div className="zv-container">
-          <div className="zv-start-actions">
-            <Animate>
-              <Link to={start.actions.investiture.url} className="zv-start-action-card">
-                <div className="zv-start-action-eyebrow">{start.actions.investiture.eyebrow}</div>
-                <h3 className="zv-start-action-title">{start.actions.investiture.title}</h3>
-                <p className="zv-start-action-desc">{start.actions.investiture.description}</p>
-                <span className="zv-start-action-cta">{start.actions.investiture.cta} <ArrowIcon size={16} /></span>
-              </Link>
-            </Animate>
-            <Animate delay={1}>
-              <Link to={start.actions.openVector.url} className="zv-start-action-card">
-                <div className="zv-start-action-eyebrow">{start.actions.openVector.eyebrow}</div>
-                <h3 className="zv-start-action-title">{start.actions.openVector.title}</h3>
-                <p className="zv-start-action-desc">{start.actions.openVector.description}</p>
-                <span className="zv-start-action-cta">{start.actions.openVector.cta} <ArrowIcon size={16} /></span>
-              </Link>
-            </Animate>
           </div>
         </div>
       </section>
