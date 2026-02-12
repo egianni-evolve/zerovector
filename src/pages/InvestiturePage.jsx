@@ -68,6 +68,22 @@ function InvestiturePage() {
         </div>
       </section>
 
+      {/* CTA — Start Building */}
+      <section className="inv-section inv-cta-section" style={{ paddingTop: 0 }}>
+        <div className="inv-container">
+          <Animate>
+            <h2 className="inv-cta-title">{inv.cta.title}</h2>
+            <p className="inv-cta-body">{inv.cta.body}</p>
+          </Animate>
+          <Animate delay={1}>
+            <div className="inv-cta-buttons">
+              <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--primary">{inv.cta.primaryCta}</a>
+              <a href={inv.cta.secondaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--outline">{inv.cta.secondaryCta}</a>
+            </div>
+          </Animate>
+        </div>
+      </section>
+
       {/* Ethos: What Is / Is Not */}
       <section className="inv-section">
         <div className="inv-container">
@@ -214,15 +230,11 @@ function InvestiturePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Bottom CTA */}
       <section className="inv-section inv-cta-section">
         <div className="inv-container">
           <hr className="inv-rule" />
           <Animate>
-            <h2 className="inv-cta-title">{inv.cta.title}</h2>
-            <p className="inv-cta-body">{inv.cta.body}</p>
-          </Animate>
-          <Animate delay={1}>
             <div className="inv-cta-buttons">
               <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--primary">{inv.cta.primaryCta}</a>
               <a href={inv.cta.secondaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--outline">{inv.cta.secondaryCta}</a>
