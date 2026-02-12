@@ -19,8 +19,8 @@
 export class CRTShader {
   constructor(glCanvas, config = {}) {
     this.canvas = glCanvas;
-    this.gl = glCanvas.getContext('webgl2', { alpha: false })
-           || glCanvas.getContext('webgl', { alpha: false });
+    this.gl = glCanvas.getContext('webgl2', { alpha: true, premultipliedAlpha: false })
+           || glCanvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
 
     if (!this.gl) {
       console.error('CRTShader: WebGL not supported');
@@ -88,11 +88,14 @@ export class CRTShader {
       void main() {
         vec2 uv = barrel(v_texCoord, u_barrel);
 
-        // Black outside the curved screen area
+        // Transparent outside the curved screen area
         if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) {
-          gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+          gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
           return;
         }
+
+        // --- Sample source alpha to preserve transparency ---
+        float srcAlpha = texture2D(u_texture, uv).a;
 
         // --- Chromatic aberration (RGB split) ---
         vec3 col;
@@ -144,7 +147,12 @@ export class CRTShader {
         // --- Brightness ---
         col *= u_brightness;
 
-        gl_FragColor = vec4(col, 1.0);
+        // Preserve source transparency — empty areas stay transparent
+        float alpha = srcAlpha;
+        // Boost alpha slightly where CRT effects add content (bloom, noise)
+        alpha = max(alpha, length(col) > 0.01 ? min(length(col) * 4.0, 1.0) : 0.0);
+
+        gl_FragColor = vec4(col, alpha);
       }
     `;
 
@@ -228,6 +236,10 @@ export class CRTShader {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, sourceCanvas);
 
     gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(this.program);
 
     // Uniforms
