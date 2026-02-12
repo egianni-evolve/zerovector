@@ -1,24 +1,107 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import VectorField from '../components/VectorField';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
+import Animate from '../components/Animate';
 import useSEO from '../hooks/useSEO';
 import en from '../content/en';
 
 const { quiz } = en;
 const QUESTIONS = quiz.questions;
 
+function ShareCard({ result }) {
+  const [copied, setCopied] = useState(false);
+
+  const shareUrl = `https://zerovector.design/quiz?score=${result.score}&title=${encodeURIComponent(result.title)}`;
+  const shareText = `I scored ${result.score}/100 on the "Am I Vibe Coding?" assessment — ${result.title}. Take the quiz:`;
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement('textarea');
+      textarea.value = `${shareText} ${shareUrl}`;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const shareLinkedIn = () => {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+  };
+
+  const shareX = () => {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+  };
+
+  return (
+    <div className="zv-quiz-share">
+      <div className="zv-quiz-share-label">Share Your Score</div>
+      <div className="zv-quiz-share-actions">
+        <button className="zv-quiz-share-btn" onClick={copyLink}>
+          {copied ? 'Copied!' : 'Copy Link'}
+        </button>
+        <button className="zv-quiz-share-btn" onClick={shareLinkedIn}>
+          LinkedIn
+        </button>
+        <button className="zv-quiz-share-btn" onClick={shareX}>
+          X / Twitter
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function SharedResult({ score, title }) {
+  return (
+    <div className="zv-quiz-shared">
+      <Animate>
+        <div className="zv-quiz-shared-card">
+          <div className="zv-quiz-shared-eyebrow">Am I Vibe Coding?</div>
+          <div className="zv-quiz-score-row">
+            <div className="zv-quiz-score">{score}</div>
+            <div className="zv-quiz-score-label">/100</div>
+          </div>
+          <div className="zv-quiz-title">{title}</div>
+          <p className="zv-quiz-shared-cta">Someone shared their score with you. Take the assessment yourself.</p>
+        </div>
+      </Animate>
+    </div>
+  );
+}
+
 function QuizPage() {
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [sharedScore, setSharedScore] = useState(null);
 
   useSEO({
     title: 'Am I Vibe Coding?',
     description: 'Take the quiz. Describe your workflow and find out if you are vibe coding or building with intent. AI-scored assessment from Zero-Vector Design.',
     path: '/quiz',
   });
+
+  // Check for shared score in URL params
+  useEffect(() => {
+    const score = searchParams.get('score');
+    const title = searchParams.get('title');
+    if (score && title) {
+      setSharedScore({ score: parseInt(score, 10), title });
+      // Clear params so they don't persist after taking the quiz
+      setSearchParams({}, { replace: true });
+    }
+  }, []);
 
   const updateAnswer = (id, value) => {
     setAnswers(prev => ({ ...prev, [id]: value }));
@@ -29,6 +112,7 @@ function QuizPage() {
   const submit = async () => {
     if (filledCount < 3 || loading) return;
     setLoading(true);
+    setSharedScore(null); // Clear shared result when taking the quiz
 
     try {
       const res = await fetch('/.netlify/functions/quiz', {
@@ -72,6 +156,11 @@ function QuizPage() {
 
       <section className="zv-section" style={{ paddingTop: 0 }}>
         <div className="zv-container">
+          {/* Shared score card from URL params */}
+          {sharedScore && !result && (
+            <SharedResult score={sharedScore.score} title={sharedScore.title} />
+          )}
+
           {!result ? (
             <div className="zv-quiz">
               {QUESTIONS.map((q) => (
@@ -135,7 +224,9 @@ function QuizPage() {
                 </div>
               )}
 
-              <button className="zv-cta zv-cta-outline" onClick={reset} style={{ marginTop: 48 }}>
+              <ShareCard result={result} />
+
+              <button className="zv-cta zv-cta-outline" onClick={reset} style={{ marginTop: 32 }}>
                 Take It Again
               </button>
             </div>

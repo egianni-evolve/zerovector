@@ -1540,6 +1540,84 @@ a:hover {
   border-left: 3px solid var(--cyan);
 }
 
+/* --- Quiz Share --- */
+.zv-quiz-share {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--void-border);
+}
+
+.zv-quiz-share-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.zv-quiz-share-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.zv-quiz-share-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--void-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.zv-quiz-share-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 255, 255, 0.05);
+}
+
+/* --- Quiz Shared Result Card (from URL params) --- */
+.zv-quiz-shared {
+  margin-bottom: 48px;
+}
+
+.zv-quiz-shared-card {
+  padding: 32px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(0, 255, 255, 0.03);
+  text-align: center;
+}
+
+.zv-quiz-shared-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.zv-quiz-shared-card .zv-quiz-score-row {
+  justify-content: center;
+}
+
+.zv-quiz-shared-card .zv-quiz-title {
+  text-align: center;
+}
+
+.zv-quiz-shared-cta {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
 /* --- Typography --- */
 .zv-hero-title {
   font-family: var(--font-display);
