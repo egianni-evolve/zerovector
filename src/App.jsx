@@ -8,6 +8,7 @@ import LeadersPage from './pages/LeadersPage';
 import ReadingPage from './pages/ReadingPage';
 import OriginPage from './pages/OriginPage';
 import OpenVectorPage from './pages/OpenVectorPage';
+import InvestiturePage from './pages/InvestiturePage';
 import AskPage from './pages/AskPage';
 import QuizPage from './pages/QuizPage';
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="/open" element={<OpenVectorPage />} />
+      <Route path="/investiture" element={<InvestiturePage />} />
     </Routes>
   );
 }

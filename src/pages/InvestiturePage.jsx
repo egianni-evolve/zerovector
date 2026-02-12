@@ -1,0 +1,238 @@
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useInView } from '../hooks/useInView';
+import '../styles/site.css';
+import en from '../content/en';
+
+function Animate({ children, className = '', delay = 0 }) {
+  const [ref, isVisible] = useInView();
+  return (
+    <div ref={ref} className={`zv-animate ${isVisible ? 'zv-visible' : ''} ${delay ? `zv-animate-delay-${delay}` : ''} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+const { investiture: inv } = en;
+
+function InvestiturePage() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.title = 'Investiture — Zero-Vector Design';
+    document.body.style.background = '#0a1628';
+    document.body.style.color = '#e8e0d0';
+    document.body.style.margin = '0';
+    document.body.style.minHeight = '100vh';
+    return () => {
+      document.body.style.background = '';
+      document.body.style.color = '';
+      document.body.style.minHeight = '';
+    };
+  }, []);
+
+  return (
+    <div className="inv-page">
+      {/* Stormlight — floating spren particles */}
+      <div className="inv-stormlight" aria-hidden="true">
+        {Array.from({ length: 24 }, (_, i) => (
+          <span key={i} className="inv-spren" style={{ '--spren': i }} />
+        ))}
+      </div>
+
+      {/* Nav */}
+      <nav className="inv-nav">
+        <div className="inv-nav-inner">
+          <Link to="/" className="inv-nav-back">{inv.nav.back}</Link>
+          <span className="inv-nav-brand">{inv.nav.brand}</span>
+          <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-nav-link">{inv.nav.github}</a>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="inv-section inv-hero">
+        <div className="inv-container">
+          <div className="inv-label">{inv.hero.label}</div>
+          <div className="inv-hero-glow" aria-hidden="true" />
+          <h1 className="inv-hero-title">
+            <span className="inv-hero-light">{inv.hero.title[0]}</span>
+            <span className="inv-hero-heavy">{inv.hero.title[1]}</span>
+            <span className="inv-hero-heavy">{inv.hero.title[2]}</span>
+          </h1>
+          <p className="inv-subtitle">{inv.hero.subtitle}</p>
+          <div className="inv-badge">{inv.hero.badge}</div>
+        </div>
+      </section>
+
+      {/* Ethos: What Is / Is Not */}
+      <section className="inv-section">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <div className="inv-label">{inv.ethos.label}</div>
+          </Animate>
+          <div className="inv-two-col">
+            <Animate>
+              <div className="inv-card inv-card--gold">
+                <h3 className="inv-card-title">{inv.ethos.whatIs.title}</h3>
+                <p className="inv-card-body">{inv.ethos.whatIs.body}</p>
+              </div>
+            </Animate>
+            <Animate delay={1}>
+              <div className="inv-card inv-card--gold">
+                <h3 className="inv-card-title">{inv.ethos.whatIsNot.title}</h3>
+                <p className="inv-card-body">{inv.ethos.whatIsNot.body}</p>
+              </div>
+            </Animate>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem / Solution */}
+      <section className="inv-section">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <div className="inv-label">{inv.problem.label}</div>
+          </Animate>
+          <div className="inv-two-col">
+            <Animate>
+              <div className="inv-card inv-card--steel">
+                <h3 className="inv-card-title">{inv.problem.problem.title}</h3>
+                <p className="inv-card-body">{inv.problem.problem.body}</p>
+              </div>
+            </Animate>
+            <Animate delay={1}>
+              <div className="inv-card inv-card--gold">
+                <h3 className="inv-card-title">{inv.problem.solution.title}</h3>
+                <p className="inv-card-body">{inv.problem.solution.body}</p>
+              </div>
+            </Animate>
+          </div>
+        </div>
+      </section>
+
+      {/* Architecture Layers */}
+      <section className="inv-section inv-section--blueprint">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <div className="inv-label">{inv.architecture.label}</div>
+            <p className="inv-intro">{inv.architecture.intro}</p>
+          </Animate>
+          <div className="inv-layers">
+            {inv.architecture.layers.map((layer, i) => (
+              <Animate key={i}>
+                <div className="inv-layer">
+                  <div className="inv-layer-number">{layer.number}</div>
+                  <div className="inv-layer-content">
+                    <h3 className="inv-layer-title">{layer.title}</h3>
+                    <div className="inv-layer-path">./{layer.path}{layer.file}</div>
+                    <p className="inv-layer-desc">{layer.desc}</p>
+                  </div>
+                </div>
+                {i < inv.architecture.layers.length - 1 && (
+                  <div className="inv-layer-connector" />
+                )}
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who It's For */}
+      <section className="inv-section">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <div className="inv-label">{inv.audience.label}</div>
+          </Animate>
+          <div className="inv-three-col">
+            {inv.audience.groups.map((group, i) => (
+              <Animate key={i} delay={i}>
+                <div className="inv-card inv-card--gold">
+                  <h3 className="inv-card-title">{group.title}</h3>
+                  <p className="inv-card-body">{group.body}</p>
+                </div>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Start */}
+      <section className="inv-section">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <div className="inv-label">{inv.quickstart.label}</div>
+            <p className="inv-intro">{inv.quickstart.intro}</p>
+          </Animate>
+          <Animate delay={1}>
+            <div className="inv-terminal">
+              <div className="inv-terminal-bar">
+                <div className="inv-terminal-dots" aria-hidden="true">
+                  <span /><span /><span />
+                </div>
+                <span className="inv-terminal-title">terminal</span>
+              </div>
+              <div className="inv-terminal-body">
+                {inv.quickstart.commands.map((cmd, i) => (
+                  <div key={i} className="inv-terminal-line">
+                    <span className="inv-terminal-prompt">$</span>
+                    <span className="inv-terminal-cmd">{cmd}</span>
+                  </div>
+                ))}
+                <div className="inv-terminal-line">
+                  <span className="inv-terminal-prompt">$</span>
+                  <span className="inv-terminal-cursor" />
+                </div>
+              </div>
+            </div>
+          </Animate>
+          <Animate delay={2}>
+            <p className="inv-after">{inv.quickstart.after}</p>
+          </Animate>
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="inv-section inv-quote-section">
+        <div className="inv-container">
+          <hr className="inv-rule inv-rule--diamond" />
+          <Animate>
+            <blockquote className="inv-quote">{inv.quote.text}</blockquote>
+            <cite className="inv-cite">{inv.quote.cite}</cite>
+          </Animate>
+          <Animate delay={1}>
+            <p className="inv-context">{inv.quote.context}</p>
+          </Animate>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="inv-section inv-cta-section">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <h2 className="inv-cta-title">{inv.cta.title}</h2>
+            <p className="inv-cta-body">{inv.cta.body}</p>
+          </Animate>
+          <Animate delay={1}>
+            <div className="inv-cta-buttons">
+              <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--primary">{inv.cta.primaryCta}</a>
+              <a href={inv.cta.secondaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--outline">{inv.cta.secondaryCta}</a>
+              <Link to="/" className="inv-btn inv-btn--outline">{inv.cta.backCta}</Link>
+            </div>
+          </Animate>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default InvestiturePage;
