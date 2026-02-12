@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useMousePosition } from '../hooks/useMousePosition';
-import { CRTShader } from '../lib/CRTShader';
 
 const GRID_SPACING = 44;
 const LINE_LENGTH = 18;
@@ -9,53 +8,29 @@ const STROKE_ALPHA = 0.07;
 const SCANLINE_INTERVAL = 8000; // ms per sweep
 
 function VectorField() {
-  const sourceCanvasRef = useRef(null);  // offscreen 2D canvas
-  const displayCanvasRef = useRef(null); // visible WebGL canvas
+  const canvasRef = useRef(null);
   const mousePosition = useMousePosition();
   const anglesRef = useRef(null);
   const driftRef = useRef({ time: 0 });
-  const crtRef = useRef(null);
 
   useEffect(() => {
-    const source = sourceCanvasRef.current;
-    const display = displayCanvasRef.current;
-    if (!source || !display) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const ctx = source.getContext('2d');
+    const ctx = canvas.getContext('2d');
     let animationId;
     let cols, rows;
-
-    // Initialize CRT shader on the display canvas
-    crtRef.current = new CRTShader(display, {
-      barrelDistortion: 0.04,
-      chromaticAberration: 0.0008,
-      scanlineIntensity: 0.18,
-      scanlineCount: 800.0,
-      phosphorMask: 0.15,
-      bloom: 0.06,
-      noise: 0.025,
-      vignette: 0.25,
-      brightness: 1.15,
-      flicker: 0.003,
-    });
 
     function resize() {
       const dpr = window.devicePixelRatio || 1;
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      // Source canvas (2D) — matches viewport at device resolution
-      source.width = w * dpr;
-      source.height = h * dpr;
-      source.style.width = w + 'px';
-      source.style.height = h + 'px';
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      // Display canvas (WebGL) — same dimensions
-      display.width = w * dpr;
-      display.height = h * dpr;
-      display.style.width = w + 'px';
-      display.style.height = h + 'px';
 
       cols = Math.ceil(w / GRID_SPACING) + 1;
       rows = Math.ceil(h / GRID_SPACING) + 1;
@@ -77,7 +52,6 @@ function VectorField() {
       const drift = driftRef.current;
       drift.time = timestamp || 0;
 
-      // --- Draw vector field to source canvas ---
       ctx.clearRect(0, 0, width, height);
 
       // Compute attractor position
@@ -150,11 +124,6 @@ function VectorField() {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, scanY - 20, width, 40);
 
-      // --- Pipe through CRT shader to display canvas ---
-      if (crtRef.current) {
-        crtRef.current.render(source);
-      }
-
       animationId = requestAnimationFrame(render);
     }
 
@@ -166,43 +135,22 @@ function VectorField() {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
-      if (crtRef.current) {
-        crtRef.current.destroy();
-        crtRef.current = null;
-      }
     };
   }, [mousePosition]);
 
   return (
-    <>
-      {/* Offscreen source canvas — vector field renders here */}
-      <canvas
-        ref={sourceCanvasRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 0,
-          pointerEvents: 'none',
-          visibility: 'hidden',
-        }}
-      />
-      {/* Visible display canvas — CRT shader output */}
-      <canvas
-        ref={displayCanvasRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 0,
-          pointerEvents: 'none',
-        }}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 0,
+        pointerEvents: 'none',
+      }}
+    />
   );
 }
 
