@@ -30,7 +30,7 @@ function BuildersPage() {
       {/* Hero */}
       <PageHero eyebrow={builders.eyebrow} title={builders.title} subtitle={builders.subtitle} />
 
-      {/* Intro + Catchphrase */}
+      {/* Intro + Catchphrase + Start CTA */}
       <section className="zv-section">
         <div className="zv-container">
           <Animate>
@@ -41,6 +41,9 @@ function BuildersPage() {
               <p className="zv-body-text">{p}</p>
             </Animate>
           ))}
+          <Animate delay={3}>
+            <Link to="/start" className="zv-cta" style={{ marginTop: 16 }}>Start Building <ArrowIcon size={14} /></Link>
+          </Animate>
         </div>
       </section>
 

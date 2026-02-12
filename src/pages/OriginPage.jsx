@@ -55,42 +55,6 @@ function OriginPage() {
         </div>
       </section>
 
-      {/* NASA */}
-      <section className="zv-section">
-        <div className="zv-container">
-          <Animate>
-            <div className="zv-origin-nasa">
-              <div className="zv-origin-nasa-header">
-                <div className="zv-origin-nasa-label">{origin.nasa.label}</div>
-                <div className="zv-origin-nasa-role">{origin.nasa.role}</div>
-                <div className="zv-origin-nasa-team">{origin.nasa.team}</div>
-              </div>
-            </div>
-          </Animate>
-          {origin.nasa.body.map((p, i) => (
-            <Animate key={i} delay={Math.min(i + 1, 2)}>
-              <p className="zv-body-text">{p}</p>
-            </Animate>
-          ))}
-        </div>
-      </section>
-
-      {/* Credentials */}
-      <section className="zv-section">
-        <div className="zv-container">
-          <Animate>
-            <div className="zv-credentials">
-              {origin.credentials.map((cred, i) => (
-                <div key={i} className="zv-credential">
-                  <div className="zv-credential-label">{cred.label}</div>
-                  <div className="zv-credential-value">{cred.value}</div>
-                </div>
-              ))}
-            </div>
-          </Animate>
-        </div>
-      </section>
-
       {/* The AI Journey */}
       <section className="zv-section">
         <div className="zv-container">

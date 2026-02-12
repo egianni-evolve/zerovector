@@ -290,7 +290,6 @@ a:hover {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
-  font-style: italic;
   color: var(--text-primary);
   line-height: 1.35;
   max-width: 700px;
@@ -2501,7 +2500,6 @@ a:hover {
   line-height: 1.4;
   max-width: 700px;
   margin: 0 auto;
-  font-style: italic;
 }
 
 @media (max-width: 768px) {
