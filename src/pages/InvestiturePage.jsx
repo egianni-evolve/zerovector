@@ -57,28 +57,27 @@ function InvestiturePage() {
       <section className="inv-section inv-hero">
         <div className="inv-container">
           <div className="inv-label">{inv.hero.label}</div>
+          <div className="inv-badge">{inv.hero.badge}</div>
           <div className="inv-hero-glow" aria-hidden="true" />
           <h1 className="inv-hero-title">
             <span className="inv-hero-light">{inv.hero.title[0]}</span>
             <span className="inv-hero-heavy">{inv.hero.title[1]}</span>
-            <span className="inv-hero-heavy">{inv.hero.title[2]}</span>
           </h1>
           <p className="inv-subtitle">{inv.hero.subtitle}</p>
-          <div className="inv-badge">{inv.hero.badge}</div>
         </div>
       </section>
 
-      {/* CTA — Start Building */}
-      <section className="inv-section inv-cta-section" style={{ paddingTop: 0 }}>
+      {/* CTA — Start Building (inverted) */}
+      <section className="inv-section" style={{ paddingTop: 0 }}>
         <div className="inv-container">
           <Animate>
-            <h2 className="inv-cta-title">{inv.cta.title}</h2>
-            <p className="inv-cta-body">{inv.cta.body}</p>
-          </Animate>
-          <Animate delay={1}>
-            <div className="inv-cta-buttons">
-              <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--primary">{inv.cta.primaryCta}</a>
-              <a href={inv.cta.secondaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--outline">{inv.cta.secondaryCta}</a>
+            <div className="inv-cta-inverted">
+              <h2 className="inv-cta-inverted-title">{inv.cta.title}</h2>
+              <p className="inv-cta-inverted-body">{inv.cta.body}</p>
+              <div className="inv-cta-inverted-buttons">
+                <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--dark">{inv.cta.primaryCta}</a>
+                <a href={inv.cta.secondaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--dark-outline">{inv.cta.secondaryCta}</a>
+              </div>
             </div>
           </Animate>
         </div>

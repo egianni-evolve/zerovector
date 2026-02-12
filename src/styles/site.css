@@ -4477,6 +4477,74 @@ a:hover {
   text-align: center;
 }
 
+/* --- CTA Inverted (top of page) --- */
+.inv-cta-inverted {
+  background: #ffffff;
+  padding: 48px;
+  text-align: center;
+}
+
+.inv-cta-inverted-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 12px;
+}
+
+.inv-cta-inverted-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin: 0 0 32px;
+}
+
+.inv-cta-inverted-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inv-btn--dark {
+  background: #111;
+  color: #fff;
+}
+
+.inv-btn--dark:hover {
+  background: #333;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.inv-btn--dark-outline {
+  background: transparent;
+  border: 1px solid #333;
+  color: #111;
+}
+
+.inv-btn--dark-outline:hover {
+  background: #111;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .inv-cta-inverted {
+    padding: 32px 24px;
+  }
+
+  .inv-cta-inverted-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .inv-cta-inverted-buttons .inv-btn {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+}
+
 /* --- CTA --- */
 
 .inv-cta-section {
