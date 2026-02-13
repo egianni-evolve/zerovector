@@ -380,6 +380,18 @@ function ManifestoPage() {
             </div>
           </Animate>
           <Animate delay={4}>
+            <a
+              href="https://open.substack.com/pub/eflowers/p/zero-vector-design-you-will-move"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="zv-featured-article"
+            >
+              <span className="zv-featured-article-badge">New</span>
+              <span className="zv-featured-article-title">Zero-Vector Design: You Will Move</span>
+              <span className="zv-featured-article-cta">Read on Substack &rarr;</span>
+            </a>
+          </Animate>
+          <Animate delay={4}>
             <div className="zv-closing-notify">
               <p className="zv-closing-notify-text">Get notified when new Zero Vector content drops.</p>
               <NotifyForm variant="light" tag="zerovector" />

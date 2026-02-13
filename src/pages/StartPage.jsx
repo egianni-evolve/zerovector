@@ -68,9 +68,9 @@ function StartPage() {
               <div className="zv-start-announcement-label">Featured</div>
               <h3 className="zv-start-announcement-title">{start.announcement.title}</h3>
               <p className="zv-start-announcement-desc">{start.announcement.description}</p>
-              <Link to={start.announcement.url} className="zv-start-announcement-cta">
-                {start.announcement.cta} <ArrowIcon size={14} />
-              </Link>
+              <a href={start.announcement.url} target="_blank" rel="noopener noreferrer" className="zv-start-announcement-cta">
+                {start.announcement.cta} <ExternalLinkIcon size={14} />
+              </a>
             </div>
           </Animate>
         </div>

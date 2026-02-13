@@ -681,6 +681,61 @@ a:hover {
   color: #007a7a;
 }
 
+/* --- Featured Article Banner (homepage) --- */
+.zv-featured-article {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  margin-top: 32px;
+  border: 1px solid rgba(0, 200, 200, 0.25);
+  background: rgba(0, 200, 200, 0.04);
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.zv-featured-article:hover {
+  border-color: rgba(0, 200, 200, 0.5);
+  background: rgba(0, 200, 200, 0.08);
+}
+
+.zv-featured-article-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  background: var(--cyan);
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
+
+.zv-featured-article-title {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.zv-featured-article-cta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .zv-featured-article {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 .zv-closing-notify {
   text-align: center;
   margin-top: 16px;

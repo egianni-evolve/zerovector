@@ -985,10 +985,10 @@ const en = {
     ],
 
     announcement: {
-      title: 'Zero-Vector Design Is Live',
-      description: 'The manifesto, the approach, the curriculum, the tools. Everything is here. Start with the philosophy and work your way out.',
-      cta: 'Read the Manifesto',
-      url: '/',
+      title: 'Zero-Vector Design: You Will Move',
+      description: 'The article that introduces Zero-Vector Design. What it is, why it exists, and what it means for the future of making things.',
+      cta: 'Read on Substack',
+      url: 'https://open.substack.com/pub/eflowers/p/zero-vector-design-you-will-move',
       placeholder: false,
     },
 
