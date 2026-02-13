@@ -224,6 +224,16 @@ function ManifestoPage() {
           <Animate>
             <blockquote className="zv-callout">{home.declaration.callout2}</blockquote>
           </Animate>
+          <Animate>
+            <a
+              href="https://open.substack.com/pub/eflowers/p/zero-vector-design-you-will-move"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="zv-declaration-article"
+            >
+              Read Erika's announcement on Substack &rarr;
+            </a>
+          </Animate>
         </div>
       </section>
 
