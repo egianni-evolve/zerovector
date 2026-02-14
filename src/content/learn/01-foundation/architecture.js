@@ -4,6 +4,8 @@ export default {
   subtitle: 'Structure before code. Always.',
   duration: '20 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {
@@ -68,7 +70,7 @@ export default {
         body: [
           'Let us trace the architecture of a real application — a site like Zero Vector:',
           'The source code lives in src/. Inside, pages/ contains one file per route. components/ contains reusable pieces. styles/ contains CSS. content/ contains the text and data. This is separation of concerns at the file level.',
-          'The router maps URLs to pages: /open/learn/00-orientation/terminal shows the LessonPage component with data from the terminal lesson file. The URL is the single source of truth — no hidden state decides what you see.',
+          'The router maps URLs to pages: /open/learn/curriculum/00-orientation/terminal shows the LessonPage component with data from the terminal lesson file. The URL is the single source of truth — no hidden state decides what you see.',
           'The layout components (navigation, sidebar) wrap the content. They do not know what content is inside them. The content components do not know what layout surrounds them. They communicate through well-defined props and context.',
           'This is architecture: predictable structure, clear boundaries, data flowing in one direction. Not complicated. Deliberate.',
         ],

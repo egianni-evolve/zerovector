@@ -4,6 +4,8 @@ export default {
   subtitle: 'How to think about a problem before you touch a tool.',
   duration: '18 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

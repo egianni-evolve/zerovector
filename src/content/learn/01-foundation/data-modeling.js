@@ -4,6 +4,8 @@ export default {
   subtitle: 'The shape of your data is the shape of your product.',
   duration: '20 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

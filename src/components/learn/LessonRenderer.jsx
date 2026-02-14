@@ -1,3 +1,7 @@
+function headingId(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 function LessonRenderer({ sections }) {
   if (!sections?.length) return null;
 
@@ -8,7 +12,7 @@ function LessonRenderer({ sections }) {
           case 'text':
             return (
               <div key={i} className="ovl-block ovl-block-text">
-                {section.heading && <h2 className="ovl-block-heading">{section.heading}</h2>}
+                {section.heading && <h2 id={headingId(section.heading)} className="ovl-block-heading">{section.heading}</h2>}
                 {section.body.map((p, j) => (
                   <p key={j} className="ovl-block-paragraph">{p}</p>
                 ))}
@@ -37,7 +41,7 @@ function LessonRenderer({ sections }) {
           case 'resources':
             return (
               <div key={i} className="ovl-block ovl-block-resources">
-                {section.heading && <h2 className="ovl-block-heading">{section.heading}</h2>}
+                {section.heading && <h2 id={headingId(section.heading)} className="ovl-block-heading">{section.heading}</h2>}
                 <ul className="ovl-resource-list">
                   {section.items.map((item, j) => (
                     <li key={j} className="ovl-resource-item">

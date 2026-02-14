@@ -4,6 +4,8 @@ export default {
   subtitle: 'Where your stuff lives, and why it matters.',
   duration: '15 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

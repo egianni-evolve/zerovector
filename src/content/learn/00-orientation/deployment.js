@@ -4,6 +4,8 @@ export default {
   subtitle: 'From your computer to the internet.',
   duration: '18 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

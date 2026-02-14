@@ -4,6 +4,8 @@ export default {
   subtitle: 'What are the things? What do the things do?',
   duration: '18 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

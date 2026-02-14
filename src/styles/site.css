@@ -4019,6 +4019,75 @@ a:hover {
   letter-spacing: 0.02em;
 }
 
+/* --- Recently Added --- */
+.ov-recently-updated {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 24px;
+}
+
+.ov-recent-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #0a0a0a;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.ov-recent-item:hover {
+  background: rgba(0, 85, 255, 0.04);
+}
+
+.ov-recent-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.ov-recent-badge--new {
+  background: #0055ff;
+  color: #fff;
+}
+
+.ov-recent-badge--updated {
+  background: rgba(0, 85, 255, 0.1);
+  color: #0055ff;
+}
+
+.ov-recent-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.ov-recent-level {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .ov-recent-item {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+  .ov-recent-level {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
 /* --- Contrast Table --- */
 .ov-contrast-table {
   display: grid;
@@ -5498,8 +5567,43 @@ a:hover {
   border-radius: 3px;
 }
 
-.ovl-nav-back {
+.ovl-nav-primary {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-left: 24px;
+  height: 56px;
+}
+
+.ovl-nav-tab {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #999 !important;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.ovl-nav-tab:hover {
+  color: #0a0a0a !important;
+}
+.ovl-nav-tab--active {
+  color: #0055ff !important;
+  border-bottom-color: #0055ff;
+}
+
+.ovl-nav-right {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ovl-nav-back {
   font-family: var(--font-mono);
   font-size: 12px;
   color: #888 !important;
@@ -5621,8 +5725,10 @@ a:hover {
 }
 
 .ovl-sidebar-lesson {
-  display: block;
-  padding: 6px 24px 6px 58px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px 6px 42px;
   font-family: var(--font-body);
   font-size: 13px;
   color: #777 !important;
@@ -5646,7 +5752,7 @@ a:hover {
 .ovl-content {
   flex: 1;
   min-width: 0;
-  max-width: 800px;
+  max-width: 1140px;
   padding: 32px 48px 80px;
 }
 
@@ -5700,6 +5806,191 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+/* --- Right Rail System --- */
+
+.ovl-with-rail {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 40px;
+  align-items: start;
+}
+
+.ovl-main {
+  min-width: 0;
+}
+
+.ovl-rail {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ovl-rail-section {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 85, 255, 0.02);
+}
+
+.ovl-rail-section-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Rail — Link list (recent updates, etc.) */
+
+.ovl-rail-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ovl-rail-list-item {
+  display: block;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  color: #0a0a0a !important;
+  transition: background 0.15s ease;
+}
+.ovl-rail-list-item:last-child {
+  border-bottom: none;
+}
+.ovl-rail-list-item:hover {
+  background: rgba(0, 85, 255, 0.04);
+}
+
+.ovl-rail-list-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.ovl-rail-list-level {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #999;
+  letter-spacing: 0.02em;
+}
+
+.ovl-rail-list-title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #333;
+}
+
+/* Rail — Level navigation links */
+
+.ovl-rail-levels {
+  display: flex;
+  flex-direction: column;
+}
+
+.ovl-rail-level-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  color: #0a0a0a !important;
+  transition: background 0.15s ease;
+}
+.ovl-rail-level-link:last-child {
+  border-bottom: none;
+}
+.ovl-rail-level-link:hover {
+  background: rgba(0, 85, 255, 0.04);
+}
+
+.ovl-rail-level-num {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.15);
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.ovl-rail-level-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Rail — Table of contents */
+
+.ovl-rail-toc {
+  display: flex;
+  flex-direction: column;
+}
+
+.ovl-rail-toc-link {
+  display: block;
+  padding: 7px 16px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #555 !important;
+  border-left: 2px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.ovl-rail-toc-link:hover {
+  background: rgba(0, 85, 255, 0.04);
+  border-left-color: #0055ff;
+  color: #0055ff !important;
+}
+
+/* Rail — Sign-in prompt (global) */
+
+.ovl-rail-signin {
+  padding: 16px;
+  border: 1px solid rgba(0, 85, 255, 0.12);
+  background: rgba(0, 85, 255, 0.03);
+}
+.ovl-rail-signin .ovl-rail-section-header {
+  padding: 0 0 10px;
+  border-bottom: none;
+}
+
+.ovl-rail-signin-text {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0 0 12px;
+}
+
+.ovl-rail-signin-btn {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background: #0055ff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.ovl-rail-signin-btn:hover {
+  background: #0044cc;
+}
+
+@media (max-width: 900px) {
+  .ovl-with-rail {
+    grid-template-columns: 1fr;
+  }
+  .ovl-rail {
+    position: static;
+  }
 }
 
 .ovl-level-card {
@@ -5847,6 +6138,13 @@ a:hover {
 .ovl-level-lesson-subtitle {
   font-size: 0.85rem;
   color: #888;
+}
+
+.ovl-level-lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .ovl-level-lesson-duration {
@@ -6012,6 +6310,310 @@ a:hover {
   font-size: 14px;
 }
 
+/* --- Auth UI --- */
+
+.ovl-signin-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: #0055ff;
+  background: none;
+  border: 1px solid rgba(0, 85, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: border-color 0.15s, background 0.15s;
+  margin-left: auto;
+}
+
+.ovl-signin-btn:hover {
+  border-color: #0055ff;
+  background: rgba(0, 85, 255, 0.04);
+}
+
+.ovl-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.ovl-user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0055ff;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.ovl-signout-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ovl-signout-btn:hover {
+  color: #555;
+}
+
+.ovl-signin-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(0, 85, 255, 0.04);
+  border: 1px solid rgba(0, 85, 255, 0.1);
+  border-radius: 6px;
+  padding: 14px 20px;
+  margin-bottom: 32px;
+}
+
+.ovl-signin-prompt-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+}
+
+.ovl-signin-prompt-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: #0055ff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.ovl-signin-prompt-btn:hover {
+  background: #0044cc;
+}
+
+/* --- Badges --- */
+
+.ovl-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  line-height: 1.4;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.ovl-badge--new {
+  background: #0055ff;
+  color: #fff;
+}
+
+.ovl-badge--updated {
+  background: rgba(0, 85, 255, 0.1);
+  color: #0055ff;
+}
+
+/* --- Progress: Mark Complete --- */
+
+.ovl-mark-complete {
+  margin-top: 48px;
+  padding-top: 24px;
+}
+
+.ovl-mark-complete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.ovl-mark-complete-check {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.ovl-mark-complete-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+}
+
+.ovl-mark-complete-btn:hover {
+  border-color: #0055ff;
+}
+
+.ovl-mark-complete-btn:hover .ovl-mark-complete-label {
+  color: #0055ff;
+}
+
+.ovl-mark-complete-btn--done {
+  background: #0055ff;
+  border-color: #0055ff;
+}
+
+.ovl-mark-complete-btn--done .ovl-mark-complete-check {
+  color: #fff;
+}
+
+.ovl-mark-complete-btn--done .ovl-mark-complete-label {
+  color: #fff;
+}
+
+.ovl-mark-complete-btn--done:hover {
+  background: #0044cc;
+  border-color: #0044cc;
+}
+
+/* --- Progress: Ring (level cards) --- */
+
+.ovl-progress-ring {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.ovl-progress-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ovl-progress-track {
+  stroke: rgba(0, 0, 0, 0.08);
+}
+
+.ovl-progress-fill {
+  stroke: #0055ff;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.3s ease;
+}
+
+.ovl-progress-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  color: #0055ff;
+}
+
+/* --- Progress: Level page bar --- */
+
+.ovl-level-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ovl-level-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ovl-level-progress-fill {
+  height: 100%;
+  background: #0055ff;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.ovl-level-progress-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #999;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --- Progress: Sidebar checkmarks --- */
+
+.ovl-sidebar-check {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #0055ff;
+  width: 14px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.ovl-sidebar-lesson-label {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --- Progress: Level lesson list checkmarks --- */
+
+.ovl-level-lesson-check {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: #0055ff;
+}
+
+.ovl-level-lesson-item--done .ovl-level-lesson-index {
+  color: #0055ff;
+}
+
+/* --- Level card badge dot --- */
+
+.ovl-level-card-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0055ff;
+}
+
+.ovl-level-card-number {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .ovl-signin-prompt {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .ovl-signin-prompt-btn {
+    align-self: center;
+  }
+}
+
 /* --- Pagination --- */
 
 .ovl-pagination {
@@ -6065,6 +6667,411 @@ a:hover {
   margin-top: 3px;
 }
 
+/* --- Sidebar — Resources View --- */
+
+.ovl-sidebar-resources {
+  padding: 8px 0;
+}
+
+.ovl-sidebar-section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  padding: 12px 24px 8px;
+}
+
+.ovl-sidebar-topic {
+  display: block;
+  padding: 8px 24px;
+  font-size: 14px;
+  color: #555;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.ovl-sidebar-topic:hover {
+  background: rgba(0, 85, 255, 0.04);
+  color: #0a0a0a;
+}
+
+/* --- Learn Hub Page --- */
+
+.ovl-hub-header {
+  margin-bottom: 32px;
+}
+
+.ovl-hub-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-hub-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.ovl-hub-intro {
+  font-size: 1rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+.ovl-hub-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 40px;
+}
+
+.ovl-hub-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #0a0a0a !important;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.ovl-hub-card:hover {
+  background: rgba(0, 85, 255, 0.03);
+  border-color: rgba(0, 85, 255, 0.15);
+}
+
+.ovl-hub-card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(0, 85, 255, 0.06);
+  border-radius: 8px;
+}
+
+.ovl-hub-card-glyph {
+  font-size: 22px;
+  color: #0055ff;
+  font-weight: 700;
+}
+
+.ovl-hub-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ovl-hub-card-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ovl-hub-card-desc {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.ovl-hub-card-action {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #0055ff;
+  letter-spacing: 0.02em;
+}
+
+.ovl-hub-recent {
+  margin-top: 40px;
+}
+
+.ovl-hub-recent-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin-bottom: 12px;
+}
+
+.ovl-hub-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ovl-hub-recent-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  color: #0a0a0a !important;
+  transition: background 0.15s ease;
+}
+.ovl-hub-recent-item:hover {
+  background: rgba(0, 85, 255, 0.03);
+}
+
+.ovl-hub-recent-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ovl-hub-recent-level {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #999;
+  margin-left: auto;
+}
+
+/* --- Resources / Go Further Page --- */
+
+.ovl-resources-header {
+  margin-bottom: 32px;
+}
+
+.ovl-resources-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-resources-subtitle {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+.ovl-resources-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ovl-resources-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ovl-filter-pill {
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: white;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ovl-filter-pill:hover {
+  border-color: rgba(0, 85, 255, 0.3);
+  color: #0055ff;
+}
+.ovl-filter-pill--active {
+  background: #0055ff;
+  color: white;
+  border-color: #0055ff;
+}
+.ovl-filter-pill--active:hover {
+  background: #0044cc;
+  color: white;
+}
+
+.ovl-filter-pill--topic {
+  font-size: 10px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ovl-filter-pill-count {
+  font-size: 9px;
+  opacity: 0.7;
+}
+
+.ovl-resources-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.ovl-resources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ovl-resource-card {
+  display: block;
+  padding: 20px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #0a0a0a !important;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.ovl-resource-card:hover {
+  background: rgba(0, 85, 255, 0.02);
+  border-color: rgba(0, 85, 255, 0.12);
+}
+
+.ovl-resource-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.ovl-resource-type {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+}
+.ovl-resource-type--book { background: rgba(0, 85, 255, 0.1); color: #0055ff; }
+.ovl-resource-type--article { background: rgba(0, 180, 100, 0.1); color: #00a060; }
+.ovl-resource-type--course { background: rgba(180, 80, 255, 0.1); color: #9040e0; }
+.ovl-resource-type--tool { background: rgba(255, 140, 0, 0.1); color: #cc7000; }
+.ovl-resource-type--reference { background: rgba(0, 0, 0, 0.06); color: #666; }
+
+.ovl-resource-card-arrow {
+  font-size: 14px;
+  color: #ccc;
+}
+.ovl-resource-card:hover .ovl-resource-card-arrow {
+  color: #0055ff;
+}
+
+.ovl-resource-card-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.ovl-resource-card-author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 6px;
+}
+
+.ovl-resource-card-desc {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.ovl-resource-card-topics {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.ovl-resource-card-topic {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #aaa;
+  padding: 2px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ovl-resources-empty {
+  padding: 48px 0;
+  text-align: center;
+  color: #999;
+  font-size: 0.95rem;
+}
+
+.ovl-resources-empty-reset {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #0055ff;
+  background: none;
+  border: 1px solid #0055ff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.ovl-resources-empty-reset:hover {
+  background: rgba(0, 85, 255, 0.05);
+}
+
+/* Rail — About section */
+
+.ovl-rail-about {
+  padding: 12px 16px;
+}
+.ovl-rail-about p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+.ovl-rail-about a {
+  color: #0055ff;
+}
+
+/* Rail — Stats */
+
+.ovl-rail-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.ovl-rail-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+.ovl-rail-stat:last-child {
+  border-bottom: none;
+}
+
+.ovl-rail-stat-count {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.15);
+  width: 28px;
+  text-align: right;
+}
+
+.ovl-rail-stat-label {
+  font-size: 13px;
+  color: #555;
+}
+
 /* --- Not Found --- */
 
 .ovl-not-found {
@@ -6086,6 +7093,7 @@ a:hover {
 
 @media (max-width: 768px) {
   .ovl-nav-toggle { display: flex; }
+  .ovl-nav-primary { display: none; }
   .ovl-nav-back { display: none; }
 
   .ovl-sidebar {
@@ -6119,6 +7127,13 @@ a:hover {
     max-width: 100%;
   }
 
+  .ovl-with-rail {
+    grid-template-columns: 1fr;
+  }
+  .ovl-rail {
+    position: static;
+  }
+
   .ovl-pagination {
     flex-direction: column;
   }
@@ -6144,6 +7159,21 @@ a:hover {
   .ovl-level-lesson-item {
     gap: 12px;
     padding: 14px 8px;
+  }
+
+  .ovl-hub-card {
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 20px;
+  }
+
+  .ovl-resources-filter-row {
+    gap: 4px;
+  }
+
+  .ovl-filter-pill {
+    font-size: 10px;
+    padding: 4px 10px;
   }
 }
 

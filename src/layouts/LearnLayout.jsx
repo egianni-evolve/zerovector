@@ -59,7 +59,7 @@ function LearnLayout() {
           lessonSlug: lesson.slug,
           levelTitle: level.title,
           lessonTitle: lesson.title,
-          path: `/open/learn/${level.slug}/${lesson.slug}`,
+          path: `/open/learn/curriculum/${level.slug}/${lesson.slug}`,
         });
       });
     });

@@ -4,6 +4,8 @@ export default {
   subtitle: 'See the whole board before you move a piece.',
   duration: '20 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

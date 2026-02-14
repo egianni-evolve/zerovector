@@ -14,9 +14,11 @@ import AskPage from './pages/AskPage';
 import QuizPage from './pages/QuizPage';
 import StartPage from './pages/StartPage';
 import NotFoundPage from './pages/NotFoundPage';
+import LearnHubPage from './pages/learn/LearnHubPage';
 import LearnIndexPage from './pages/learn/LearnIndexPage';
 import LevelPage from './pages/learn/LevelPage';
 import LessonPage from './pages/learn/LessonPage';
+import LearnResourcesPage from './pages/learn/LearnResourcesPage';
 
 function App() {
   return (
@@ -42,9 +44,11 @@ function App() {
       </Route>
       <Route path="/open" element={<OpenVectorPage />} />
       <Route path="/open/learn" element={<LearnLayout />}>
-        <Route index element={<LearnIndexPage />} />
-        <Route path=":levelSlug" element={<LevelPage />} />
-        <Route path=":levelSlug/:lessonSlug" element={<LessonPage />} />
+        <Route index element={<LearnHubPage />} />
+        <Route path="curriculum" element={<LearnIndexPage />} />
+        <Route path="curriculum/:levelSlug" element={<LevelPage />} />
+        <Route path="curriculum/:levelSlug/:lessonSlug" element={<LessonPage />} />
+        <Route path="resources" element={<LearnResourcesPage />} />
       </Route>
       <Route path="/investiture" element={<InvestiturePage />} />
     </Routes>

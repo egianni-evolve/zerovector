@@ -4,6 +4,8 @@ export default {
   subtitle: 'A home for your code.',
   duration: '15 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {

@@ -4,6 +4,8 @@ export default {
   subtitle: 'Organizing what people need to find.',
   duration: '18 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {
@@ -24,7 +26,7 @@ export default {
         heading: 'Why IA Matters for Builders',
         body: [
           'If you are coming from design, you already think about IA — navigation menus, page hierarchy, content grouping. But when you start building, IA becomes structural. Your folder structure is IA. Your URL scheme is IA. Your component hierarchy is IA.',
-          'Consider this URL: /open/learn/01-foundation/information-architecture. That path tells you exactly where you are: you are in the Open Vector section, in the Learn area, in the Foundation level, reading the Information Architecture lesson. The URL is not just an address. It is a map.',
+          'Consider this URL: /open/learn/curriculum/01-foundation/information-architecture. That path tells you exactly where you are: you are in the Open Vector section, in the Learn area, in the Curriculum, in the Foundation level, reading the Information Architecture lesson. The URL is not just an address. It is a map.',
           'When your IA is solid, everything downstream benefits. Navigation writes itself. Breadcrumbs work automatically. Search indexing is clean. Users build accurate mental models of your site. When IA is weak, you end up with a flat mess of pages, confusing navigation, and users who cannot find what they saw five minutes ago.',
         ],
       },
@@ -71,7 +73,7 @@ export default {
       },
       {
         type: 'code',
-        body: '# Good URL architecture — readable, hierarchical, predictable:\n/open/learn                          # All levels\n/open/learn/01-foundation            # Specific level\n/open/learn/01-foundation/planning   # Specific lesson\n\n# The pattern: /section/area/category/item\n# Each segment narrows the scope.\n# Users can navigate by editing the URL.\n\n# Bad URL architecture — opaque, flat, meaningless:\n/page?id=47\n/content/view/3829\n/app#/module/sub/detail/7',
+        body: '# Good URL architecture — readable, hierarchical, predictable:\n/open/learn                                    # Learning hub\n/open/learn/curriculum                         # All levels\n/open/learn/curriculum/01-foundation           # Specific level\n/open/learn/curriculum/01-foundation/planning  # Specific lesson\n/open/learn/resources                          # External resources\n\n# The pattern: /section/area/category/item\n# Each segment narrows the scope.\n# Users can navigate by editing the URL.\n\n# Bad URL architecture — opaque, flat, meaningless:\n/page?id=47\n/content/view/3829\n/app#/module/sub/detail/7',
       },
       {
         type: 'text',

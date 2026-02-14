@@ -108,7 +108,7 @@ function OpenVectorPage() {
           <div className="ov-curriculum">
             {open.curriculum.levels.map((level, i) => {
               const learnLevel = learn.levels.find(l => l.number === level.number);
-              const levelPath = learnLevel ? `/open/learn/${learnLevel.slug}` : '/open/learn';
+              const levelPath = learnLevel ? `/open/learn/curriculum/${learnLevel.slug}` : '/open/learn';
               return (
                 <Animate key={i}>
                   <Link to={levelPath} className="ov-level">
@@ -133,6 +133,45 @@ function OpenVectorPage() {
           </div>
         </div>
       </section>
+
+      {/* Recently Added */}
+      {(() => {
+        const recentLessons = learn.levels.flatMap(level =>
+          level.lessons
+            .filter(l => l.badge)
+            .map(l => ({
+              title: l.title,
+              badge: l.badge,
+              levelTitle: `${level.number} ${level.title}`,
+              path: `/open/learn/curriculum/${level.slug}/${l.slug}`,
+              updatedAt: l.updatedAt,
+            }))
+        ).slice(0, 8);
+        if (recentLessons.length === 0) return null;
+        return (
+          <section className="ov-section">
+            <div className="ov-container">
+              <hr className="ov-rule" />
+              <Animate>
+                <div className="ov-label">Recently Added</div>
+              </Animate>
+              <div className="ov-recently-updated">
+                {recentLessons.map((item, i) => (
+                  <Animate key={i}>
+                    <Link to={item.path} className="ov-recent-item">
+                      <span className={`ov-recent-badge ov-recent-badge--${item.badge}`}>
+                        {item.badge === 'new' ? 'New' : 'Updated'}
+                      </span>
+                      <span className="ov-recent-title">{item.title}</span>
+                      <span className="ov-recent-level">{item.levelTitle}</span>
+                    </Link>
+                  </Animate>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Contrast */}
       <section className="ov-section">

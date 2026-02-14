@@ -4,6 +4,8 @@ export default {
   subtitle: 'Version control is not Google Drive.',
   duration: '20 min',
   status: 'available',
+  badge: 'new',
+  updatedAt: '2026-02-14',
   content: {
     sections: [
       {
