@@ -5422,3 +5422,741 @@ a:hover {
     padding: 24px;
   }
 }
+
+
+/* ===================================================================
+   OPEN VECTOR LEARN — LMS Curriculum Layout
+   Prefix: .ovl-*
+   =================================================================== */
+
+/* --- Page Shell --- */
+
+.ovl-page {
+  background: #ffffff;
+  color: #0a0a0a;
+  min-height: 100vh;
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+.ovl-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ovl-page a { color: #0055ff; text-decoration: none; text-shadow: none; }
+.ovl-page a:hover { color: #0033cc; }
+
+/* --- Nav --- */
+
+.ovl-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  height: 56px;
+}
+
+.ovl-nav-inner {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ovl-nav-brand {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #0a0a0a !important;
+  letter-spacing: -0.01em;
+}
+
+.ovl-nav-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: #0055ff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(0, 85, 255, 0.25);
+  border-radius: 3px;
+}
+
+.ovl-nav-back {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #888 !important;
+  letter-spacing: 0.02em;
+}
+.ovl-nav-back:hover { color: #0055ff !important; }
+
+/* Hamburger toggle (mobile) */
+.ovl-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.ovl-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 20px;
+}
+
+.ovl-hamburger span {
+  display: block;
+  height: 2px;
+  background: #0a0a0a;
+  border-radius: 1px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.ovl-hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.ovl-hamburger--open span:nth-child(2) {
+  opacity: 0;
+}
+.ovl-hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Two-Panel Shell --- */
+
+.ovl-shell {
+  display: flex;
+  padding-top: 56px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Sidebar --- */
+
+.ovl-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(250, 250, 252, 0.95);
+  padding: 24px 0;
+}
+
+.ovl-sidebar-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ovl-sidebar-home {
+  display: block;
+  padding: 8px 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0055ff !important;
+  margin-bottom: 16px;
+}
+
+.ovl-sidebar-level-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 24px;
+  text-decoration: none;
+  color: #555 !important;
+  transition: background 0.15s ease;
+}
+.ovl-sidebar-level-header:hover {
+  background: rgba(0, 85, 255, 0.04);
+  color: #333 !important;
+}
+
+.ovl-sidebar-level--active > .ovl-sidebar-level-header {
+  color: #0a0a0a !important;
+  font-weight: 600;
+}
+
+.ovl-sidebar-level-number {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #0055ff;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.ovl-sidebar-level-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.ovl-sidebar-lessons {
+  padding: 4px 0 12px 0;
+}
+
+.ovl-sidebar-lesson {
+  display: block;
+  padding: 6px 24px 6px 58px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #777 !important;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease;
+}
+.ovl-sidebar-lesson:hover {
+  color: #0a0a0a !important;
+  background: rgba(0, 85, 255, 0.03);
+}
+
+.ovl-sidebar-lesson--active {
+  color: #0055ff !important;
+  font-weight: 600;
+  border-left-color: #0055ff;
+  background: rgba(0, 85, 255, 0.06);
+}
+
+/* --- Content Area --- */
+
+.ovl-content {
+  flex: 1;
+  min-width: 0;
+  max-width: 800px;
+  padding: 32px 48px 80px;
+}
+
+/* --- Breadcrumbs --- */
+
+.ovl-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 32px;
+}
+
+.ovl-crumb { color: #777 !important; }
+.ovl-crumb:hover { color: #0055ff !important; }
+.ovl-crumb--current { color: #0a0a0a !important; cursor: default; }
+.ovl-crumb-sep { color: #ccc; user-select: none; }
+
+/* --- Learn Index Page --- */
+
+.ovl-index-header {
+  margin-bottom: 48px;
+}
+
+.ovl-index-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-index-subtitle {
+  font-size: 1.15rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.ovl-index-intro {
+  font-size: 1rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+.ovl-index-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ovl-level-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 28px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #0a0a0a !important;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.ovl-level-card:hover {
+  background: rgba(0, 85, 255, 0.03);
+  border-color: rgba(0, 85, 255, 0.12);
+}
+
+.ovl-level-card-number {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.1);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 64px;
+}
+
+.ovl-level-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ovl-level-card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #0a0a0a;
+}
+
+.ovl-level-card-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.ovl-level-card-meta {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0.02em;
+}
+
+.ovl-level-card-status { color: #0055ff; }
+
+/* --- Level Page --- */
+
+.ovl-level-header {
+  margin-bottom: 48px;
+}
+
+.ovl-level-header-number {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.06);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.ovl-level-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.ovl-level-header-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.ovl-level-header-desc {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.ovl-level-lesson-list {
+  margin-top: 32px;
+}
+
+.ovl-level-lesson-list-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #0055ff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ovl-level-lesson-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: #0a0a0a !important;
+  transition: background 0.15s ease;
+}
+.ovl-level-lesson-item:hover {
+  background: rgba(0, 85, 255, 0.03);
+}
+
+.ovl-level-lesson-index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #bbb;
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.ovl-level-lesson-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ovl-level-lesson-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  margin-bottom: 2px;
+}
+
+.ovl-level-lesson-subtitle {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.ovl-level-lesson-duration {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+/* --- Lesson Page --- */
+
+.ovl-lesson-header {
+  margin-bottom: 48px;
+}
+
+.ovl-lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.ovl-lesson-level {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #0055ff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ovl-lesson-duration {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #999;
+}
+
+.ovl-lesson-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-lesson-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* --- Content Blocks --- */
+
+.ovl-lesson-body {
+  margin-top: 32px;
+}
+
+.ovl-block {
+  margin-bottom: 36px;
+}
+
+.ovl-block-heading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 16px;
+}
+
+.ovl-block-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+.ovl-block-paragraph:last-child { margin-bottom: 0; }
+
+.ovl-block-callout {
+  margin: 36px 0;
+  padding: 20px 24px;
+  border-left: 3px solid #0055ff;
+  background: rgba(0, 85, 255, 0.04);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #0a0a0a;
+  font-style: italic;
+}
+
+.ovl-block-exercise {
+  margin: 36px 0;
+  padding: 24px;
+  border: 1px solid rgba(0, 170, 68, 0.3);
+  background: rgba(0, 170, 68, 0.04);
+  border-radius: 4px;
+}
+
+.ovl-exercise-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #00aa44;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ovl-exercise-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 8px;
+}
+
+.ovl-block-code {
+  margin: 36px 0;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+/* --- Resources block --- */
+
+.ovl-block-resources {
+  margin: 40px 0;
+  padding: 24px 28px;
+  background: #f0f4ff;
+  border-left: 3px solid #0055ff;
+  border-radius: 4px;
+}
+
+.ovl-resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ovl-resource-item {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ovl-resource-link {
+  color: #0055ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ovl-resource-link:hover {
+  text-decoration: underline;
+}
+
+.ovl-resource-note {
+  color: #555;
+  font-size: 14px;
+}
+
+/* --- Pagination --- */
+
+.ovl-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ovl-pagination-link {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  max-width: 45%;
+  color: #0a0a0a !important;
+}
+.ovl-pagination-link:hover {
+  border-color: #0055ff;
+  background: rgba(0, 85, 255, 0.03);
+}
+
+.ovl-pagination-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.ovl-pagination-direction {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ovl-pagination-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0a0a0a;
+}
+
+.ovl-pagination-level {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 3px;
+}
+
+/* --- Not Found --- */
+
+.ovl-not-found {
+  padding: 80px 0;
+  text-align: center;
+}
+.ovl-not-found h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.ovl-not-found p {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* --- Mobile Responsive --- */
+
+@media (max-width: 768px) {
+  .ovl-nav-toggle { display: flex; }
+  .ovl-nav-back { display: none; }
+
+  .ovl-sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    z-index: 90;
+    transform: translateX(-100%);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 300px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .ovl-sidebar--open {
+    transform: translateX(0);
+  }
+
+  .ovl-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    top: 56px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 89;
+  }
+
+  .ovl-content {
+    padding: 24px 20px 64px;
+    max-width: 100%;
+  }
+
+  .ovl-pagination {
+    flex-direction: column;
+  }
+
+  .ovl-pagination-link {
+    max-width: 100%;
+  }
+
+  .ovl-pagination-next {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .ovl-level-card {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ovl-level-card-number {
+    width: auto;
+  }
+
+  .ovl-level-lesson-item {
+    gap: 12px;
+    padding: 14px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ovl-index-title {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .ovl-lesson-title {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .ovl-level-header-number {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+}

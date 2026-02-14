@@ -2,6 +2,8 @@
 // Single source of truth. Adoni writes directly to these keys.
 // Structure follows Julian's IA punch list.
 
+import learn from './learn';
+
 const en = {
 
   // ============================================
@@ -969,6 +971,13 @@ const en = {
       backCta: 'Back to Manifesto',
     },
   },
+
+  // ============================================
+  // LEARN — Open Vector LMS Curriculum
+  // Imported from src/content/learn/ (individual lesson files)
+  // ============================================
+
+  learn,
 
   // ============================================
   // GET STARTED (/start)

@@ -6,7 +6,7 @@ import useSEO from '../hooks/useSEO';
 import '../styles/site.css';
 import en from '../content/en';
 
-const { open } = en;
+const { open, learn } = en;
 
 function OpenVectorPage() {
   const { pathname } = useLocation();
@@ -106,26 +106,30 @@ function OpenVectorPage() {
             <p className="ov-body ov-muted">{open.curriculum.intro}</p>
           </Animate>
           <div className="ov-curriculum">
-            {open.curriculum.levels.map((level, i) => (
-              <Animate key={i}>
-                <div className="ov-level">
-                  <div className="ov-level-left">
-                    <div className="ov-level-number">{level.number}</div>
-                    <div className="ov-level-status">Coming soon</div>
-                  </div>
-                  <div className="ov-level-right">
-                    <h3 className="ov-level-title">{level.title}</h3>
-                    <div className="ov-level-subtitle">{level.subtitle}</div>
-                    <p className="ov-level-desc">{level.desc}</p>
-                    <div className="ov-level-topics">
-                      {level.topics.map((topic, j) => (
-                        <span key={j} className="ov-topic">{topic}</span>
-                      ))}
+            {open.curriculum.levels.map((level, i) => {
+              const learnLevel = learn.levels.find(l => l.number === level.number);
+              const levelPath = learnLevel ? `/open/learn/${learnLevel.slug}` : '/open/learn';
+              return (
+                <Animate key={i}>
+                  <Link to={levelPath} className="ov-level">
+                    <div className="ov-level-left">
+                      <div className="ov-level-number">{level.number}</div>
+                      <div className="ov-level-status">Coming soon</div>
                     </div>
-                  </div>
-                </div>
-              </Animate>
-            ))}
+                    <div className="ov-level-right">
+                      <h3 className="ov-level-title">{level.title}</h3>
+                      <div className="ov-level-subtitle">{level.subtitle}</div>
+                      <p className="ov-level-desc">{level.desc}</p>
+                      <div className="ov-level-topics">
+                        {level.topics.map((topic, j) => (
+                          <span key={j} className="ov-topic">{topic}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </Link>
+                </Animate>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -183,8 +187,8 @@ function OpenVectorPage() {
           </Animate>
           <Animate delay={1}>
             <div className="ov-cta-buttons">
-              <button className="ov-btn ov-btn-primary">{open.cta.primaryCta}</button>
-              <button className="ov-btn ov-btn-outline">{open.cta.secondaryCta}</button>
+              <Link to="/open/learn" className="ov-btn ov-btn-primary">{open.cta.primaryCta}</Link>
+              <a href="https://github.com/erikaflowers/zerovector" className="ov-btn ov-btn-outline">{open.cta.secondaryCta}</a>
               <Link to="/" className="ov-btn ov-btn-outline">{open.cta.backCta}</Link>
             </div>
           </Animate>

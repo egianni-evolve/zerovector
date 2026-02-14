@@ -1,0 +1,106 @@
+import { useState, useEffect, useMemo } from 'react';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
+import LearnNav from '../components/learn/LearnNav';
+import LearnSidebar from '../components/learn/LearnSidebar';
+import LearnBreadcrumbs from '../components/learn/LearnBreadcrumbs';
+import LearnPagination from '../components/learn/LearnPagination';
+import '../styles/site.css';
+import en from '../content/en';
+
+const { learn } = en;
+
+function LearnLayout() {
+  const { levelSlug, lessonSlug } = useParams();
+  const { pathname } = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Set OV light theme
+  useEffect(() => {
+    document.body.style.background = '#ffffff';
+    document.body.style.color = '#0a0a0a';
+    document.body.style.margin = '0';
+    document.body.style.minHeight = '100vh';
+    return () => {
+      document.body.style.background = '';
+      document.body.style.color = '';
+      document.body.style.minHeight = '';
+    };
+  }, []);
+
+  // Scroll to top and close sidebar on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setSidebarOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile sidebar is open
+  useEffect(() => {
+    document.body.style.overflow = sidebarOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [sidebarOpen]);
+
+  // GA4 page view tracking (matches SiteLayout pattern)
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_path: pathname,
+        page_title: document.title,
+      });
+    }
+  }, [pathname]);
+
+  // Flat lesson list for pagination
+  const flatLessons = useMemo(() => {
+    const list = [];
+    learn.levels.forEach(level => {
+      level.lessons.forEach(lesson => {
+        list.push({
+          levelSlug: level.slug,
+          lessonSlug: lesson.slug,
+          levelTitle: level.title,
+          lessonTitle: lesson.title,
+          path: `/open/learn/${level.slug}/${lesson.slug}`,
+        });
+      });
+    });
+    return list;
+  }, []);
+
+  const currentIndex = flatLessons.findIndex(
+    l => l.levelSlug === levelSlug && l.lessonSlug === lessonSlug
+  );
+
+  return (
+    <div className="ovl-page">
+      <LearnNav
+        sidebarOpen={sidebarOpen}
+        onToggle={() => setSidebarOpen(!sidebarOpen)}
+      />
+      <div className="ovl-shell">
+        <LearnSidebar
+          levels={learn.levels}
+          activeLevelSlug={levelSlug}
+          activeLessonSlug={lessonSlug}
+          open={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+        />
+        <main className="ovl-content">
+          <LearnBreadcrumbs
+            levelSlug={levelSlug}
+            lessonSlug={lessonSlug}
+            levels={learn.levels}
+          />
+          <Outlet context={{ learn, levelSlug, lessonSlug }} />
+          {lessonSlug && (
+            <LearnPagination
+              prev={currentIndex > 0 ? flatLessons[currentIndex - 1] : null}
+              next={currentIndex < flatLessons.length - 1 ? flatLessons[currentIndex + 1] : null}
+            />
+          )}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+export default LearnLayout;

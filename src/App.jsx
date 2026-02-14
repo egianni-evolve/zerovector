@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import SiteLayout from './layouts/SiteLayout';
+import LearnLayout from './layouts/LearnLayout';
 import ManifestoPage from './pages/ManifestoPage';
 import PhilosophyPage from './pages/PhilosophyPage';
 import PipelinePage from './pages/PipelinePage';
@@ -13,6 +14,9 @@ import AskPage from './pages/AskPage';
 import QuizPage from './pages/QuizPage';
 import StartPage from './pages/StartPage';
 import NotFoundPage from './pages/NotFoundPage';
+import LearnIndexPage from './pages/learn/LearnIndexPage';
+import LevelPage from './pages/learn/LevelPage';
+import LessonPage from './pages/learn/LessonPage';
 
 function App() {
   return (
@@ -37,6 +41,11 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route path="/open" element={<OpenVectorPage />} />
+      <Route path="/open/learn" element={<LearnLayout />}>
+        <Route index element={<LearnIndexPage />} />
+        <Route path=":levelSlug" element={<LevelPage />} />
+        <Route path=":levelSlug/:lessonSlug" element={<LessonPage />} />
+      </Route>
       <Route path="/investiture" element={<InvestiturePage />} />
     </Routes>
   );
