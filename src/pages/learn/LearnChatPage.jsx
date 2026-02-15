@@ -159,6 +159,7 @@ function LearnChatPage() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isThinking, setIsThinking] = useState(false);
+  const [socratic, setSocratic] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -189,7 +190,7 @@ function LearnChatPage() {
       const res = await fetch('/.netlify/functions/learn-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: updated }),
+        body: JSON.stringify({ messages: updated, socratic }),
       });
 
       const data = await res.json();
@@ -308,6 +309,22 @@ function LearnChatPage() {
       </div>
 
       <div className="ovl-chat-input-area">
+        <div className="ovl-chat-modes">
+          <button
+            className={`ovl-chat-mode ${!socratic ? 'ovl-chat-mode--active' : ''}`}
+            onClick={() => setSocratic(false)}
+            type="button"
+          >
+            Direct
+          </button>
+          <button
+            className={`ovl-chat-mode ${socratic ? 'ovl-chat-mode--active' : ''}`}
+            onClick={() => setSocratic(true)}
+            type="button"
+          >
+            Socratic
+          </button>
+        </div>
         <form className="ovl-chat-form" onSubmit={handleSubmit}>
           <div className="ovl-chat-input-wrap">
             <textarea

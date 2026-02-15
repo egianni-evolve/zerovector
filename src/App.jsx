@@ -23,6 +23,8 @@ import LearnChatPage from './pages/learn/LearnChatPage';
 import LearnContributePage from './pages/learn/LearnContributePage';
 import LearnFAQPage from './pages/learn/LearnFAQPage';
 import LearnChangelogPage from './pages/learn/LearnChangelogPage';
+import LearnProgressPage from './pages/learn/LearnProgressPage';
+import LearnGlossaryPage from './pages/learn/LearnGlossaryPage';
 import ApproachIndexPage from './pages/learn/ApproachIndexPage';
 import GuidePage from './pages/learn/GuidePage';
 
@@ -61,6 +63,8 @@ function App() {
         <Route path="contribute" element={<LearnContributePage />} />
         <Route path="faq" element={<LearnFAQPage />} />
         <Route path="changelog" element={<LearnChangelogPage />} />
+        <Route path="progress" element={<LearnProgressPage />} />
+        <Route path="glossary" element={<LearnGlossaryPage />} />
       </Route>
       <Route path="/investiture" element={<InvestiturePage />} />
     </Routes>

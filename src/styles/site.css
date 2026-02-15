@@ -9467,3 +9467,508 @@ a:hover {
     align-items: center;
   }
 }
+
+/* ============================================================
+   Progress Dashboard
+   ============================================================ */
+
+.ovl-progress {
+  padding: 48px 0;
+}
+
+.ovl-progress-header {
+  margin-bottom: 40px;
+}
+
+.ovl-progress-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-progress-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Overall progress */
+
+.ovl-progress-overall {
+  margin-bottom: 32px;
+}
+
+.ovl-progress-overall-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.ovl-progress-overall-fill {
+  height: 100%;
+  background: #0055ff;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.ovl-progress-overall-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: #0055ff;
+}
+
+/* Continue Learning card */
+
+.ovl-progress-next {
+  display: block;
+  background: rgba(0, 85, 255, 0.04);
+  border: 1px solid rgba(0, 85, 255, 0.12);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ovl-progress-next:hover {
+  background: rgba(0, 85, 255, 0.07);
+  border-color: rgba(0, 85, 255, 0.25);
+  box-shadow: 0 2px 12px rgba(0, 85, 255, 0.08);
+  text-shadow: none;
+}
+
+.ovl-progress-next-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0055ff;
+  margin-bottom: 6px;
+}
+
+.ovl-progress-next-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 2px;
+}
+
+.ovl-progress-next-level {
+  font-size: 13px;
+  color: #888;
+}
+
+/* Levels container */
+
+.ovl-progress-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ovl-progress-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0055ff;
+  margin-bottom: 4px;
+}
+
+/* Individual level block */
+
+.ovl-progress-level {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ovl-progress-level:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ovl-progress-level-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.ovl-progress-level-header:hover {
+  text-shadow: none;
+}
+
+.ovl-progress-level-number {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #0055ff;
+  flex-shrink: 0;
+  min-width: 24px;
+}
+
+.ovl-progress-level-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  flex: 1;
+}
+
+.ovl-progress-level-count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.ovl-progress-level-bar {
+  width: 100%;
+  height: 4px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ovl-progress-level-fill {
+  height: 100%;
+  background: #0055ff;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* Expandable lesson list */
+
+.ovl-progress-level-lessons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 12px;
+  padding-left: 36px;
+}
+
+.ovl-progress-lesson {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.15s ease;
+}
+
+.ovl-progress-lesson:hover {
+  background: rgba(0, 85, 255, 0.04);
+  text-shadow: none;
+  color: #0a0a0a;
+}
+
+.ovl-progress-lesson--done {
+  color: #999;
+}
+
+.ovl-progress-lesson--done:hover {
+  color: #666;
+}
+
+.ovl-progress-lesson-check {
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+  color: #ccc;
+}
+
+.ovl-progress-lesson--done .ovl-progress-lesson-check {
+  color: #0055ff;
+}
+
+.ovl-progress-lesson-title {
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* Guest state */
+
+.ovl-progress-guest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.ovl-progress-guest-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.ovl-progress-guest-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-progress-guest-desc {
+  font-size: 1rem;
+  color: #777;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* ============================================================
+   Glossary
+   ============================================================ */
+
+.ovl-glossary {
+  padding: 48px 0;
+}
+
+.ovl-glossary-header {
+  margin-bottom: 40px;
+}
+
+.ovl-glossary-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.ovl-glossary-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.ovl-glossary-filter {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 15px;
+  color: #0a0a0a;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ovl-glossary-filter::placeholder {
+  color: #bbb;
+}
+
+.ovl-glossary-filter:focus {
+  border-color: rgba(0, 85, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.08);
+}
+
+/* Letter nav */
+
+.ovl-glossary-letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+
+.ovl-glossary-letter {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ovl-glossary-letter:hover {
+  color: #0055ff;
+  background: rgba(0, 85, 255, 0.05);
+  text-shadow: none;
+}
+
+/* Term list */
+
+.ovl-glossary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ovl-glossary-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ovl-glossary-group-letter {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0055ff;
+  line-height: 1;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.ovl-glossary-item {
+  padding: 0 0 0 4px;
+}
+
+.ovl-glossary-term {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 4px;
+}
+
+.ovl-glossary-def {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.ovl-glossary-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #0055ff;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ovl-glossary-link:hover {
+  color: #0044cc;
+  text-shadow: none;
+}
+
+.ovl-glossary-empty {
+  text-align: center;
+  padding: 60px 24px;
+  font-size: 1rem;
+  color: #999;
+}
+
+/* ============================================================
+   Socratic Mode Toggle
+   ============================================================ */
+
+.ovl-chat-modes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.ovl-chat-mode {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+}
+
+.ovl-chat-mode:hover {
+  background: #f5f5f5;
+}
+
+.ovl-chat-mode--active {
+  background: #0055ff;
+  border-color: #0055ff;
+  color: #fff;
+}
+
+.ovl-chat-mode--active:hover {
+  background: #0044cc;
+  border-color: #0044cc;
+}
+
+/* ============================================================
+   Progress & Glossary Responsive (768px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .ovl-progress {
+    padding: 32px 0;
+  }
+
+  .ovl-progress-header {
+    margin-bottom: 28px;
+  }
+
+  .ovl-progress-next {
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+
+  .ovl-progress-level-lessons {
+    padding-left: 0;
+  }
+
+  .ovl-progress-lesson {
+    padding: 8px 8px;
+  }
+
+  .ovl-progress-guest {
+    padding: 48px 16px;
+  }
+
+  .ovl-glossary {
+    padding: 32px 0;
+  }
+
+  .ovl-glossary-header {
+    margin-bottom: 28px;
+  }
+
+  .ovl-glossary-letters {
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+
+  .ovl-glossary-letter {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+
+  .ovl-glossary-list {
+    gap: 36px;
+  }
+
+  .ovl-glossary-group-letter {
+    font-size: 1.6rem;
+  }
+}

@@ -13,7 +13,9 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
   const isContribute = pathname.includes('/contribute');
   const isFAQ = pathname.includes('/faq');
   const isChangelog = pathname.includes('/changelog');
-  const isHub = pathname === '/open/learn' || pathname === '/open/learn/' || isFAQ || isChangelog;
+  const isProgress = pathname.includes('/progress');
+  const isGlossary = pathname.includes('/glossary');
+  const isHub = pathname === '/open/learn' || pathname === '/open/learn/' || isFAQ || isChangelog || isProgress || isGlossary;
 
   return (
     <>
@@ -171,6 +173,14 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
               <Link to="/open/learn/faq" className="ovl-sidebar-hub-link" onClick={onClose}>
                 <span className="ovl-sidebar-hub-glyph">?</span>
                 <span>FAQ</span>
+              </Link>
+              <Link to="/open/learn/glossary" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&alpha;</span>
+                <span>Glossary</span>
+              </Link>
+              <Link to="/open/learn/progress" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&equiv;</span>
+                <span>Your Progress</span>
               </Link>
               <Link to="/open/learn/changelog" className="ovl-sidebar-hub-link" onClick={onClose}>
                 <span className="ovl-sidebar-hub-glyph">&Delta;</span>
