@@ -95,4 +95,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'Why does Claude Code run in the terminal rather than as a graphical application? What capabilities does the terminal give an AI agent that a chat window alone would not?', hint: 'Think about what Claude Code actually does — reading files, running commands, editing code. Where do those actions happen?' },
+    { question: 'What is the purpose of a CLAUDE.md file, and how does it change the quality of what the AI agent produces?', hint: 'Think about onboarding a new team member. What happens when they have no context about how the project works?' },
+    { question: 'The lesson says Claude Code replaces typing, not thinking. What is the risk of accepting AI-generated code you do not understand, and how does that relate to the concept of "vibe coding"?' },
+    { question: 'Context windows have a limited size. How does this constraint affect the way you should structure your prompts and your project when working with an AI agent?', hint: 'Consider what happens when the conversation gets very long — what might the agent start to forget or miss?' },
+  ],
 };

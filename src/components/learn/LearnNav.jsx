@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { SignInButton } from './SignInPrompt';
+import LearnSearch from './LearnSearch';
 import en from '../../content/en';
 
 const { learn } = en;
@@ -53,8 +54,24 @@ function LearnNav({ sidebarOpen, onToggle }) {
           >
             Chat
           </Link>
+          <Link
+            to="/open/learn/contribute"
+            className={`ovl-nav-tab ${pathname.includes('/contribute') ? 'ovl-nav-tab--active' : ''}`}
+          >
+            Contribute
+          </Link>
         </div>
         <div className="ovl-nav-right">
+          <LearnSearch />
+          <a
+            href="https://ko-fi.com/erikaflowers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ovl-nav-support"
+            title="Support the Open Vector"
+          >
+            <span className="ovl-nav-support-heart">&hearts;</span>
+          </a>
           <Link to="/open" className="ovl-nav-back">{learn.nav.backLabel}</Link>
           <SignInButton />
         </div>

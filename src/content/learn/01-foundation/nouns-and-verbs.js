@@ -94,4 +94,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'In the Nouns & Verbs exercise, what do nouns represent in a software system and what do verbs represent? Why is this mapping more than just a metaphor?', hint: 'Think about database tables, API endpoints, and user actions. Where do the nouns end up? Where do the verbs end up?' },
+    { question: 'Why does identifying nouns first — before writing any code — help you build a better system? What goes wrong if you skip this step and jump straight into building features?' },
+    { question: 'The lesson mentions "hidden verbs" like Edit, Delete, and Undo that are implied by every Create action. Why are these easy to miss, and what happens to your users if you forget them?', hint: 'Think about CRUD — Create, Read, Update, Delete. If you build Create but forget Delete, what is the user experience?' },
+    { question: 'How does the Nouns & Verbs exercise improve your AI prompts? What is the difference between telling Claude Code "build me a recipe app" versus describing the specific nouns and verbs?' },
+  ],
 };

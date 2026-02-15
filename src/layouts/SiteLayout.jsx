@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import ErrorBoundary from '../components/ErrorBoundary';
 import '../styles/site.css';
 
 function SiteLayout() {
@@ -37,7 +38,9 @@ function SiteLayout() {
 
   return (
     <div className={`zv-site ${transitioning ? 'zv-page-enter' : 'zv-page-active'}`}>
-      <Outlet />
+      <ErrorBoundary>
+        <Outlet />
+      </ErrorBoundary>
     </div>
   );
 }

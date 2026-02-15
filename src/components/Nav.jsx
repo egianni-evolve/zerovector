@@ -36,6 +36,14 @@ function Nav() {
               {label}
             </Link>
           ))}
+          <a
+            href="https://ko-fi.com/erikaflowers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="zv-nav-link zv-nav-support"
+          >
+            <span className="zv-nav-support-heart">&hearts;</span> Support
+          </a>
           <Link
             to="/start"
             className={`zv-nav-start ${pathname === '/start' ? 'zv-nav-start-active' : ''}`}
@@ -100,6 +108,15 @@ function Nav() {
               {label}
             </Link>
           ))}
+          <a
+            href="https://ko-fi.com/erikaflowers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="zv-nav-mobile-link zv-nav-support-mobile"
+            onClick={() => setMenuOpen(false)}
+          >
+            <span className="zv-nav-support-heart">&hearts;</span> Support
+          </a>
           <Link
             to="/start"
             className={`zv-nav-mobile-link zv-nav-start-mobile ${pathname === '/start' ? 'zv-nav-link-active' : ''}`}

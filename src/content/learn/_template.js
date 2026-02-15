@@ -47,4 +47,9 @@ export default {
       },
     ],
   },
+  // Optional knowledge check questions — shown as collapsible section after lesson content
+  // knowledgeCheck: [
+  //   { question: 'What does `cd` stand for?', hint: 'Think about what happens when you type it.' },
+  //   { question: 'Why is the terminal important for AI tools?' },
+  // ],
 };

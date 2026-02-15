@@ -15,6 +15,15 @@ export default {
   subtitle: 'Hands on the rock. No gloves.',
   status: 'available',
   desc: 'Working in code with AI agents. Claude Code, prompting, iteration. Building your first real thing that lives on the internet.',
+  prereqs: 'Level 01 (Foundation). You should be comfortable with systems thinking and planning before you start building.',
+  outcomes: [
+    'Work with Claude Code as your AI engineering partner',
+    'Write effective prompts that produce real results',
+    'Iterate on code through conversation, not memorization',
+    'Understand React well enough to read and direct it',
+    'Deploy a real project to production',
+    'Ship something real that you built with AI',
+  ],
   lessons: [
     claudeCode,
     prompting,

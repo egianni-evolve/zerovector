@@ -10,14 +10,58 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
   const isApproach = pathname.includes('/approach') && pathname.includes('/open/learn');
   const isResources = pathname.includes('/resources');
   const isChat = pathname.includes('/chat');
-  const isHub = pathname === '/open/learn' || pathname === '/open/learn/';
+  const isContribute = pathname.includes('/contribute');
+  const isFAQ = pathname.includes('/faq');
+  const isChangelog = pathname.includes('/changelog');
+  const isHub = pathname === '/open/learn' || pathname === '/open/learn/' || isFAQ || isChangelog;
 
   return (
     <>
       {open && <div className="ovl-sidebar-backdrop" onClick={onClose} />}
-      <aside className={`ovl-sidebar ${open ? 'ovl-sidebar--open' : ''} ${isChat ? 'ovl-sidebar--chat' : ''}`}>
+      <aside className={`ovl-sidebar ${open ? 'ovl-sidebar--open' : ''} ${isChat ? 'ovl-sidebar--chat' : ''} ${isContribute ? 'ovl-sidebar--contribute' : ''}`}>
         <div className="ovl-sidebar-scroll">
-          {isChat ? (
+          {isContribute ? (
+            <div className="ovl-sidebar-contribute">
+              <div className="ovl-sidebar-section-label">Contribute</div>
+              <a
+                href="https://github.com/erikaflowers/zerovector"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ovl-sidebar-hub-link"
+              >
+                <span className="ovl-sidebar-hub-glyph">&sect;</span>
+                <span>GitHub Repo</span>
+              </a>
+              <a
+                href="https://github.com/erikaflowers/zerovector/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ovl-sidebar-hub-link"
+              >
+                <span className="ovl-sidebar-hub-glyph">&para;</span>
+                <span>Open Issues</span>
+              </a>
+              <div className="ovl-sidebar-section-label" style={{ marginTop: '16px' }}>Support</div>
+              <a
+                href="https://ko-fi.com/erikaflowers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ovl-sidebar-hub-link"
+              >
+                <span className="ovl-sidebar-hub-glyph">&hearts;</span>
+                <span>Ko-fi</span>
+              </a>
+              <a
+                href="https://github.com/sponsors/erikaflowers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ovl-sidebar-hub-link"
+              >
+                <span className="ovl-sidebar-hub-glyph">&loz;</span>
+                <span>GitHub Sponsors</span>
+              </a>
+            </div>
+          ) : isChat ? (
             <div className="ovl-sidebar-chat">
               <div className="ovl-sidebar-section-label">Try Asking</div>
               <div
@@ -119,6 +163,18 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
               <Link to="/open/learn/chat" className="ovl-sidebar-hub-link" onClick={onClose}>
                 <span className="ovl-sidebar-hub-glyph">&loz;</span>
                 <span>Chat</span>
+              </Link>
+              <Link to="/open/learn/contribute" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&hearts;</span>
+                <span>Contribute</span>
+              </Link>
+              <Link to="/open/learn/faq" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">?</span>
+                <span>FAQ</span>
+              </Link>
+              <Link to="/open/learn/changelog" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&Delta;</span>
+                <span>Changelog</span>
               </Link>
               <div className="ovl-sidebar-section-label" style={{ marginTop: '24px' }}>Quick Stats</div>
               <div className="ovl-sidebar-hub-stat">

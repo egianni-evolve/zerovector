@@ -98,4 +98,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'DNS translates domain names into IP addresses. Why do we need this translation layer — why not just use IP addresses directly?', hint: 'Think about what would happen if a server moved to a different IP address, and how many addresses you would need to memorize.' },
+    { question: 'When you type a URL into your browser, what happens behind the scenes before the page starts loading? Walk through the DNS lookup process.' },
+    { question: 'Why do DNS changes take time to propagate across the internet, and what should you do (and not do) while waiting?', hint: 'Think about caching — DNS servers around the world remember old answers for a while.' },
+    { question: 'What is the difference between an A record and a CNAME record, and why do hosting platforms like Netlify prefer CNAME records?' },
+  ],
 };

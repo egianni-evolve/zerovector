@@ -1,6 +1,7 @@
 import { Link, useParams, useOutletContext } from 'react-router-dom';
 import { useProgress } from '../../contexts/ProgressContext';
 import LessonBadge from '../../components/learn/LessonBadge';
+import CompletionCard from '../../components/learn/CompletionCard';
 import RightRail from '../../components/learn/RightRail';
 import useSEO from '../../hooks/useSEO';
 
@@ -29,6 +30,12 @@ function LevelPage() {
 
   const { done, total, percent } = getLevelProgress(levelSlug, level.lessons);
 
+  // Calculate total estimated time
+  const totalMinutes = level.lessons.reduce((sum, l) => {
+    const match = l.duration?.match(/(\d+)/);
+    return sum + (match ? parseInt(match[1], 10) : 0);
+  }, 0);
+
   // Find adjacent levels for rail navigation
   const levelIndex = learn.levels.findIndex(l => l.slug === levelSlug);
   const prevLevel = levelIndex > 0 ? learn.levels[levelIndex - 1] : null;
@@ -41,6 +48,10 @@ function LevelPage() {
         <h1 className="ovl-level-header-title">{level.title}</h1>
         <p className="ovl-level-header-subtitle">{level.subtitle}</p>
         <p className="ovl-level-header-desc">{level.desc}</p>
+        <div className="ovl-level-header-stats">
+          <span className="ovl-level-header-stat">{level.lessons.length} lessons</span>
+          {totalMinutes > 0 && <span className="ovl-level-header-stat">{totalMinutes} min total</span>}
+        </div>
         {enabled && (
           <div className="ovl-level-progress">
             <div className="ovl-level-progress-bar">
@@ -52,6 +63,22 @@ function LevelPage() {
       </header>
       <div className="ovl-with-rail">
         <div className="ovl-main">
+          {level.prereqs && (
+            <div className="ovl-level-prereqs">
+              <div className="ovl-level-prereqs-label">Prerequisites</div>
+              <p className="ovl-level-prereqs-text">{level.prereqs}</p>
+            </div>
+          )}
+          {level.outcomes?.length > 0 && (
+            <div className="ovl-level-outcomes">
+              <div className="ovl-level-outcomes-label">What You Will Learn</div>
+              <ul className="ovl-level-outcomes-list">
+                {level.outcomes.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="ovl-level-lesson-list">
             <div className="ovl-level-lesson-list-label">Lessons</div>
             {level.lessons.map((lesson, i) => {
@@ -77,6 +104,7 @@ function LevelPage() {
               );
             })}
           </div>
+          <CompletionCard level={level} />
         </div>
         <RightRail>
           {(prevLevel || nextLevel) && (

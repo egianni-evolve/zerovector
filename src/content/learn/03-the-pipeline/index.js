@@ -16,6 +16,14 @@ export default {
   subtitle: 'Every phase. Every handoff. Collapsed.',
   status: 'available',
   desc: 'Applying Zero-Vector across the entire concept-to-customer arc. One project, end to end. Not theory. Practice.',
+  prereqs: 'Level 02 (The Medium). You should have shipped at least one project before tackling the full pipeline.',
+  outcomes: [
+    'Conduct real user research without a research team',
+    'Synthesize findings into actionable insights',
+    'Frame a product around jobs-to-be-done',
+    'Ideate, prototype, and validate with AI as your crew',
+    'Ship a product through the complete concept-to-customer arc',
+  ],
   lessons: [
     research,
     synthesis,

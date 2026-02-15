@@ -96,4 +96,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'A commit is often described as a "snapshot." What makes it different from an auto-save, and why does that distinction matter for understanding your project history?' },
+    { question: 'Git and GitHub are often confused. If GitHub went offline tomorrow, would you lose your local Git history? Why or why not?', hint: 'Think about what "distributed" means in "distributed version control."' },
+    { question: 'Why does Git make you stage changes before committing, instead of just saving everything at once? What advantage does that intermediate step give you?', hint: 'Imagine you fixed a bug and also reformatted a file. Would you want both changes in the same snapshot?' },
+    { question: 'The lesson says "commit early, commit often." What is the risk of waiting too long between commits, and why is a frequent small commit better than a rare large one?' },
+  ],
 };

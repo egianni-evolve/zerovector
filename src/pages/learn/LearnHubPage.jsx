@@ -244,6 +244,35 @@ function LearnHubPage() {
           <span className="ovl-hub-stat-label">Always</span>
         </div>
       </div>
+
+      {/* Support callout */}
+      <div className="ovl-hub-support">
+        <div className="ovl-hub-support-content">
+          <div className="ovl-hub-support-title">Keep the Open Vector Free</div>
+          <p className="ovl-hub-support-desc">
+            The Open Vector is free. Always. No paywalls, no premium tiers.
+            If it has helped you, consider supporting the project to keep the lights on.
+          </p>
+          <div className="ovl-hub-support-links">
+            <a
+              href="https://ko-fi.com/erikaflowers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ovl-btn ovl-btn-primary"
+            >
+              Support on Ko-fi
+            </a>
+            <a
+              href="https://github.com/sponsors/erikaflowers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ovl-btn ovl-btn-outline"
+            >
+              Sponsor on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

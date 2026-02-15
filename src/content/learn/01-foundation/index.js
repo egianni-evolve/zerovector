@@ -15,6 +15,15 @@ export default {
   subtitle: 'Think before you build. Then build while you think.',
   status: 'available',
   desc: 'Systems thinking. Architecture before code. The nouns-and-verbs exercise. Planning methodology. This is what separates Zero-Vector from vibe coding.',
+  prereqs: 'Level 00 (Orientation) or equivalent comfort with terminal, Git, and file systems.',
+  outcomes: [
+    'Think in systems, not features',
+    'Architect software before writing a line of code',
+    'Identify nouns and verbs in any product idea',
+    'Plan a project from concept to shipping',
+    'Model data relationships like a designer',
+    'Organize information so it makes sense to humans and machines',
+  ],
   lessons: [
     systemsThinking,
     architecture,

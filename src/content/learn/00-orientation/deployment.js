@@ -107,4 +107,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'What does deployment actually accomplish? Why is "it works on my machine" not the same as "it is live"?', hint: 'Think about what localhost means — who can access it, and who cannot.' },
+    { question: 'The build step compiles your source code into a dist/ folder. Why do you ship the compiled output instead of your original source files?', hint: 'Consider what browsers can and cannot understand natively, and what you would not want exposed publicly.' },
+    { question: 'Why would deploying directly from your local machine be risky compared to using a platform like Netlify that builds from your Git repository?', hint: 'Think about reproducibility — what if your local machine has something installed that the server does not?' },
+    { question: 'When a deploy fails, the lesson says to read the build log from the bottom up. Why the bottom, and what kind of information does a build log give you that you would not get from just looking at your code?' },
+  ],
 };

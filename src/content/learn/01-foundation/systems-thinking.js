@@ -86,4 +86,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'A pile of car parts is not a car. What makes a collection of parts into a system, and how does this apply to software components?', hint: 'The key word from the lesson is "connected." What do the connections produce that the parts alone cannot?' },
+    { question: 'Why can optimizing one part of a system actually make the whole system worse? Give an example — from software or everyday life — where improving a part hurt the whole.' },
+    { question: 'What is the difference between a positive feedback loop and a negative feedback loop, and why is it important to identify which type is at work in your product?', hint: 'Think about self-correcting behavior versus self-amplifying behavior. Which one is the thermostat? Which one is viral growth?' },
+    { question: 'The lesson describes emergence — behavior that none of the individual parts possess. Why does this mean that testing individual components is not enough to ensure the system works?' },
+  ],
 };

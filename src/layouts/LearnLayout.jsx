@@ -4,6 +4,7 @@ import LearnNav from '../components/learn/LearnNav';
 import LearnSidebar from '../components/learn/LearnSidebar';
 import LearnBreadcrumbs from '../components/learn/LearnBreadcrumbs';
 import LearnPagination from '../components/learn/LearnPagination';
+import ErrorBoundary from '../components/ErrorBoundary';
 import '../styles/site.css';
 import en from '../content/en';
 
@@ -107,7 +108,9 @@ function LearnLayout() {
             guideSlug={guideSlug}
             approach={learn.approach}
           />
-          <Outlet context={{ learn, levelSlug, lessonSlug, guideSlug }} />
+          <ErrorBoundary>
+            <Outlet context={{ learn, levelSlug, lessonSlug, guideSlug }} />
+          </ErrorBoundary>
           {lessonSlug && (
             <LearnPagination
               prev={currentIndex > 0 ? flatLessons[currentIndex - 1] : null}

@@ -83,14 +83,18 @@ cd zerovector
 # Install dependencies
 npm install
 
-# Start the dev server (site only)
+# Copy environment variables
+cp .env.example .env
+# Fill in your ANTHROPIC_API_KEY, VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
+
+# Start the dev server (site only, no AI features)
 npm run dev
 
-# Start with Netlify Functions (for Ask + Quiz features)
+# Start with Netlify Functions (for Ask, Quiz, and Learn Chat)
 netlify dev
 ```
 
-The site runs on `localhost:5173` (Vite) or `localhost:3006` (Netlify dev).
+The site runs on `localhost:5173` (Vite) or `localhost:3006` (Netlify dev proxy).
 
 ## Project Structure
 
@@ -98,16 +102,31 @@ The site runs on `localhost:5173` (Vite) or `localhost:3006` (Netlify dev).
 zerovector/
 ├── src/
 │   ├── content/
-│   │   └── en.js          # All site content — single source of truth
-│   ├── components/         # Shared components (Nav, Footer, VectorField, etc.)
-│   ├── pages/              # Page components
-│   ├── hooks/              # Custom React hooks
+│   │   ├── en.js               # Main site content
+│   │   └── learn/              # Open Vector curriculum
+│   │       ├── 00-orientation/ # Level 00 lessons
+│   │       ├── 01-foundation/  # Level 01 lessons
+│   │       ├── 02-the-medium/  # Level 02 lessons
+│   │       ├── 03-the-pipeline/# Level 03 lessons
+│   │       ├── 04-orchestration/ # Level 04 lessons
+│   │       ├── 05-auteur/      # Level 05 lessons
+│   │       ├── approach/       # Step-by-step guides
+│   │       ├── resources.js    # Curated external resources
+│   │       ├── changelog.js    # Platform changelog
+│   │       └── _template.js    # Lesson template for contributors
+│   ├── components/             # Shared + learn components
+│   ├── contexts/               # UserContext (auth), ProgressContext
+│   ├── layouts/                # SiteLayout, LearnLayout
+│   ├── lib/                    # Supabase client
+│   ├── pages/                  # Page components
+│   ├── hooks/                  # Custom React hooks (useSEO)
 │   ├── styles/
-│   │   └── site.css        # All styles
-│   └── App.jsx             # Routes
+│   │   └── site.css            # All styles
+│   └── App.jsx                 # Routes
 ├── netlify/
-│   └── functions/          # Serverless functions (chat, quiz)
-├── public/                 # Static assets
+│   └── functions/              # Serverless: chat, quiz, learn-chat
+├── public/                     # Static assets
+├── .env.example                # Required environment variables
 └── index.html
 ```
 

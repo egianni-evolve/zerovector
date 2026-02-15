@@ -216,6 +216,42 @@ function OpenVectorPage() {
         </div>
       </section>
 
+      {/* Support */}
+      <section className="ov-section ov-support-section">
+        <div className="ov-container">
+          <hr className="ov-rule" />
+          <Animate>
+            <div className="ov-label">Support</div>
+            <h2 className="ov-support-title">Keep the Open Vector Free</h2>
+            <p className="ov-body">
+              The Open Vector is free. Always. No paywalls, no premium tiers, no upsells.
+              But hosting, AI, and infrastructure cost real money. If this project has
+              helped you, consider chipping in to keep it going.
+            </p>
+          </Animate>
+          <Animate delay={1}>
+            <div className="ov-support-links">
+              <a
+                href="https://ko-fi.com/erikaflowers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ov-btn ov-btn-primary"
+              >
+                Support on Ko-fi
+              </a>
+              <a
+                href="https://github.com/sponsors/erikaflowers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ov-btn ov-btn-outline"
+              >
+                Sponsor on GitHub
+              </a>
+            </div>
+          </Animate>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="ov-section ov-cta-section">
         <div className="ov-container">

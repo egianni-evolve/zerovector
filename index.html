@@ -91,5 +91,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Ko-fi floating support button -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('erikaflowers', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support ZV',
+        'floating-chat.donateButton.background-color': '#0055ff',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
   </body>
 </html>

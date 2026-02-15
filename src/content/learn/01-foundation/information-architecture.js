@@ -102,4 +102,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'Information architecture and UI design are often confused. What does IA focus on that UI design does not, and why does IA need to come first?', hint: 'Think about what problems IA solves — finding things, understanding structure — versus what UI solves.' },
+    { question: 'Why does naming (labeling) matter so much in IA? What happens when a navigation label makes sense to the builder but not to the user?' },
+    { question: 'How does hierarchy affect a user\'s understanding of your site? What is the tradeoff between a deep hierarchy (many layers) and a shallow one (many top-level items)?', hint: 'Consider the "three clicks" rule of thumb and what happens when content is buried too deep.' },
+    { question: 'The lesson says URLs are "a direct expression of your information architecture." What makes a URL like /products/shoes/running better than /app?view=3&tab=2, and who benefits from the readable version?' },
+  ],
 };

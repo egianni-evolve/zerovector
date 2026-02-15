@@ -15,6 +15,15 @@ export default {
   subtitle: 'What is this machine, actually?',
   status: 'available',
   desc: 'The foundational understanding that got skipped. What is a terminal. What is a file system. What is Git. The early computer stuff that nobody teaches designers because everyone assumes someone else already did.',
+  prereqs: 'None. This is the starting line.',
+  outcomes: [
+    'Navigate your computer from the terminal',
+    'Understand how files and folders are organized',
+    'Use Git for version control',
+    'Push code to a repository on GitHub',
+    'Deploy a project to the internet',
+    'Understand how domain names and DNS work',
+  ],
   lessons: [
     terminal,
     fileSystems,

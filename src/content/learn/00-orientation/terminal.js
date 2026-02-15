@@ -115,4 +115,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'What does "cd" stand for, and why is it one of the most-used commands in any terminal workflow?', hint: 'Think about what you do constantly when working on projects — moving between folders.' },
+    { question: 'Why do most AI coding tools (Claude Code, Cursor, Copilot) run in a terminal rather than a purely graphical interface? What does the terminal give them that a GUI does not?' },
+    { question: 'Ctrl+C cancels a running process. Why is it important to know this before you start experimenting with commands — what would happen if you did not have an emergency stop?', hint: 'Consider what happens when a command runs longer than expected, or when you accidentally start something you did not intend.' },
+    { question: 'The rm command deletes files with no Trash and no undo. Why do you think the designers of Unix made it work this way, and how does that philosophy differ from how graphical operating systems handle deletion?' },
+  ],
 };

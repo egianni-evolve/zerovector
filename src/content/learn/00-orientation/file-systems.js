@@ -85,4 +85,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'What is the difference between an absolute path and a relative path, and when would you use each one?', hint: 'Think about what happens when you move a project to a different computer. Which type of path would break?' },
+    { question: 'The tilde (~) is a shortcut for your home directory. Why is this useful instead of always typing the full path like /Users/yourname?' },
+    { question: 'Why does folder structure matter for projects? Could you just put every file in a single folder and let the build tool sort it out?', hint: 'Consider what happens when a project grows to hundreds of files, or when another person (or an AI agent) needs to navigate your code.' },
+    { question: 'The .env file is hidden (starts with a dot) and should never be committed to Git. Why is it hidden by default, and what could go wrong if you accidentally shared it publicly?' },
+  ],
 };

@@ -20,6 +20,9 @@ import LevelPage from './pages/learn/LevelPage';
 import LessonPage from './pages/learn/LessonPage';
 import LearnResourcesPage from './pages/learn/LearnResourcesPage';
 import LearnChatPage from './pages/learn/LearnChatPage';
+import LearnContributePage from './pages/learn/LearnContributePage';
+import LearnFAQPage from './pages/learn/LearnFAQPage';
+import LearnChangelogPage from './pages/learn/LearnChangelogPage';
 import ApproachIndexPage from './pages/learn/ApproachIndexPage';
 import GuidePage from './pages/learn/GuidePage';
 
@@ -55,6 +58,9 @@ function App() {
         <Route path="approach/:guideSlug" element={<GuidePage />} />
         <Route path="resources" element={<LearnResourcesPage />} />
         <Route path="chat" element={<LearnChatPage />} />
+        <Route path="contribute" element={<LearnContributePage />} />
+        <Route path="faq" element={<LearnFAQPage />} />
+        <Route path="changelog" element={<LearnChangelogPage />} />
       </Route>
       <Route path="/investiture" element={<InvestiturePage />} />
     </Routes>

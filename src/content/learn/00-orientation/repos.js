@@ -94,4 +94,10 @@ export default {
       },
     ],
   },
+  knowledgeCheck: [
+    { question: 'A repository contains much more than just code. What other files live in a typical repo, and why are they important for someone encountering the project for the first time?', hint: 'Think about README.md, .gitignore, package.json, CLAUDE.md — what role does each one play?' },
+    { question: 'Why does a good README matter? What happens to a project — even a great one — if it has no README or a confusing one?' },
+    { question: 'What is the difference between a local repository and a remote repository, and why do you need both?', hint: 'Consider what happens if your laptop breaks, or if a teammate needs to see your work.' },
+    { question: 'The lesson compares Git to email (the protocol) and GitHub to Gmail (a provider). Why is understanding this distinction important when someone says "push to GitHub"?' },
+  ],
 };

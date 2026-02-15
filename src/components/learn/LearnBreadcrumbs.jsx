@@ -6,6 +6,9 @@ function LearnBreadcrumbs({ levelSlug, lessonSlug, levels, guideSlug, approach }
   const isResources = pathname.includes('/resources');
   const isChat = pathname.includes('/chat');
   const isApproach = pathname.includes('/approach') && pathname.includes('/open/learn');
+  const isContribute = pathname.includes('/contribute');
+  const isFAQ = pathname.includes('/faq');
+  const isChangelog = pathname.includes('/changelog');
 
   const level = levels.find(l => l.slug === levelSlug);
   const lesson = level?.lessons.find(l => l.slug === lessonSlug);
@@ -13,7 +16,7 @@ function LearnBreadcrumbs({ levelSlug, lessonSlug, levels, guideSlug, approach }
 
   // Hub page and chat — no breadcrumbs
   if (isChat) return null;
-  if (!isCurriculum && !isResources && !isApproach) return null;
+  if (!isCurriculum && !isResources && !isApproach && !isContribute && !isFAQ && !isChangelog) return null;
 
   return (
     <nav className="ovl-breadcrumbs" aria-label="Breadcrumb">
@@ -38,6 +41,24 @@ function LearnBreadcrumbs({ levelSlug, lessonSlug, levels, guideSlug, approach }
         <>
           <span className="ovl-crumb-sep">/</span>
           <span className="ovl-crumb ovl-crumb--current">Chat</span>
+        </>
+      )}
+      {isContribute && (
+        <>
+          <span className="ovl-crumb-sep">/</span>
+          <span className="ovl-crumb ovl-crumb--current">Contribute</span>
+        </>
+      )}
+      {isFAQ && (
+        <>
+          <span className="ovl-crumb-sep">/</span>
+          <span className="ovl-crumb ovl-crumb--current">FAQ</span>
+        </>
+      )}
+      {isChangelog && (
+        <>
+          <span className="ovl-crumb-sep">/</span>
+          <span className="ovl-crumb ovl-crumb--current">Changelog</span>
         </>
       )}
       {isApproach && (

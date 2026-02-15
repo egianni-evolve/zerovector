@@ -1,5 +1,6 @@
 import { Link, useParams, useOutletContext } from 'react-router-dom';
 import LessonRenderer from '../../components/learn/LessonRenderer';
+import KnowledgeCheck from '../../components/learn/KnowledgeCheck';
 import MarkCompleteButton from '../../components/learn/MarkCompleteButton';
 import LessonBadge from '../../components/learn/LessonBadge';
 import RightRail from '../../components/learn/RightRail';
@@ -49,6 +50,7 @@ function LessonPage() {
           <p className="ovl-lesson-subtitle">{lesson.subtitle}</p>
         </header>
         <LessonRenderer sections={lesson.content?.sections} />
+        <KnowledgeCheck questions={lesson.knowledgeCheck} />
         <MarkCompleteButton levelSlug={levelSlug} lessonSlug={lessonSlug} />
       </article>
       <RightRail>
