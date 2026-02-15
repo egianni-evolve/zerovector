@@ -7,7 +7,7 @@ const { learn } = en;
 function LearnNav({ sidebarOpen, onToggle }) {
   const { pathname } = useLocation();
   const isApproach = pathname.includes('/approach') && pathname.includes('/open/learn');
-  const isCurriculum = (pathname.includes('/curriculum') || pathname === '/open/learn') && !isApproach;
+  const isCurriculum = pathname.includes('/curriculum');
   const isResources = pathname.includes('/resources');
   const isChat = pathname.includes('/chat');
 

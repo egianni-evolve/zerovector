@@ -6695,32 +6695,225 @@ a:hover {
   color: #0a0a0a;
 }
 
+/* --- Sidebar — Hub View --- */
+
+.ovl-sidebar-hub {
+  padding: 8px 0;
+}
+
+.ovl-sidebar-hub-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333 !important;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ovl-sidebar-hub-link:hover {
+  background: rgba(0, 85, 255, 0.04);
+  color: #0055ff !important;
+}
+
+.ovl-sidebar-hub-glyph {
+  font-size: 16px;
+  color: #0055ff;
+  font-weight: 700;
+  width: 20px;
+  text-align: center;
+}
+
+.ovl-sidebar-hub-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 24px;
+}
+
+.ovl-sidebar-hub-stat-num {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  width: 28px;
+  text-align: right;
+}
+
+.ovl-sidebar-hub-stat-label {
+  font-size: 13px;
+  color: #888;
+}
+
 /* --- Learn Hub Page --- */
 
-.ovl-hub-header {
-  margin-bottom: 32px;
+.ovl-hub {
+  max-width: 900px;
 }
 
-.ovl-hub-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 2.8rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin-bottom: 12px;
+/* Hero */
+.ovl-hub-hero {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
 }
 
-.ovl-hub-subtitle {
-  font-size: 1.1rem;
-  color: #555;
-  line-height: 1.5;
+.ovl-hub-hero-content {
+  margin-bottom: 24px;
+}
+
+.ovl-hub-hero-greeting {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0055ff;
   margin-bottom: 8px;
 }
 
-.ovl-hub-intro {
-  font-size: 1rem;
-  color: #888;
+.ovl-hub-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #0a0a0a;
+  margin-bottom: 16px;
+}
+
+.ovl-hub-hero-subtitle {
+  font-size: 1.05rem;
+  color: #555;
   line-height: 1.6;
+  max-width: 600px;
+}
+
+/* Progress snapshot */
+.ovl-hub-progress {
+  background: rgba(0, 85, 255, 0.03);
+  border: 1px solid rgba(0, 85, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.ovl-hub-progress-bar {
+  height: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.ovl-hub-progress-fill {
+  height: 100%;
+  background: #0055ff;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.ovl-hub-progress-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.ovl-hub-continue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0055ff !important;
+  padding: 10px 16px;
+  background: rgba(0, 85, 255, 0.06);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.ovl-hub-continue:hover {
+  background: rgba(0, 85, 255, 0.1);
+}
+
+.ovl-hub-continue-level {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: #999;
+}
+
+.ovl-hub-continue-arrow {
+  margin-left: auto;
+  font-size: 16px;
+}
+
+/* About section (visitors only) */
+.ovl-hub-about {
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
+}
+
+.ovl-hub-about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.ovl-hub-about-block {
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+}
+
+.ovl-hub-about-icon {
+  font-size: 24px;
+  color: #0055ff;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ovl-hub-about-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 8px;
+}
+
+.ovl-hub-about-desc {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.ovl-hub-about-statement {
+  max-width: 700px;
+}
+
+.ovl-hub-about-statement p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.ovl-hub-about-statement p:last-child {
+  margin-bottom: 0;
+}
+
+/* Section cards */
+.ovl-hub-sections-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin-bottom: 12px;
 }
 
 .ovl-hub-sections {
@@ -6728,6 +6921,40 @@ a:hover {
   flex-direction: column;
   gap: 2px;
   margin-bottom: 40px;
+}
+
+/* Stats bar */
+.ovl-hub-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 32px;
+}
+
+.ovl-hub-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 0;
+}
+
+.ovl-hub-stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0a0a0a;
+}
+
+.ovl-hub-stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
 }
 
 .ovl-hub-card {
@@ -8095,6 +8322,23 @@ a:hover {
   .ovl-level-lesson-item {
     gap: 12px;
     padding: 14px 8px;
+  }
+
+  .ovl-hub-hero {
+    padding: 32px 0 28px;
+  }
+
+  .ovl-hub-about-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ovl-hub-stats {
+    flex-wrap: wrap;
+  }
+
+  .ovl-hub-stat {
+    flex: 0 0 50%;
   }
 
   .ovl-hub-card {

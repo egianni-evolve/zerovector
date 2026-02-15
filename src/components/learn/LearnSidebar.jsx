@@ -10,6 +10,7 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
   const isApproach = pathname.includes('/approach') && pathname.includes('/open/learn');
   const isResources = pathname.includes('/resources');
   const isChat = pathname.includes('/chat');
+  const isHub = pathname === '/open/learn' || pathname === '/open/learn/';
 
   return (
     <>
@@ -99,6 +100,39 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
                   {topic.label}
                 </div>
               ))}
+            </div>
+          ) : isHub ? (
+            <div className="ovl-sidebar-hub">
+              <div className="ovl-sidebar-section-label">Sections</div>
+              <Link to="/open/learn/curriculum" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&sect;</span>
+                <span>Curriculum</span>
+              </Link>
+              <Link to="/open/learn/approach" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&dagger;</span>
+                <span>Approach</span>
+              </Link>
+              <Link to="/open/learn/resources" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&para;</span>
+                <span>Go Further</span>
+              </Link>
+              <Link to="/open/learn/chat" className="ovl-sidebar-hub-link" onClick={onClose}>
+                <span className="ovl-sidebar-hub-glyph">&loz;</span>
+                <span>Chat</span>
+              </Link>
+              <div className="ovl-sidebar-section-label" style={{ marginTop: '24px' }}>Quick Stats</div>
+              <div className="ovl-sidebar-hub-stat">
+                <span className="ovl-sidebar-hub-stat-num">{levels.length}</span>
+                <span className="ovl-sidebar-hub-stat-label">Levels</span>
+              </div>
+              <div className="ovl-sidebar-hub-stat">
+                <span className="ovl-sidebar-hub-stat-num">{levels.reduce((sum, l) => sum + l.lessons.length, 0)}</span>
+                <span className="ovl-sidebar-hub-stat-label">Lessons</span>
+              </div>
+              <div className="ovl-sidebar-hub-stat">
+                <span className="ovl-sidebar-hub-stat-num">{approach?.guides?.length || 0}</span>
+                <span className="ovl-sidebar-hub-stat-label">Guides</span>
+              </div>
             </div>
           ) : (
             <>

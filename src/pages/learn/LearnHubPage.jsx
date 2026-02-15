@@ -1,11 +1,14 @@
 import { Link, useOutletContext } from 'react-router-dom';
-import { SignInPrompt } from '../../components/learn/SignInPrompt';
+import { useUser } from '../../contexts/UserContext';
+import { useProgress } from '../../contexts/ProgressContext';
 import LessonBadge from '../../components/learn/LessonBadge';
 import useSEO from '../../hooks/useSEO';
 import { approachCategories } from '../../content/learn/approach';
 
 function LearnHubPage() {
   const { learn } = useOutletContext();
+  const { user, isLoggedIn } = useUser();
+  const { isComplete, enabled, getLevelProgress } = useProgress();
 
   useSEO({
     title: 'Learn — The Open Vector',
@@ -14,8 +17,25 @@ function LearnHubPage() {
   });
 
   const totalLessons = learn.levels.reduce((sum, l) => sum + l.lessons.length, 0);
-  const availableLevels = learn.levels.filter(l => l.status === 'available').length;
+  const totalGuides = learn.approach?.guides?.length || 0;
 
+  // Calculate overall progress
+  let completedLessons = 0;
+  let completedGuides = 0;
+  if (enabled) {
+    learn.levels.forEach(level => {
+      level.lessons.forEach(lesson => {
+        if (isComplete(level.slug, lesson.slug)) completedLessons++;
+      });
+    });
+    (learn.approach?.guides || []).forEach(guide => {
+      if (isComplete('approach', guide.slug)) completedGuides++;
+    });
+  }
+  const totalCompleted = completedLessons + completedGuides;
+  const totalItems = totalLessons + totalGuides;
+
+  // Recent activity — lessons with badges
   const recentLessons = learn.levels.flatMap(level =>
     level.lessons
       .filter(l => l.badge)
@@ -27,14 +47,115 @@ function LearnHubPage() {
       }))
   ).slice(0, 5);
 
+  // Find next uncompleted lesson for "continue" link
+  let continueItem = null;
+  if (enabled) {
+    for (const level of learn.levels) {
+      for (const lesson of level.lessons) {
+        if (!isComplete(level.slug, lesson.slug)) {
+          continueItem = {
+            title: lesson.title,
+            levelTitle: `${level.number} ${level.title}`,
+            path: `/open/learn/curriculum/${level.slug}/${lesson.slug}`,
+          };
+          break;
+        }
+      }
+      if (continueItem) break;
+    }
+  }
+
   return (
     <div className="ovl-hub">
-      <header className="ovl-hub-header">
-        <h1 className="ovl-hub-title">{learn.index.title}</h1>
-        <p className="ovl-hub-subtitle">{learn.index.subtitle}</p>
-        <p className="ovl-hub-intro">{learn.index.intro}</p>
-      </header>
-      <SignInPrompt />
+      {/* Hero / Welcome */}
+      <div className="ovl-hub-hero">
+        <div className="ovl-hub-hero-content">
+          {isLoggedIn ? (
+            <>
+              <div className="ovl-hub-hero-greeting">Welcome back, {user.name.split(' ')[0]}</div>
+              <h1 className="ovl-hub-hero-title">The Open Vector</h1>
+            </>
+          ) : (
+            <>
+              <div className="ovl-hub-hero-greeting">Welcome to</div>
+              <h1 className="ovl-hub-hero-title">The Open Vector</h1>
+            </>
+          )}
+          <p className="ovl-hub-hero-subtitle">
+            A free, open learning platform for design-led engineering.
+            Learn the concepts, follow the workflow, build with intention.
+          </p>
+        </div>
+
+        {/* Progress snapshot — only when logged in with progress */}
+        {enabled && totalCompleted > 0 && (
+          <div className="ovl-hub-progress">
+            <div className="ovl-hub-progress-bar">
+              <div
+                className="ovl-hub-progress-fill"
+                style={{ width: `${Math.round((totalCompleted / totalItems) * 100)}%` }}
+              />
+            </div>
+            <div className="ovl-hub-progress-label">
+              {totalCompleted} of {totalItems} completed
+            </div>
+            {continueItem && (
+              <Link to={continueItem.path} className="ovl-hub-continue">
+                Continue: {continueItem.title}
+                <span className="ovl-hub-continue-level">{continueItem.levelTitle}</span>
+                <span className="ovl-hub-continue-arrow">&rarr;</span>
+              </Link>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* What this is — for first-time visitors */}
+      {!isLoggedIn && (
+        <div className="ovl-hub-about">
+          <div className="ovl-hub-about-grid">
+            <div className="ovl-hub-about-block">
+              <div className="ovl-hub-about-icon">&sect;</div>
+              <div className="ovl-hub-about-label">Learn</div>
+              <div className="ovl-hub-about-desc">
+                Concepts, patterns, and principles — from opening a terminal to shipping your own vision.
+              </div>
+            </div>
+            <div className="ovl-hub-about-block">
+              <div className="ovl-hub-about-icon">&dagger;</div>
+              <div className="ovl-hub-about-label">Practice</div>
+              <div className="ovl-hub-about-desc">
+                Step-by-step walkthroughs you follow on your own machine. Not theory — IKEA instructions.
+              </div>
+            </div>
+            <div className="ovl-hub-about-block">
+              <div className="ovl-hub-about-icon">&loz;</div>
+              <div className="ovl-hub-about-label">Build</div>
+              <div className="ovl-hub-about-desc">
+                Use AI as crew, not crutch. Direct the flow. Understand what you are telling it. Ship real things.
+              </div>
+            </div>
+          </div>
+
+          <div className="ovl-hub-about-statement">
+            <p>
+              This is not vibe coding. This is a discipline for people who want to
+              build software with the same rigor a designer brings to any craft —
+              but with AI agents as your crew, not your replacement.
+            </p>
+            <p>
+              The Open Vector is free. Always free. No paywalls, no premium tiers,
+              no upsells. If you want to learn how to build with intention, you are
+              in the right place.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Section cards */}
+      <div className="ovl-hub-sections-header">
+        {isLoggedIn ? 'Your Sections' : 'Start Here'}
+      </div>
       <div className="ovl-hub-sections">
         <Link to="/open/learn/curriculum" className="ovl-hub-card">
           <div className="ovl-hub-card-icon">
@@ -44,7 +165,7 @@ function LearnHubPage() {
             <h2 className="ovl-hub-card-title">Curriculum</h2>
             <p className="ovl-hub-card-desc">
               {learn.levels.length} levels, {totalLessons} lessons. From orientation to auteur.
-              {availableLevels > 0 && ` ${availableLevels} levels available now.`}
+              {enabled && completedLessons > 0 && ` ${completedLessons} completed.`}
             </p>
             <span className="ovl-hub-card-action">Browse levels &rarr;</span>
           </div>
@@ -87,6 +208,8 @@ function LearnHubPage() {
           </div>
         </Link>
       </div>
+
+      {/* What's New */}
       {recentLessons.length > 0 && (
         <div className="ovl-hub-recent">
           <div className="ovl-hub-recent-header">Recently Added</div>
@@ -101,6 +224,26 @@ function LearnHubPage() {
           </div>
         </div>
       )}
+
+      {/* Stats bar */}
+      <div className="ovl-hub-stats">
+        <div className="ovl-hub-stat">
+          <span className="ovl-hub-stat-num">{learn.levels.length}</span>
+          <span className="ovl-hub-stat-label">Levels</span>
+        </div>
+        <div className="ovl-hub-stat">
+          <span className="ovl-hub-stat-num">{totalLessons}</span>
+          <span className="ovl-hub-stat-label">Lessons</span>
+        </div>
+        <div className="ovl-hub-stat">
+          <span className="ovl-hub-stat-num">{totalGuides}</span>
+          <span className="ovl-hub-stat-label">Guides</span>
+        </div>
+        <div className="ovl-hub-stat">
+          <span className="ovl-hub-stat-num">Free</span>
+          <span className="ovl-hub-stat-label">Always</span>
+        </div>
+      </div>
     </div>
   );
 }
