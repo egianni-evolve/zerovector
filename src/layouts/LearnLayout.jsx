@@ -5,6 +5,7 @@ import LearnSidebar from '../components/learn/LearnSidebar';
 import LearnBreadcrumbs from '../components/learn/LearnBreadcrumbs';
 import LearnPagination from '../components/learn/LearnPagination';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { ThemeProvider } from '../contexts/ThemeContext';
 import '../styles/site.css';
 import en from '../content/en';
 
@@ -15,10 +16,8 @@ function LearnLayout() {
   const { pathname } = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Set OV light theme
+  // Set body baseline (theme colors handled by ThemeContext)
   useEffect(() => {
-    document.body.style.background = '#ffffff';
-    document.body.style.color = '#0a0a0a';
     document.body.style.margin = '0';
     document.body.style.minHeight = '100vh';
     return () => {
@@ -85,6 +84,7 @@ function LearnLayout() {
   );
 
   return (
+    <ThemeProvider>
     <div className="ovl-page">
       <LearnNav
         sidebarOpen={sidebarOpen}
@@ -126,6 +126,7 @@ function LearnLayout() {
         </main>
       </div>
     </div>
+    </ThemeProvider>
   );
 }
 

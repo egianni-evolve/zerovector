@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { SignInButton } from './SignInPrompt';
 import LearnSearch from './LearnSearch';
+import ThemeSwitcher from './ThemeSwitcher';
 import en from '../../content/en';
 
 const { learn } = en;
@@ -63,6 +64,7 @@ function LearnNav({ sidebarOpen, onToggle }) {
         </div>
         <div className="ovl-nav-right">
           <LearnSearch />
+          <ThemeSwitcher />
           <a
             href="https://ko-fi.com/erikaflowers"
             target="_blank"
