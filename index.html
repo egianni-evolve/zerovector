@@ -92,7 +92,8 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- Ko-fi floating support button -->
+    <!-- Ko-fi floating support button — override injected left positioning -->
+    <style>.floatingchat-container-wrap { left: auto !important; right: 16px !important; }</style>
     <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
     <script>
       kofiWidgetOverlay.draw('erikaflowers', {
