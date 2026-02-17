@@ -27,7 +27,7 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
             <div className="ovl-sidebar-contribute">
               <div className="ovl-sidebar-section-label">Founding Contributors</div>
               <Link to="/open/learn/contribute" className="ovl-sidebar-hub-link" onClick={onClose}>
-                <span className="ovl-sidebar-hub-glyph">&starf;</span>
+                <span className="ovl-sidebar-hub-glyph">{'\u2605'}</span>
                 <span>Join as a Founder</span>
               </Link>
               <div className="ovl-sidebar-section-label" style={{ marginTop: '16px' }}>Contribute</div>
