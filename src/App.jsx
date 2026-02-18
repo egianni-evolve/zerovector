@@ -14,6 +14,8 @@ import AskPage from './pages/AskPage';
 import QuizPage from './pages/QuizPage';
 import StartPage from './pages/StartPage';
 import NamePage from './pages/NamePage';
+import EnterprisePage from './pages/EnterprisePage';
+import LearnEnterprisePage from './pages/learn/LearnEnterprisePage';
 import NotFoundPage from './pages/NotFoundPage';
 import LearnHubPage from './pages/learn/LearnHubPage';
 import LearnIndexPage from './pages/learn/LearnIndexPage';
@@ -38,6 +40,7 @@ function App() {
         <Route path="/approach" element={<PipelinePage />} />
         <Route path="/for-builders" element={<BuildersPage />} />
         <Route path="/for-leaders" element={<LeadersPage />} />
+        <Route path="/for-enterprise" element={<EnterprisePage />} />
         <Route path="/media" element={<ReadingPage />} />
         <Route path="/origin" element={<OriginPage />} />
         <Route path="/start" element={<StartPage />} />
@@ -67,6 +70,7 @@ function App() {
         <Route path="changelog" element={<LearnChangelogPage />} />
         <Route path="progress" element={<LearnProgressPage />} />
         <Route path="glossary" element={<LearnGlossaryPage />} />
+        <Route path="enterprise" element={<LearnEnterprisePage />} />
       </Route>
       <Route path="/investiture" element={<InvestiturePage />} />
     </Routes>

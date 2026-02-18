@@ -22,6 +22,7 @@ import start from './start';
 import quiz from './quiz';
 import investiture from './investiture';
 import name from './name';
+import enterprise from './enterprise';
 import learn from './learn';
 
 const en = {
@@ -31,6 +32,7 @@ const en = {
   approach,
   builders,
   leaders,
+  enterprise,
   media,
   origin,
   open,

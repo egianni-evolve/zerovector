@@ -1,24 +1,105 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 
-
-const navLinks = [
-  { to: '/philosophy', label: 'Philosophy' },
-  { to: '/approach', label: 'Approach' },
-  { to: '/for-builders', label: 'For Builders' },
-  { to: '/for-leaders', label: 'For Leaders' },
-  { to: '/media', label: 'Media' },
-  { to: '/origin', label: 'The Origin' },
-  { to: '/open', label: 'Open Vector' },
-  { to: '/ask', label: 'Ask' },
+const navGroups = [
+  {
+    label: 'Mindset',
+    items: [
+      { to: '/philosophy', label: 'Philosophy' },
+      { to: '/approach', label: 'Approach' },
+      { to: '/origin', label: 'The Origin' },
+      { to: '/ask', label: 'Ask' },
+    ],
+  },
+  {
+    label: 'Application',
+    items: [
+      { to: '/for-builders', label: 'For Builders' },
+      { to: '/for-leaders', label: 'For Leaders' },
+      { to: '/for-enterprise', label: 'For Enterprise' },
+    ],
+  },
+  {
+    label: 'Resources',
+    items: [
+      { to: '/media', label: 'Media' },
+      { to: '/investiture', label: 'Investiture' },
+    ],
+  },
 ];
+
+function NavDropdown({ group, pathname, onNavigate }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const timeout = useRef(null);
+
+  const isActive = group.items.some(item => pathname === item.to);
+
+  // Close on outside click
+  useEffect(() => {
+    function handleClick(e) {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    }
+    if (open) document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+
+  // Close on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  function handleMouseEnter() {
+    clearTimeout(timeout.current);
+    setOpen(true);
+  }
+
+  function handleMouseLeave() {
+    timeout.current = setTimeout(() => setOpen(false), 150);
+  }
+
+  return (
+    <div
+      className={`zv-nav-group ${open ? 'zv-nav-group--open' : ''}`}
+      ref={ref}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <button
+        className={`zv-nav-group-trigger ${isActive ? 'zv-nav-group-trigger--active' : ''}`}
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-haspopup="true"
+      >
+        {group.label}
+        <span className="zv-nav-group-chevron" aria-hidden="true" />
+      </button>
+      {open && (
+        <div className="zv-nav-group-panel">
+          {group.items.map(item => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={`zv-nav-group-item ${pathname === item.to ? 'zv-nav-group-item--active' : ''}`}
+              onClick={() => { setOpen(false); if (onNavigate) onNavigate(); }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Nav() {
   const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, isLoggedIn, loading, signIn, signOut } = useUser();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(null);
+
+  // Close mobile menu on route change
+  useEffect(() => { setMenuOpen(false); setMobileExpanded(null); }, [pathname]);
 
   return (
     <nav className="zv-nav">
@@ -27,15 +108,15 @@ function Nav() {
 
         {/* Desktop links */}
         <div className="zv-nav-links">
-          {navLinks.map(({ to, label }) => (
-            <Link
-              key={to}
-              to={to}
-              className={`zv-nav-link ${pathname === to ? 'zv-nav-link-active' : ''}`}
-            >
-              {label}
-            </Link>
+          {navGroups.map(group => (
+            <NavDropdown key={group.label} group={group} pathname={pathname} />
           ))}
+          <Link
+            to="/open"
+            className={`zv-nav-link ${pathname === '/open' || pathname.startsWith('/open/') ? 'zv-nav-link-active' : ''}`}
+          >
+            Open Vector
+          </Link>
           <a
             href="https://ko-fi.com/erikaflowers"
             target="_blank"
@@ -55,7 +136,7 @@ function Nav() {
               <div className="zv-nav-user">
                 <button
                   className="zv-nav-avatar-btn"
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                   aria-label="User menu"
                 >
                   {user.avatar ? (
@@ -64,13 +145,13 @@ function Nav() {
                     <span className="zv-nav-avatar-initial">{user.name.charAt(0)}</span>
                   )}
                 </button>
-                {dropdownOpen && (
+                {userDropdownOpen && (
                   <>
-                    <div className="zv-nav-dropdown-backdrop" onClick={() => setDropdownOpen(false)} />
+                    <div className="zv-nav-dropdown-backdrop" onClick={() => setUserDropdownOpen(false)} />
                     <div className="zv-nav-dropdown">
                       <div className="zv-nav-dropdown-name">{user.name}</div>
                       <div className="zv-nav-dropdown-email">{user.email}</div>
-                      <button className="zv-nav-dropdown-signout" onClick={() => { signOut(); setDropdownOpen(false); }}>
+                      <button className="zv-nav-dropdown-signout" onClick={() => { signOut(); setUserDropdownOpen(false); }}>
                         Sign Out
                       </button>
                     </div>
@@ -98,16 +179,39 @@ function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="zv-nav-mobile">
-          {navLinks.map(({ to, label }) => (
-            <Link
-              key={to}
-              to={to}
-              className={`zv-nav-mobile-link ${pathname === to ? 'zv-nav-link-active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </Link>
+          {navGroups.map(group => (
+            <div key={group.label} className="zv-nav-mobile-group">
+              <button
+                className={`zv-nav-mobile-group-trigger ${mobileExpanded === group.label ? 'zv-nav-mobile-group-trigger--open' : ''}`}
+                onClick={() => setMobileExpanded(mobileExpanded === group.label ? null : group.label)}
+                aria-expanded={mobileExpanded === group.label}
+              >
+                <span>{group.label}</span>
+                <span className="zv-nav-mobile-group-chevron">{mobileExpanded === group.label ? '\u2212' : '+'}</span>
+              </button>
+              {mobileExpanded === group.label && (
+                <div className="zv-nav-mobile-group-items">
+                  {group.items.map(item => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      className={`zv-nav-mobile-link zv-nav-mobile-sublink ${pathname === item.to ? 'zv-nav-link-active' : ''}`}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
+          <Link
+            to="/open"
+            className={`zv-nav-mobile-link ${pathname === '/open' || pathname.startsWith('/open/') ? 'zv-nav-link-active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Open Vector
+          </Link>
           <a
             href="https://ko-fi.com/erikaflowers"
             target="_blank"
