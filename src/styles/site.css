@@ -2735,7 +2735,7 @@ a:hover {
 /* Role cards */
 .zv-join-role-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
@@ -2782,6 +2782,34 @@ a:hover {
   text-transform: uppercase;
   color: var(--text-primary);
   margin-bottom: 8px;
+}
+
+.zv-join-role-subtitle {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+  margin-top: -4px;
+}
+
+.zv-join-role-badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  border-radius: 3px;
+  padding: 2px 6px;
+  line-height: 1;
+}
+
+.zv-join-role-card--selected .zv-join-role-badge {
+  display: none;
 }
 
 .zv-join-role-card p {
@@ -3101,6 +3129,12 @@ a:hover {
 }
 
 /* Join page responsive */
+@media (max-width: 900px) {
+  .zv-join-role-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 600px) {
   .zv-join-role-cards {
     grid-template-columns: 1fr;
@@ -3111,10 +3145,46 @@ a:hover {
 }
 
 /* --- Admin page --- */
+
+/* Top-level tabs */
+.zv-admin-tabs {
+  display: flex;
+  gap: 0;
+  padding: 120px 24px 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.zv-admin-tab {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--void-border);
+  border-bottom: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 4px 4px 0 0;
+}
+
+.zv-admin-tab:hover {
+  color: var(--text-secondary);
+}
+
+.zv-admin-tab--active {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: var(--void-surface);
+}
+
 .zv-admin-container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 120px 24px 80px;
+  padding: 16px 24px 80px;
 }
 
 .zv-admin-header {
@@ -3434,6 +3504,84 @@ a:hover {
   }
   .zv-admin-card-section dt {
     margin-top: 8px;
+  }
+}
+
+/* Kestrel activity table */
+.zv-admin-kestrel-table-wrap {
+  overflow-x: auto;
+}
+
+.zv-admin-kestrel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.zv-admin-kestrel-table th {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--void-border);
+}
+
+.zv-admin-kestrel-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--void-border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.zv-admin-kestrel-table tr:hover td {
+  background: var(--void-surface);
+}
+
+.zv-admin-kestrel-id {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--cyan) !important;
+  white-space: nowrap;
+}
+
+.zv-admin-kestrel-summary {
+  max-width: 300px;
+}
+
+.zv-admin-kestrel-commit {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.zv-admin-kestrel-commit a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.zv-admin-kestrel-commit a:hover {
+  text-decoration: underline;
+}
+
+.zv-admin-kestrel-time {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-tertiary) !important;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .zv-admin-tabs {
+    padding-top: 100px;
+  }
+  .zv-admin-kestrel-table {
+    font-size: 0.7rem;
+  }
+  .zv-admin-kestrel-summary {
+    max-width: 160px;
   }
 }
 

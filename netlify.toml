@@ -11,6 +11,16 @@
   node_bundler = "esbuild"
 
 [[redirects]]
+  from = "/api/kestrel/checkin"
+  to = "/.netlify/functions/kestrel-checkin"
+  status = 200
+
+[[redirects]]
+  from = "/api/kestrel/checkins"
+  to = "/.netlify/functions/kestrel-checkin"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

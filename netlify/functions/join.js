@@ -4,7 +4,7 @@ const supabase = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_K
   ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
   : null;
 
-const VALID_ROLES = ['framework', 'curriculum', 'evangelist', 'funding'];
+const VALID_ROLES = ['framework', 'curriculum', 'evangelist', 'funding', 'visual_architect', 'intern'];
 
 // name and email come from the verified JWT — not from the form
 const COMMON_REQUIRED = ['pronouns', 'location', 'portfolio', 'portfolio2', 'why_this', 'built_unpaid', 'endurance_story', 'ai_relationship', 'hours', 'runway', 'anything_else', 'source'];
@@ -14,6 +14,8 @@ const ROLE_REQUIRED = {
   curriculum: ['cur_sample', 'cur_scenario', 'cur_philosophy', 'cur_technical'],
   evangelist: ['ev_win', 'ev_pitch', 'ev_targets', 'ev_network'],
   funding: ['fund_experience', 'fund_sources', 'fund_scenario', 'fund_philosophy'],
+  visual_architect: ['va_portfolio', 'va_tools', 'va_gap', 'va_example'],
+  intern: ['int_git', 'int_ai', 'int_task', 'int_learn'],
 };
 
 const ROLE_FIELDS = {
@@ -21,6 +23,8 @@ const ROLE_FIELDS = {
   curriculum: ['cur_sample', 'cur_scenario', 'cur_philosophy', 'cur_technical'],
   evangelist: ['ev_win', 'ev_pitch', 'ev_targets', 'ev_network'],
   funding: ['fund_experience', 'fund_sources', 'fund_scenario', 'fund_philosophy'],
+  visual_architect: ['va_portfolio', 'va_tools', 'va_gap', 'va_example', 'va_code'],
+  intern: ['int_git', 'int_ai', 'int_task', 'int_learn'],
 };
 
 function json(body, status = 200) {

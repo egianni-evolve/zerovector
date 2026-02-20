@@ -12,6 +12,8 @@ const ROLE_TITLES = {
   curriculum: 'Curriculum Steward',
   evangelist: 'ZV Evangelist',
   funding: 'Funding Scout',
+  visual_architect: 'Visual Architect',
+  intern: 'Kestrel Intern',
 };
 
 const STATUSES = [
@@ -27,6 +29,21 @@ function formatDate(iso) {
   const d = new Date(iso);
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
+
+function formatTimeAgo(iso) {
+  if (!iso) return '\u2014';
+  const d = new Date(iso);
+  const now = new Date();
+  const diffMs = now - d;
+  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMins < 60) return `${diffMins}m ago`;
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) return `${diffHours}h ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays}d ago`;
+}
+
+/* ── Status Bar (applications) ── */
 
 function StatusBar({ app, onStatusChange }) {
   const [updating, setUpdating] = useState(false);
@@ -61,6 +78,8 @@ function StatusBar({ app, onStatusChange }) {
     </div>
   );
 }
+
+/* ── Application Card ── */
 
 function ApplicationCard({ app, expanded, onToggle, onStatusChange }) {
   const roleAnswers = app.role_answers || {};
@@ -126,6 +145,124 @@ function ApplicationCard({ app, expanded, onToggle, onStatusChange }) {
   );
 }
 
+/* ── Kestrel Activity Table ── */
+
+const PROJECT_GITHUB_MAP = {
+  'zerovector': 'erikaflowers/zerovector',
+  'open-vector-site': 'erikaflowers/zerovector',
+  'investiture': 'erikaflowers/zerovector',
+};
+
+function KestrelActivity({ isAdmin }) {
+  const [checkins, setCheckins] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [projectFilter, setProjectFilter] = useState('all');
+
+  useEffect(() => {
+    if (!isAdmin || !supabase) return;
+
+    async function fetchCheckins() {
+      setLoading(true);
+      setError(null);
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) { setError('No session'); setLoading(false); return; }
+
+        const res = await fetch('/.netlify/functions/kestrel-checkin', {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        });
+
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          setError(body.error || `Error ${res.status}`);
+        } else {
+          const body = await res.json();
+          setCheckins(body.checkins || []);
+        }
+      } catch {
+        setError('Network error');
+      }
+      setLoading(false);
+    }
+
+    fetchCheckins();
+  }, [isAdmin]);
+
+  const projects = [...new Set(checkins.map(c => c.project))];
+  const filtered = projectFilter === 'all' ? checkins : checkins.filter(c => c.project === projectFilter);
+
+  function commitLink(checkin) {
+    if (!checkin.commit_sha) return '\u2014';
+    const repo = PROJECT_GITHUB_MAP[checkin.project];
+    const short = checkin.commit_sha.slice(0, 7);
+    if (repo) {
+      return <a href={`https://github.com/${repo}/commit/${checkin.commit_sha}`} target="_blank" rel="noopener noreferrer">{short}</a>;
+    }
+    return <span>{short}</span>;
+  }
+
+  if (loading) return <div className="zv-admin-status"><p>Loading check-ins...</p></div>;
+  if (error) return <div className="zv-admin-status"><p className="zv-join-error">{error}</p></div>;
+
+  return (
+    <>
+      {projects.length > 1 && (
+        <div className="zv-admin-filters">
+          <button
+            className={`zv-admin-filter ${projectFilter === 'all' ? 'zv-admin-filter--active' : ''}`}
+            onClick={() => setProjectFilter('all')}
+          >
+            All projects ({checkins.length})
+          </button>
+          {projects.map(p => (
+            <button
+              key={p}
+              className={`zv-admin-filter ${projectFilter === p ? 'zv-admin-filter--active' : ''}`}
+              onClick={() => setProjectFilter(p)}
+            >
+              {p} ({checkins.filter(c => c.project === p).length})
+            </button>
+          ))}
+        </div>
+      )}
+
+      {filtered.length === 0 ? (
+        <div className="zv-admin-status"><p>No check-ins yet.</p></div>
+      ) : (
+        <div className="zv-admin-kestrel-table-wrap">
+          <table className="zv-admin-kestrel-table">
+            <thead>
+              <tr>
+                <th>Kestrel</th>
+                <th>Operator</th>
+                <th>Project</th>
+                <th>Summary</th>
+                <th>Commit</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(c => (
+                <tr key={c.id}>
+                  <td className="zv-admin-kestrel-id">{c.kestrel_id}</td>
+                  <td>{c.operator}</td>
+                  <td>{c.project}</td>
+                  <td className="zv-admin-kestrel-summary">{c.summary}</td>
+                  <td className="zv-admin-kestrel-commit">{commitLink(c)}</td>
+                  <td className="zv-admin-kestrel-time">{formatTimeAgo(c.created_at)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── Main Page ── */
+
 function AdminPage() {
   const { user, isLoggedIn, loading, signIn } = useUser();
   const [applications, setApplications] = useState([]);
@@ -134,6 +271,7 @@ function AdminPage() {
   const [expandedId, setExpandedId] = useState(null);
   const [roleFilter, setRoleFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [activeTab, setActiveTab] = useState('applications');
 
   useSEO({ title: 'Admin \u2014 Zero Vector', path: '/admin', noIndex: true });
 
@@ -160,7 +298,7 @@ function AdminPage() {
           const body = await res.json();
           setApplications(body.applications || []);
         }
-      } catch (err) {
+      } catch {
         setFetchError('Network error');
       }
       setFetchLoading(false);
@@ -244,66 +382,95 @@ function AdminPage() {
     <div className="zv-page zv-info-page">
       <Nav />
       <div className="zv-admin-container">
-        <div className="zv-admin-header">
-          <h1>Crew Applications</h1>
-          <span className="zv-admin-count">{applications.length} total</span>
+        {/* Top-level tab toggle */}
+        <div className="zv-admin-tabs">
+          <button
+            className={`zv-admin-tab ${activeTab === 'applications' ? 'zv-admin-tab--active' : ''}`}
+            onClick={() => setActiveTab('applications')}
+          >
+            Applications
+          </button>
+          <button
+            className={`zv-admin-tab ${activeTab === 'kestrel' ? 'zv-admin-tab--active' : ''}`}
+            onClick={() => setActiveTab('kestrel')}
+          >
+            Kestrel Activity
+          </button>
         </div>
 
-        <div className="zv-admin-filter-group">
-          <div className="zv-admin-filters">
-            <button
-              className={`zv-admin-filter ${roleFilter === 'all' ? 'zv-admin-filter--active' : ''}`}
-              onClick={() => setRoleFilter('all')}
-            >
-              All roles ({applications.length})
-            </button>
-            {Object.entries(ROLE_TITLES).map(([id, title]) => (
-              <button
-                key={id}
-                className={`zv-admin-filter ${roleFilter === id ? 'zv-admin-filter--active' : ''}`}
-                onClick={() => setRoleFilter(id)}
-              >
-                {title} ({roleCounts[id] || 0})
-              </button>
-            ))}
-          </div>
-          <div className="zv-admin-filters">
-            <button
-              className={`zv-admin-filter ${statusFilter === 'all' ? 'zv-admin-filter--active' : ''}`}
-              onClick={() => setStatusFilter('all')}
-            >
-              All statuses
-            </button>
-            {STATUSES.map(s => (
-              <button
-                key={s.id}
-                className={`zv-admin-filter zv-admin-filter--${s.id} ${statusFilter === s.id ? 'zv-admin-filter--active' : ''}`}
-                onClick={() => setStatusFilter(s.id)}
-              >
-                {s.label} ({statusCounts[s.id] || 0})
-              </button>
-            ))}
-          </div>
-        </div>
+        {activeTab === 'applications' && (
+          <>
+            <div className="zv-admin-header">
+              <h1>Crew Applications</h1>
+              <span className="zv-admin-count">{applications.length} total</span>
+            </div>
 
-        {fetchLoading && <div className="zv-admin-status"><p>Loading applications...</p></div>}
-        {fetchError && <div className="zv-admin-status"><p className="zv-join-error">{fetchError}</p></div>}
+            <div className="zv-admin-filter-group">
+              <div className="zv-admin-filters">
+                <button
+                  className={`zv-admin-filter ${roleFilter === 'all' ? 'zv-admin-filter--active' : ''}`}
+                  onClick={() => setRoleFilter('all')}
+                >
+                  All roles ({applications.length})
+                </button>
+                {Object.entries(ROLE_TITLES).map(([id, title]) => (
+                  <button
+                    key={id}
+                    className={`zv-admin-filter ${roleFilter === id ? 'zv-admin-filter--active' : ''}`}
+                    onClick={() => setRoleFilter(id)}
+                  >
+                    {title} ({roleCounts[id] || 0})
+                  </button>
+                ))}
+              </div>
+              <div className="zv-admin-filters">
+                <button
+                  className={`zv-admin-filter ${statusFilter === 'all' ? 'zv-admin-filter--active' : ''}`}
+                  onClick={() => setStatusFilter('all')}
+                >
+                  All statuses
+                </button>
+                {STATUSES.map(s => (
+                  <button
+                    key={s.id}
+                    className={`zv-admin-filter zv-admin-filter--${s.id} ${statusFilter === s.id ? 'zv-admin-filter--active' : ''}`}
+                    onClick={() => setStatusFilter(s.id)}
+                  >
+                    {s.label} ({statusCounts[s.id] || 0})
+                  </button>
+                ))}
+              </div>
+            </div>
 
-        {!fetchLoading && !fetchError && filtered.length === 0 && (
-          <div className="zv-admin-status"><p>No applications yet.</p></div>
+            {fetchLoading && <div className="zv-admin-status"><p>Loading applications...</p></div>}
+            {fetchError && <div className="zv-admin-status"><p className="zv-join-error">{fetchError}</p></div>}
+
+            {!fetchLoading && !fetchError && filtered.length === 0 && (
+              <div className="zv-admin-status"><p>No applications yet.</p></div>
+            )}
+
+            <div className="zv-admin-list">
+              {filtered.map(app => (
+                <ApplicationCard
+                  key={app.id}
+                  app={app}
+                  expanded={expandedId === app.id}
+                  onToggle={() => setExpandedId(expandedId === app.id ? null : app.id)}
+                  onStatusChange={handleStatusChange}
+                />
+              ))}
+            </div>
+          </>
         )}
 
-        <div className="zv-admin-list">
-          {filtered.map(app => (
-            <ApplicationCard
-              key={app.id}
-              app={app}
-              expanded={expandedId === app.id}
-              onToggle={() => setExpandedId(expandedId === app.id ? null : app.id)}
-              onStatusChange={handleStatusChange}
-            />
-          ))}
-        </div>
+        {activeTab === 'kestrel' && (
+          <>
+            <div className="zv-admin-header">
+              <h1>Kestrel Activity</h1>
+            </div>
+            <KestrelActivity isAdmin={isAdmin} />
+          </>
+        )}
       </div>
       <Footer />
     </div>

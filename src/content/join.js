@@ -89,6 +89,34 @@ const join = {
         'Build a pipeline of sustainable funding that preserves independence',
       ],
     },
+    {
+      id: 'visual_architect',
+      title: 'Visual Architect',
+      subtitle: 'a.k.a. \u201CDesign Alchemist\u201D',
+      description: 'Bridge the gap between AI-generated interfaces and genuinely beautiful design. Track the evolving landscape of visual AI tools, bring taste and craft to everything Zero Vector ships.',
+      fullDescription: 'You are the eye. Zero Vector has engineers, strategists, and evangelists \u2014 but we need someone whose first instinct is visual. Someone who looks at a page and immediately sees what is wrong with the spacing, the type hierarchy, the color relationships. You track the rapidly evolving landscape of AI design tools (Figma + Claude, Magic Patterns, Subframe, Pencil, v0) and know which ones produce real craft versus which ones produce clip art. You bring taste to everything we ship.',
+      bullets: [
+        'Evaluate and recommend AI design tools as they emerge \u2014 separate signal from noise',
+        'Establish visual standards and design language across Zero Vector properties',
+        'Review and refine AI-generated interfaces before they ship \u2014 the human quality gate',
+        'Create design assets, mockups, and visual prototypes for new features',
+        'Collaborate with the founder on the visual identity of the brand and methodology',
+      ],
+    },
+    {
+      id: 'intern',
+      title: 'Kestrel Intern',
+      badge: 'NEW',
+      description: 'Learn Zero Vector by doing it. Operate an AI agent, follow real workflows, ship real contributions. Mentored by the founder.',
+      fullDescription: 'This is the entry point. You do not need experience \u2014 you need willingness. As a Kestrel Intern, you will be assigned a numbered AI agent (your \u201CKestrel\u201D) and given real tasks on real Zero Vector projects. You will learn Git, learn how to operate AI coding assistants, learn how to follow structured workflows, and ship actual contributions that go into production. The founder mentors you directly. The goal: in 90 days, you are no longer an intern.',
+      bullets: [
+        'Operate a numbered Kestrel agent on assigned tasks \u2014 QA, content fixes, small features',
+        'Learn Git, GitHub, and pull request workflows by doing them',
+        'Follow Investiture scaffolding patterns on real codebases',
+        'Document what you learn so the next intern has a better path',
+        'Graduate from intern to crew when you can operate independently',
+      ],
+    },
   ],
 
   authPrompt: {
@@ -175,6 +203,42 @@ const join = {
         { name: 'fund_sources', label: 'Name 3 specific funding sources (grants, programs, foundations) that could apply to an open-source design methodology project and explain why each fits.', type: 'textarea', size: 'long', required: true, hint: 'This tests whether you actually know the landscape or are guessing.' },
         { name: 'fund_scenario', label: 'A funder offers $100K but wants a board seat and approval rights over the open source license. What do you advise?', type: 'textarea', required: true },
         { name: 'fund_philosophy', label: 'What does \u201Ctake less to maintain control\u201D mean to you in practice?', type: 'textarea', size: 'short', required: true },
+      ],
+    },
+    visual_architect: {
+      title: 'Visual Architect \u2014 specifics',
+      subtitle: 'Heavy can implement a design. We need someone who can envision one.',
+      fields: [
+        { name: 'va_portfolio', label: 'Show us something beautiful you made.', type: 'url', required: true, hint: 'A site, an app, a component, a Figma file, a Dribbble shot. Something where the visual craft speaks for itself.' },
+        { name: 'va_tools', label: 'What AI design tools are you currently using or evaluating?', type: 'textarea', required: true, hint: 'Figma + Claude, Magic Patterns, Subframe, Pencil, v0, something else? Tell us what you have actually tried, not what you have read about.' },
+        { name: 'va_gap', label: 'What can a human designer do today that AI visual tools cannot?', type: 'textarea', size: 'long', required: true, hint: 'This is the core question. If you think AI can already do everything, this role is not for you. If you can articulate the gap precisely, we want to talk.' },
+        { name: 'va_example', label: 'Show us a website or interface you think represents genuinely excellent visual design and explain what makes it work.', type: 'textarea', required: true, hint: 'Not \u201Cit looks clean.\u201D What specifically about the typography, color, spacing, motion, or composition makes it exceptional?' },
+        { name: 'va_code', label: 'Are you comfortable working in React, HTML/CSS, or frontend code?', type: 'select', required: false, options: [
+          { value: 'codes', label: 'Yes, I code my designs' },
+          { value: 'tweaks', label: 'I can read and tweak code' },
+          { value: 'tools_only', label: 'I work in design tools only' },
+          { value: 'learning', label: 'I am learning' },
+        ]},
+      ],
+    },
+    intern: {
+      title: 'Kestrel Intern \u2014 specifics',
+      subtitle: 'No experience required. Willingness to learn is required.',
+      fields: [
+        { name: 'int_git', label: 'What is your comfort level with Git and GitHub?', type: 'select', required: true, options: [
+          { value: 'never', label: 'Never used it' },
+          { value: 'barely', label: 'I have a GitHub account but barely use it' },
+          { value: 'comfortable', label: 'I can clone, branch, and commit' },
+          { value: 'daily', label: 'I use Git daily' },
+        ]},
+        { name: 'int_ai', label: 'Have you used an AI coding assistant (Claude, Copilot, Cursor, etc)?', type: 'select', required: true, options: [
+          { value: 'never', label: 'Never' },
+          { value: 'few_times', label: 'A few times' },
+          { value: 'regularly', label: 'Regularly' },
+          { value: 'daily', label: 'It is part of my daily workflow' },
+        ]},
+        { name: 'int_task', label: 'Describe a small task you could imagine doing on a website you have never seen before.', type: 'textarea', required: true, hint: 'We are not looking for ambition. We are looking for pragmatism. \u201CCheck every page on mobile and screenshot what is broken\u201D is a great answer.' },
+        { name: 'int_learn', label: 'What do you want to learn from this?', type: 'textarea', size: 'short', required: true, hint: 'Be specific. \u201CAI stuff\u201D is too vague. \u201CHow to use AI agents to do QA on a real codebase\u201D is specific.' },
       ],
     },
   },

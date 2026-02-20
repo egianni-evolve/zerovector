@@ -91,7 +91,9 @@ function RoleCard({ role, selected, onSelect }) {
       onClick={onSelect}
       aria-pressed={selected}
     >
+      {role.badge && <span className="zv-join-role-badge">{role.badge}</span>}
       <h3>{role.title}</h3>
+      {role.subtitle && <div className="zv-join-role-subtitle">{role.subtitle}</div>}
       <p>{role.description}</p>
     </button>
   );
