@@ -67,5 +67,24 @@ export default async (req) => {
     return json({ application: data });
   }
 
+  // DELETE — remove an application
+  if (req.method === 'DELETE') {
+    const body = await req.json();
+    const { id } = body;
+
+    if (!id) return json({ error: 'Missing application id' }, 400);
+
+    const { error } = await supabase
+      .from('join_applications')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Delete application error:', error);
+      return json({ error: 'Failed to delete application' }, 500);
+    }
+    return json({ success: true });
+  }
+
   return json({ error: 'Method not allowed' }, 405);
 };

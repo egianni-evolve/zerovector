@@ -140,20 +140,27 @@ function downloadMarkdown(app) {
 
 /* ── Application Card ── */
 
-function ApplicationCard({ app, expanded, onToggle, onStatusChange }) {
+function ApplicationCard({ app, expanded, onToggle, onStatusChange, onDelete }) {
   const roleAnswers = app.role_answers || {};
   const status = app.status || 'new';
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  async function handleDelete() {
+    setDeleting(true);
+    await onDelete(app.id);
+    setDeleting(false);
+  }
+
   return (
     <div className={`zv-admin-card ${expanded ? 'zv-admin-card--expanded' : ''}`}>
       <button className="zv-admin-card-header" onClick={onToggle} type="button">
         <div className="zv-admin-card-summary">
           <span className={`zv-admin-card-status-dot zv-admin-card-status-dot--${status}`} />
-          <span className="zv-admin-card-name">{app.name}</span>
           <span className="zv-admin-card-role">{ROLE_TITLES[app.role] || app.role}</span>
-          <span className="zv-admin-card-email">{app.email}</span>
+          <span className="zv-admin-card-date">{formatDate(app.submitted_at)}</span>
         </div>
         <div className="zv-admin-card-meta">
-          <span className="zv-admin-card-date">{formatDate(app.submitted_at)}</span>
           <span className={`zv-admin-card-badge zv-admin-card-badge--${status}`}>{status}</span>
           <span className="zv-admin-card-chevron">{expanded ? '\u2212' : '+'}</span>
         </div>
@@ -162,40 +169,36 @@ function ApplicationCard({ app, expanded, onToggle, onStatusChange }) {
         <div className="zv-admin-card-body">
           <StatusBar app={app} onStatusChange={onStatusChange} />
           <div className="zv-admin-card-section">
-            <h4>Basics</h4>
-            <dl>
-              <dt>Pronouns</dt><dd>{app.pronouns || '\u2014'}</dd>
-              <dt>Location</dt><dd>{app.location || '\u2014'}</dd>
-              <dt>Portfolio</dt><dd><a href={app.portfolio} target="_blank" rel="noopener noreferrer">{app.portfolio}</a></dd>
-              {app.portfolio2 && <><dt>Portfolio 2</dt><dd><a href={app.portfolio2} target="_blank" rel="noopener noreferrer">{app.portfolio2}</a></dd></>}
-              <dt>Hours/week</dt><dd>{app.hours || '\u2014'}</dd>
-              <dt>Runway</dt><dd>{app.runway || '\u2014'}</dd>
-              <dt>Source</dt><dd>{app.source || '\u2014'}</dd>
-            </dl>
+            <h4>Applicant</h4>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Name</div><div className="zv-admin-field-value">{app.name}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Email</div><div className="zv-admin-field-value">{app.email}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Pronouns</div><div className="zv-admin-field-value">{app.pronouns || '\u2014'}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Location</div><div className="zv-admin-field-value">{app.location || '\u2014'}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Portfolio</div><div className="zv-admin-field-value"><a href={app.portfolio} target="_blank" rel="noopener noreferrer">{app.portfolio}</a></div></div>
+            {app.portfolio2 && <div className="zv-admin-field"><div className="zv-admin-field-label">Portfolio 2</div><div className="zv-admin-field-value"><a href={app.portfolio2} target="_blank" rel="noopener noreferrer">{app.portfolio2}</a></div></div>}
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Hours/week</div><div className="zv-admin-field-value">{app.hours || '\u2014'}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Runway</div><div className="zv-admin-field-value">{app.runway || '\u2014'}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Source</div><div className="zv-admin-field-value">{app.source || '\u2014'}</div></div>
           </div>
           <div className="zv-admin-card-section">
             <h4>Endurance Test</h4>
-            <dl>
-              <dt>Why this?</dt><dd>{app.why_this}</dd>
-              <dt>Built unpaid</dt><dd>{app.built_unpaid}</dd>
-              <dt>Endurance story</dt><dd>{app.endurance_story}</dd>
-              <dt>AI relationship</dt><dd>{app.ai_relationship}</dd>
-            </dl>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Why this?</div><div className="zv-admin-field-value">{app.why_this}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Built unpaid</div><div className="zv-admin-field-value">{app.built_unpaid}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">Endurance story</div><div className="zv-admin-field-value">{app.endurance_story}</div></div>
+            <div className="zv-admin-field"><div className="zv-admin-field-label">AI relationship</div><div className="zv-admin-field-value">{app.ai_relationship}</div></div>
           </div>
           {Object.keys(roleAnswers).length > 0 && (
             <div className="zv-admin-card-section">
               <h4>Role-Specific Answers</h4>
-              <dl>
-                {Object.entries(roleAnswers).map(([key, val]) => (
-                  <span key={key}><dt>{key}</dt><dd>{val}</dd></span>
-                ))}
-              </dl>
+              {Object.entries(roleAnswers).map(([key, val]) => (
+                <div key={key} className="zv-admin-field"><div className="zv-admin-field-label">{key}</div><div className="zv-admin-field-value">{val}</div></div>
+              ))}
             </div>
           )}
           {app.anything_else && (
             <div className="zv-admin-card-section">
               <h4>Anything else</h4>
-              <p>{app.anything_else}</p>
+              <div className="zv-admin-field-value">{app.anything_else}</div>
             </div>
           )}
           <div className="zv-admin-card-actions">
@@ -206,6 +209,34 @@ function ApplicationCard({ app, expanded, onToggle, onStatusChange }) {
             >
               Download as .md
             </button>
+            {!confirmDelete ? (
+              <button
+                type="button"
+                className="zv-admin-delete-btn"
+                onClick={() => setConfirmDelete(true)}
+              >
+                Delete
+              </button>
+            ) : (
+              <span className="zv-admin-delete-confirm">
+                <span className="zv-admin-delete-confirm-text">Delete this application?</span>
+                <button
+                  type="button"
+                  className="zv-admin-delete-btn zv-admin-delete-btn--yes"
+                  onClick={handleDelete}
+                  disabled={deleting}
+                >
+                  {deleting ? 'Deleting...' : 'Yes, delete'}
+                </button>
+                <button
+                  type="button"
+                  className="zv-admin-download-btn"
+                  onClick={() => setConfirmDelete(false)}
+                >
+                  Cancel
+                </button>
+              </span>
+            )}
           </div>
         </div>
       )}
@@ -399,6 +430,30 @@ function AdminPage() {
     }
   }, []);
 
+  const handleDelete = useCallback(async (appId) => {
+    if (!supabase) return;
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const res = await fetch('/.netlify/functions/admin-applications', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ id: appId }),
+      });
+
+      if (res.ok) {
+        setApplications(prev => prev.filter(a => a.id !== appId));
+        setExpandedId(null);
+      }
+    } catch (err) {
+      console.error('Delete failed:', err);
+    }
+  }, []);
+
   // Loading auth
   if (loading) {
     return (
@@ -525,6 +580,7 @@ function AdminPage() {
                   expanded={expandedId === app.id}
                   onToggle={() => setExpandedId(expandedId === app.id ? null : app.id)}
                   onStatusChange={handleStatusChange}
+                  onDelete={handleDelete}
                 />
               ))}
             </div>

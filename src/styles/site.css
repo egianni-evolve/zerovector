@@ -3459,6 +3459,40 @@ a:hover {
   gap: 6px 16px;
 }
 
+.zv-admin-field {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--void-border);
+}
+
+.zv-admin-field:last-child {
+  border-bottom: none;
+}
+
+.zv-admin-field-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  margin-bottom: 4px;
+}
+
+.zv-admin-field-value {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.zv-admin-field-value a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.zv-admin-field-value a:hover {
+  text-decoration: underline;
+}
+
 .zv-admin-card-section dt {
   font-size: 0.75rem;
   font-weight: 600;
@@ -3512,6 +3546,10 @@ a:hover {
   padding-top: 16px;
   border-top: 1px solid var(--void-border);
   margin-top: 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .zv-admin-download-btn {
@@ -3530,6 +3568,55 @@ a:hover {
 .zv-admin-download-btn:hover {
   border-color: var(--cyan);
   color: var(--cyan);
+}
+
+.zv-admin-delete-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  border-radius: 3px;
+  color: rgba(255, 60, 60, 0.7);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: 8px;
+}
+
+.zv-admin-delete-btn:hover {
+  border-color: #ff3c3c;
+  color: #ff3c3c;
+  background: rgba(255, 60, 60, 0.08);
+}
+
+.zv-admin-delete-btn--yes {
+  border-color: #ff3c3c;
+  color: #ff3c3c;
+  background: rgba(255, 60, 60, 0.1);
+}
+
+.zv-admin-delete-btn--yes:hover {
+  background: rgba(255, 60, 60, 0.2);
+}
+
+.zv-admin-delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zv-admin-delete-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.zv-admin-delete-confirm-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(255, 60, 60, 0.8);
+  letter-spacing: 0.3px;
 }
 
 /* Kestrel activity table */
