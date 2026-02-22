@@ -1,22 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { checkRateLimit } from './lib/rate-limit.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-// Simple in-memory rate limit: 20 requests per IP per 10 minutes
-const rateMap = new Map();
-const RATE_LIMIT = 20;
-const RATE_WINDOW = 10 * 60 * 1000;
-
-function checkRate(ip) {
-  const now = Date.now();
-  const entry = rateMap.get(ip);
-  if (!entry || now - entry.start > RATE_WINDOW) {
-    rateMap.set(ip, { start: now, count: 1 });
-    return true;
-  }
-  entry.count++;
-  return entry.count <= RATE_LIMIT;
-}
 
 const SYSTEM_PROMPT = `You are the voice of Zero-Vector Design — a new discipline where the person with the vision builds the artifact directly, with AI agents as crew.
 
@@ -79,7 +64,8 @@ export default async (req) => {
   }
 
   const ip = req.headers.get('x-forwarded-for') || req.headers.get('client-ip') || 'unknown';
-  if (!checkRate(ip)) {
+  const allowed = await checkRateLimit(ip, 'chat', 20, 10 * 60 * 1000);
+  if (!allowed) {
     return new Response(JSON.stringify({ error: 'Rate limit exceeded. Try again in a few minutes.' }), {
       status: 429,
       headers: { 'Content-Type': 'application/json' },
@@ -87,13 +73,31 @@ export default async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    // Reject oversized payloads (50KB max)
+    const body = await req.text();
+    if (body.length > 50000) {
+      return new Response(JSON.stringify({ error: 'Request too large.' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const { messages } = JSON.parse(body);
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return new Response(JSON.stringify({ error: 'Messages required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
+    }
+
+    // Reject oversized messages
+    for (const msg of messages) {
+      if (msg.content && msg.content.length > 4000) {
+        return new Response(JSON.stringify({ error: 'Message too long. Please keep messages under 4000 characters.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
     }
 
     // Limit conversation history to prevent abuse

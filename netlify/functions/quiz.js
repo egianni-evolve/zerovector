@@ -1,22 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { checkRateLimit } from './lib/rate-limit.js';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-// Simple in-memory rate limit: 10 quiz submissions per IP per 10 minutes
-const rateMap = new Map();
-const RATE_LIMIT = 10;
-const RATE_WINDOW = 10 * 60 * 1000;
-
-function checkRate(ip) {
-  const now = Date.now();
-  const entry = rateMap.get(ip);
-  if (!entry || now - entry.start > RATE_WINDOW) {
-    rateMap.set(ip, { start: now, count: 1 });
-    return true;
-  }
-  entry.count++;
-  return entry.count <= RATE_LIMIT;
-}
 
 const SYSTEM_PROMPT = `You are the Zero-Vector Design assessment engine. Given a user's answers about their current design/build workflow, you produce a sharp, honest assessment.
 
@@ -65,7 +50,8 @@ export default async (req) => {
   }
 
   const ip = req.headers.get('x-forwarded-for') || req.headers.get('client-ip') || 'unknown';
-  if (!checkRate(ip)) {
+  const allowed = await checkRateLimit(ip, 'quiz', 10, 10 * 60 * 1000);
+  if (!allowed) {
     return new Response(JSON.stringify({ error: 'Rate limit exceeded. Try again in a few minutes.' }), {
       status: 429,
       headers: { 'Content-Type': 'application/json' },
@@ -73,13 +59,31 @@ export default async (req) => {
   }
 
   try {
-    const { answers } = await req.json();
+    // Reject oversized payloads (50KB max)
+    const body = await req.text();
+    if (body.length > 50000) {
+      return new Response(JSON.stringify({ error: 'Request too large.' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    const { answers } = JSON.parse(body);
 
     if (!answers || typeof answers !== 'object') {
       return new Response(JSON.stringify({ error: 'Answers required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
+    }
+
+    // Reject oversized answers
+    for (const key of Object.keys(answers)) {
+      if (answers[key] && typeof answers[key] === 'string' && answers[key].length > 4000) {
+        return new Response(JSON.stringify({ error: 'Answer too long. Please keep answers under 4000 characters.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
     }
 
     const prompt = `Here are the user's answers about their current workflow:
