@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useSEO from '../../hooks/useSEO';
 
-const SUGGESTED_PROMPTS = [
+export const SUGGESTED_PROMPTS = [
   {
     icon: '\u00A7',
     label: 'What is vibe coding?',
@@ -69,7 +69,7 @@ function renderLinkedText(text) {
           rel="noopener noreferrer"
           className="ovl-chat-link ovl-chat-link--external"
         >
-          {linkText}<span className="ovl-chat-link-arrow">&thinsp;&nearr;</span>
+          {linkText}<span className="ovl-chat-link-arrow">{'\u2009\u2197'}</span>
         </a>
       );
     }
@@ -176,6 +176,13 @@ function LearnChatPage() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isThinking]);
+
+  // Listen for sidebar prompt clicks
+  useEffect(() => {
+    const handler = (e) => sendMessage(e.detail);
+    window.addEventListener('ovl-chat-prompt', handler);
+    return () => window.removeEventListener('ovl-chat-prompt', handler);
+  });
 
   const sendMessage = async (text) => {
     if (!text.trim() || isThinking) return;

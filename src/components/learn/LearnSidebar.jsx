@@ -4,6 +4,7 @@ import LessonBadge from './LessonBadge';
 import NotifyForm from '../NotifyForm';
 import { topicFilters } from '../../content/learn/resources';
 import { approachCategories } from '../../content/learn/approach';
+import { SUGGESTED_PROMPTS } from '../../pages/learn/LearnChatPage';
 
 function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, activeGuideSlug, open, onClose }) {
   const { isComplete, enabled } = useProgress();
@@ -73,36 +74,19 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
           ) : isChat ? (
             <div className="ovl-sidebar-chat">
               <div className="ovl-sidebar-section-label">Try Asking</div>
-              <div
-                className="ovl-sidebar-topic"
-                style={{ cursor: 'default' }}
-              >
-                What is vibe coding?
-              </div>
-              <div
-                className="ovl-sidebar-topic"
-                style={{ cursor: 'default' }}
-              >
-                How do I structure a project?
-              </div>
-              <div
-                className="ovl-sidebar-topic"
-                style={{ cursor: 'default' }}
-              >
-                Explain systems thinking
-              </div>
-              <div
-                className="ovl-sidebar-topic"
-                style={{ cursor: 'default' }}
-              >
-                Where should I start?
-              </div>
-              <div
-                className="ovl-sidebar-topic"
-                style={{ cursor: 'default' }}
-              >
-                What are AI agents?
-              </div>
+              {SUGGESTED_PROMPTS.map((prompt, i) => (
+                <button
+                  key={i}
+                  className="ovl-sidebar-hub-link ovl-sidebar-hub-link--prompt"
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent('ovl-chat-prompt', { detail: prompt.text }));
+                    onClose();
+                  }}
+                >
+                  <span className="ovl-sidebar-hub-glyph">{prompt.icon}</span>
+                  <span>{prompt.label}</span>
+                </button>
+              ))}
               <div className="ovl-sidebar-section-label" style={{ marginTop: '16px' }}>About</div>
               <div className="ovl-sidebar-chat-about">
                 Powered by Claude. Answers are grounded in the Open Vector curriculum.
@@ -149,9 +133,15 @@ function LearnSidebar({ levels, activeLevelSlug, activeLessonSlug, approach, act
             <div className="ovl-sidebar-resources">
               <div className="ovl-sidebar-section-label">Browse by Topic</div>
               {topicFilters.filter(t => t.key !== 'all').map(topic => (
-                <div key={topic.key} className="ovl-sidebar-topic">
-                  {topic.label}
-                </div>
+                <Link
+                  key={topic.key}
+                  to={`/open/learn/resources?topic=${topic.key}`}
+                  className="ovl-sidebar-hub-link"
+                  onClick={onClose}
+                >
+                  <span className="ovl-sidebar-hub-glyph">{topic.glyph}</span>
+                  <span>{topic.label}</span>
+                </Link>
               ))}
             </div>
           ) : isHub ? (

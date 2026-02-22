@@ -15,16 +15,16 @@ export const resourceTypes = [
 
 export const topicFilters = [
   { key: 'all', label: 'All Topics' },
-  { key: 'fundamentals', label: 'Fundamentals' },
-  { key: 'architecture', label: 'Architecture' },
-  { key: 'ai', label: 'AI & Tools' },
-  { key: 'web', label: 'Web Dev' },
-  { key: 'deployment', label: 'Deployment' },
-  { key: 'research', label: 'Research' },
-  { key: 'process', label: 'Process' },
-  { key: 'leadership', label: 'Leadership' },
-  { key: 'craft', label: 'Craft' },
-  { key: 'community', label: 'Community' },
+  { key: 'fundamentals', label: 'Fundamentals', glyph: '\u00A7' },
+  { key: 'architecture', label: 'Architecture', glyph: '\u2302' },
+  { key: 'ai', label: 'AI & Tools', glyph: '\u00B6' },
+  { key: 'web', label: 'Web Dev', glyph: '\u2039' },
+  { key: 'deployment', label: 'Deployment', glyph: '\u2191' },
+  { key: 'research', label: 'Research', glyph: '\u2020' },
+  { key: 'process', label: 'Process', glyph: '\u2261' },
+  { key: 'leadership', label: 'Leadership', glyph: '\u03A9' },
+  { key: 'craft', label: 'Craft', glyph: '\u2666' },
+  { key: 'community', label: 'Community', glyph: '\u2665' },
 ];
 
 const resources = [

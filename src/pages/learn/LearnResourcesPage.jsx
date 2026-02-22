@@ -1,12 +1,24 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import RightRail from '../../components/learn/RightRail';
 import useSEO from '../../hooks/useSEO';
 import resources, { resourceTypes, topicFilters } from '../../content/learn/resources';
 
 function LearnResourcesPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [activeType, setActiveType] = useState('all');
-  const [activeTopic, setActiveTopic] = useState('all');
+  const paramTopic = searchParams.get('topic');
+  const activeTopic = paramTopic && topicFilters.some(t => t.key === paramTopic) ? paramTopic : 'all';
+
+  function handleTopicChange(key) {
+    const next = new URLSearchParams(searchParams);
+    if (key === 'all') {
+      next.delete('topic');
+    } else {
+      next.set('topic', key);
+    }
+    setSearchParams(next, { replace: true });
+  }
 
   useSEO({
     title: 'Go Further — The Open Vector',
@@ -74,7 +86,7 @@ function LearnResourcesPage() {
                 <button
                   key={t.key}
                   className={`ovl-filter-pill ovl-filter-pill--topic ${activeTopic === t.key ? 'ovl-filter-pill--active' : ''}`}
-                  onClick={() => setActiveTopic(t.key)}
+                  onClick={() => handleTopicChange(t.key)}
                 >
                   {t.label}
                   {t.key !== 'all' && topicCounts[t.key] && (
@@ -103,7 +115,7 @@ function LearnResourcesPage() {
                   <span className={`ovl-resource-type ovl-resource-type--${resource.type}`}>
                     {resource.type}
                   </span>
-                  <span className="ovl-resource-card-arrow">&nearr;</span>
+                  <span className="ovl-resource-card-arrow">{'\u2197'}</span>
                 </div>
                 <h3 className="ovl-resource-card-title">{resource.title}</h3>
                 {resource.author && (
