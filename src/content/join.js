@@ -4,7 +4,7 @@ const join = {
   subtitle: 'We are looking for crew, not employees.',
 
   quote: {
-    text: '\u201CMen wanted for hazardous journey. Low wages, bitter cold, long hours of complete darkness. Safe return doubtful. Honour and recognition in event of success.\u201D',
+    text: '\u201C [People] wanted for hazardous journey. Low wages, bitter cold, long hours of complete darkness. Safe return doubtful. Honour and recognition in event of success.\u201D',
     attribution: '\u2014 Ernest Shackleton, 1914 (apocryphal)',
   },
 
