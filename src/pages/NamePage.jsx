@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import VectorField from '../components/VectorField';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 import DecryptText from '../components/DecryptText';
 import Animate from '../components/Animate';
 import ZeroVectorAnimation from '../components/ZeroVectorAnimation';
@@ -18,6 +21,9 @@ function NamePage() {
 
   return (
     <div className="zv-name-page">
+      <VectorField />
+      <Nav />
+
       {/* Hero */}
       <section className="zv-section zv-name-hero">
         <div className="zv-container">
@@ -66,6 +72,8 @@ function NamePage() {
           </Animate>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

@@ -9,6 +9,17 @@ const home = {
     coordinates: '44.8024 N / 68.7853 W',
   },
 
+  explainer: {
+    headline: 'What Is Zero Vector?',
+    body: 'Zero Vector Design is a movement, an approach, and a growing network of practitioners who believe the person with the vision should build the artifact directly — using AI agents as crew. No handoff between design and engineering. No translation layer. One person, full pipeline, real product.',
+    audience: 'For designers who build. For leaders who ship. For anyone tired of the handoff.',
+    paths: [
+      { label: 'Learn the philosophy', link: '/philosophy' },
+      { label: 'Start building', link: '/for-builders' },
+      { label: 'Transform your org', link: '/for-leaders' },
+    ],
+  },
+
   declaration: {
     number: '002',
     title: 'The Declaration',
@@ -24,7 +35,7 @@ const home = {
   },
 
   timeline: {
-    number: '003',
+    number: '006',
     title: 'The Lineage',
     subtitle: 'The tools changed every decade. The process never did. Until now.',
     narrative: [
@@ -47,7 +58,7 @@ const home = {
   },
 
   pipeline: {
-    number: '004',
+    number: '003',
     title: 'The Pipeline, Reimagined',
     header: 'Every phase of concept-to-customer. Transformed.',
     intro: [
@@ -66,7 +77,7 @@ const home = {
   },
 
   principles: {
-    number: '005',
+    number: '004',
     title: 'The Seven Principles',
     principle_zero: 'Take from all that which is around you and make of it something more.',
     intro: 'These principles are intentionally opinionated and polarizing. They exist to help you make decisions in times of indecision or crisis, not to be generic or all-purpose. They are opinionated on approach, agnostic on tool. That is the difference. These are the principles Zero-Vector Design lives by.',
@@ -176,7 +187,7 @@ const home = {
   },
 
   contrasts: {
-    number: '006',
+    number: '005',
     title: 'What This Is Not. What This Is.',
     pairs: [
       {

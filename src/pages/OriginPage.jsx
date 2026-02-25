@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import VectorField from '../components/VectorField';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import Animate from '../components/Animate';
-import { ExternalLinkIcon } from '../components/icons';
+import NotifyForm from '../components/NotifyForm';
+import { ExternalLinkIcon, ArrowIcon } from '../components/icons';
 import useSEO from '../hooks/useSEO';
 import en from '../content/en';
 
@@ -125,6 +127,19 @@ function OriginPage() {
             >
               {origin.cta.label} <ExternalLinkIcon size={16} />
             </a>
+          </Animate>
+          <Animate delay={1}>
+            <div className="zv-page-next-steps" style={{ marginTop: 48 }}>
+              <p className="zv-body-text" style={{ marginBottom: 24 }}>Ready to start building?</p>
+              <div className="zv-page-next-links">
+                <Link to="/start" className="zv-cta">Where To Start <ArrowIcon size={14} /></Link>
+                <Link to="/for-builders" className="zv-cta zv-cta-outline">For Builders <ArrowIcon size={14} /></Link>
+              </div>
+              <div style={{ marginTop: 32 }}>
+                <p className="zv-closing-notify-text">Get notified when new Zero Vector content drops.</p>
+                <NotifyForm variant="light" tag="zerovector" />
+              </div>
+            </div>
           </Animate>
         </div>
       </section>

@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import VectorField from '../components/VectorField';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import Animate from '../components/Animate';
-import { ExternalLinkIcon } from '../components/icons';
+import { ExternalLinkIcon, ArrowIcon } from '../components/icons';
 import useSEO from '../hooks/useSEO';
 import en from '../content/en';
 
@@ -127,6 +128,21 @@ function ReadingPage() {
           </div>
         </section>
       )}
+
+      {/* Next Steps */}
+      <section className="zv-section">
+        <div className="zv-container">
+          <Animate>
+            <div className="zv-page-next-steps">
+              <h2 className="zv-section-title">Done Reading? Start Building.</h2>
+              <div className="zv-page-next-links">
+                <Link to="/start" className="zv-cta">Where To Start <ArrowIcon size={14} /></Link>
+                <Link to="/quiz" className="zv-cta zv-cta-outline">Take the Quiz <ArrowIcon size={14} /></Link>
+              </div>
+            </div>
+          </Animate>
+        </div>
+      </section>
 
       <Footer />
     </div>

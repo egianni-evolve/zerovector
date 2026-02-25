@@ -1,21 +1,27 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import VectorField from '../components/VectorField';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import Animate from '../components/Animate';
+import { ArrowIcon } from '../components/icons';
 import useSEO from '../hooks/useSEO';
 import en from '../content/en';
 
 const { quiz } = en;
 const QUESTIONS = quiz.questions;
+const ARCHETYPES = quiz.archetypes;
 
-function ShareCard({ result }) {
+function getArchetype(score) {
+  return ARCHETYPES.find(a => score >= a.min && score <= a.max) || ARCHETYPES[0];
+}
+
+function ShareCard({ result, archetype }) {
   const [copied, setCopied] = useState(false);
 
   const shareUrl = `https://zerovector.design/quiz?score=${result.score}&title=${encodeURIComponent(result.title)}`;
-  const shareText = `I scored ${result.score}/100 on the "Am I Vibe Coding?" assessment — ${result.title}. Take the quiz:`;
+  const shareText = `I scored ${result.score}/100 on the "Am I Vibe Coding?" assessment — I'm "${archetype.name}." ${archetype.tagline} Take the quiz:`;
 
   const copyLink = async () => {
     try {
@@ -193,43 +199,68 @@ function QuizPage() {
             </div>
           ) : (
             <div className="zv-quiz-result">
-              <div className="zv-quiz-score-row">
-                <div className="zv-quiz-score">{result.score}</div>
-                <div className="zv-quiz-score-label">/100</div>
-              </div>
-              <div className="zv-quiz-title">{result.title}</div>
-              <p className="zv-quiz-summary">{result.summary}</p>
+              {(() => {
+                const archetype = getArchetype(result.score);
+                return (
+                  <>
+                    {/* Archetype Card */}
+                    <div className="zv-quiz-archetype" style={{ borderColor: archetype.color }}>
+                      <div className="zv-quiz-archetype-score">
+                        <span className="zv-quiz-score">{result.score}</span>
+                        <span className="zv-quiz-score-label">/100</span>
+                      </div>
+                      <div className="zv-quiz-archetype-name" style={{ color: archetype.color }}>{archetype.name}</div>
+                      <div className="zv-quiz-archetype-tagline">{archetype.tagline}</div>
+                      <p className="zv-quiz-archetype-desc">{archetype.description}</p>
+                    </div>
 
-              {result.strengths?.length > 0 && (
-                <div className="zv-quiz-section">
-                  <div className="zv-quiz-section-label">Strengths</div>
-                  {result.strengths.map((s, i) => (
-                    <p key={i} className="zv-quiz-item zv-quiz-item--strength">{s}</p>
-                  ))}
-                </div>
-              )}
+                    {/* AI Assessment Details */}
+                    <div className="zv-quiz-title">{result.title}</div>
+                    <p className="zv-quiz-summary">{result.summary}</p>
 
-              {result.friction?.length > 0 && (
-                <div className="zv-quiz-section">
-                  <div className="zv-quiz-section-label">Friction Points</div>
-                  {result.friction.map((f, i) => (
-                    <p key={i} className="zv-quiz-item zv-quiz-item--friction">{f}</p>
-                  ))}
-                </div>
-              )}
+                    {result.strengths?.length > 0 && (
+                      <div className="zv-quiz-section">
+                        <div className="zv-quiz-section-label">Strengths</div>
+                        {result.strengths.map((s, i) => (
+                          <p key={i} className="zv-quiz-item zv-quiz-item--strength">{s}</p>
+                        ))}
+                      </div>
+                    )}
 
-              {result.nextStep && (
-                <div className="zv-quiz-section">
-                  <div className="zv-quiz-section-label">Next Step</div>
-                  <p className="zv-quiz-next">{result.nextStep}</p>
-                </div>
-              )}
+                    {result.friction?.length > 0 && (
+                      <div className="zv-quiz-section">
+                        <div className="zv-quiz-section-label">Friction Points</div>
+                        {result.friction.map((f, i) => (
+                          <p key={i} className="zv-quiz-item zv-quiz-item--friction">{f}</p>
+                        ))}
+                      </div>
+                    )}
 
-              <ShareCard result={result} />
+                    {result.nextStep && (
+                      <div className="zv-quiz-section">
+                        <div className="zv-quiz-section-label">Next Step</div>
+                        <p className="zv-quiz-next">{result.nextStep}</p>
+                      </div>
+                    )}
 
-              <button className="zv-cta zv-cta-outline" onClick={reset} style={{ marginTop: 32 }}>
-                Take It Again
-              </button>
+                    <ShareCard result={result} archetype={archetype} />
+
+                    {/* Post-Result CTAs */}
+                    <div className="zv-quiz-ctas">
+                      <Link to={archetype.cta.link} className="zv-cta">
+                        {archetype.cta.label} <ArrowIcon size={14} />
+                      </Link>
+                      <Link to="/open/learn" className="zv-cta zv-cta-outline">
+                        Explore the Open Vector Curriculum <ArrowIcon size={14} />
+                      </Link>
+                    </div>
+
+                    <button className="zv-cta zv-cta-outline" onClick={reset} style={{ marginTop: 16 }}>
+                      Take It Again
+                    </button>
+                  </>
+                );
+              })()}
             </div>
           )}
         </div>

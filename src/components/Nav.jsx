@@ -10,6 +10,7 @@ const navGroups = [
       { to: '/approach', label: 'Approach' },
       { to: '/origin', label: 'The Origin' },
       { to: '/ask', label: 'Ask' },
+      { to: '/quiz', label: 'Quiz' },
     ],
   },
   {

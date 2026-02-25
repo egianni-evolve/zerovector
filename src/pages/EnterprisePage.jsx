@@ -13,8 +13,8 @@ const { enterprise } = en;
 
 function EnterprisePage() {
   useSEO({
-    title: 'For Enterprise — Zero-Vector Design at Scale',
-    description: 'Zero-Vector Design for teams, departments, and organizations. Scaling agent-first workflows, governance, and transformation metrics. Coming soon.',
+    title: 'For Enterprise — Transform How You Build',
+    description: 'Zero-Vector Design at the scale of teams, departments, and organizations. Pipeline collapse, agent-first team architecture, governance, and transformation metrics.',
     path: '/for-enterprise',
     ogImage: 'https://zerovector.design/og/enterprise.png',
   });
@@ -37,28 +37,33 @@ function EnterprisePage() {
         </div>
       </section>
 
-      {/* Coming Soon Banner */}
+      {/* The Enterprise Challenge */}
       <section className="zv-section">
         <div className="zv-container">
           <Animate>
-            <div className="zv-enterprise-banner">
-              <div className="zv-enterprise-banner-badge">Coming Soon</div>
-              <div className="zv-enterprise-banner-text">
-                This section is actively being built — with input from enterprise practitioners who are scaling Zero-Vector workflows right now.
-              </div>
-            </div>
+            <h2 className="zv-section-title">{enterprise.challenge.title}</h2>
           </Animate>
+          <div className="zv-enterprise-challenge">
+            {enterprise.challenge.items.map((item, i) => (
+              <Animate key={i}>
+                <div className="zv-enterprise-challenge-card">
+                  <h3 className="zv-enterprise-challenge-title">{item.title}</h3>
+                  <p className="zv-enterprise-challenge-desc">{item.description}</p>
+                </div>
+              </Animate>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* What's Coming */}
+      {/* What Zero-Vector Delivers */}
       <section className="zv-section">
         <div className="zv-container">
           <Animate>
-            <h2 className="zv-section-title">{enterprise.coming.title}</h2>
+            <h2 className="zv-section-title">{enterprise.capabilities.title}</h2>
           </Animate>
           <div className="zv-enterprise-preview">
-            {enterprise.coming.items.map((item, i) => (
+            {enterprise.capabilities.items.map((item, i) => (
               <Animate key={i}>
                 <div className="zv-enterprise-preview-card">
                   <div className="zv-enterprise-preview-number">{item.number}</div>
@@ -73,24 +78,59 @@ function EnterprisePage() {
         </div>
       </section>
 
-      {/* Contribute CTA */}
+      {/* How We Work */}
       <section className="zv-section">
         <div className="zv-container">
           <Animate>
-            <h2 className="zv-section-title">{enterprise.contribute.title}</h2>
-            <p className="zv-body-text">{enterprise.contribute.body}</p>
-            <p className="zv-body-text" style={{ fontStyle: 'italic', opacity: 0.85 }}>{enterprise.contribute.cta}</p>
+            <h2 className="zv-section-title">{enterprise.engagement.title}</h2>
+            <p className="zv-body-text">{enterprise.engagement.intro}</p>
+          </Animate>
+          <div className="zv-enterprise-engagement">
+            {enterprise.engagement.models.map((model, i) => (
+              <Animate key={i}>
+                <div className="zv-enterprise-engagement-card">
+                  <div className="zv-enterprise-engagement-header">
+                    <h3 className="zv-enterprise-engagement-name">{model.name}</h3>
+                    <span className="zv-enterprise-engagement-duration">{model.duration}</span>
+                  </div>
+                  <p className="zv-enterprise-engagement-desc">{model.description}</p>
+                  <p className="zv-enterprise-engagement-outcome">{model.outcome}</p>
+                </div>
+              </Animate>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Honesty Section */}
+      <section className="zv-section">
+        <div className="zv-container">
+          <Animate>
+            <h2 className="zv-section-title">{enterprise.honesty.title}</h2>
+          </Animate>
+          {enterprise.honesty.items.map((p, i) => (
+            <Animate key={i} delay={i}>
+              <p className="zv-body-text">{p}</p>
+            </Animate>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="zv-section">
+        <div className="zv-container">
+          <Animate>
+            <h2 className="zv-section-title">{enterprise.contact.title}</h2>
+            <p className="zv-body-text" style={{ marginBottom: 32 }}>{enterprise.contact.description}</p>
+            <a href={enterprise.contact.link} target="_blank" rel="noopener noreferrer" className="zv-cta">
+              {enterprise.contact.cta}
+            </a>
           </Animate>
           <Animate delay={1}>
             <div className="zv-enterprise-notify">
-              <p className="zv-enterprise-notify-label">{enterprise.contribute.email_label}</p>
+              <p className="zv-enterprise-notify-label">{enterprise.contact.email_label}</p>
               <NotifyForm variant="dark" tag="enterprise" />
             </div>
-          </Animate>
-          <Animate delay={2}>
-            <Link to="/open/learn/contribute" className="zv-cta zv-cta-outline" style={{ marginTop: 24 }}>
-              Become a Founding Contributor <ArrowIcon size={14} />
-            </Link>
           </Animate>
         </div>
       </section>

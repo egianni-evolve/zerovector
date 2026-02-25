@@ -26,8 +26,6 @@ function BootSequence({ onComplete }) {
       return;
     }
 
-    document.body.style.overflow = 'hidden';
-
     BOOT_LINES.forEach(({ text, delay }) => {
       setTimeout(() => {
         setLines(prev => [...prev, text]);
@@ -40,7 +38,6 @@ function BootSequence({ onComplete }) {
     // Complete
     const doneTimer = setTimeout(() => {
       setDone(true);
-      document.body.style.overflow = '';
       try { sessionStorage.setItem('zv-booted', '1'); } catch {}
       onCompleteRef.current?.();
     }, 3700);
@@ -48,22 +45,19 @@ function BootSequence({ onComplete }) {
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(doneTimer);
-      document.body.style.overflow = '';
     };
   }, [done]);
 
   if (done) return null;
 
   return (
-    <div className={`zv-boot ${fading ? 'zv-boot--fading' : ''}`}>
-      <div className="zv-boot-terminal">
-        {lines.map((line, i) => (
-          <div key={i} className="zv-boot-line">
-            {line ? `> ${line}` : '\u00A0'}
-          </div>
-        ))}
-        <span className="zv-boot-cursor">_</span>
-      </div>
+    <div className={`zv-boot-inline ${fading ? 'zv-boot-inline--fading' : ''}`}>
+      {lines.map((line, i) => (
+        <div key={i} className="zv-boot-line">
+          {line ? `> ${line}` : '\u00A0'}
+        </div>
+      ))}
+      <span className="zv-boot-cursor">_</span>
     </div>
   );
 }

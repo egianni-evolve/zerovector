@@ -4,11 +4,12 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import Animate from '../components/Animate';
+import NotifyForm from '../components/NotifyForm';
 import { ArrowIcon } from '../components/icons';
 import useSEO from '../hooks/useSEO';
 import en from '../content/en';
 
-const { philosophy } = en;
+const { philosophy, home } = en;
 
 function PhilosophyPage() {
   useSEO({
@@ -101,6 +102,36 @@ function PhilosophyPage() {
         </div>
       </section>
 
+      {/* The Lineage — Timeline */}
+      <section className="zv-section zv-section--timeline">
+        <div className="zv-container">
+          <Animate>
+            <h2 className="zv-section-title">{home.timeline.title}</h2>
+            <p className="zv-section-subtitle">{home.timeline.subtitle}</p>
+          </Animate>
+          <div className="zv-timeline-layout">
+            <div className="zv-timeline-narrative">
+              {home.timeline.narrative.map((paragraph, i) => (
+                <Animate key={i} delay={Math.min(i + 1, 3)}>
+                  <p className="zv-body-text">{paragraph}</p>
+                </Animate>
+              ))}
+            </div>
+            <div className="zv-timeline">
+              {home.timeline.entries.map((entry, i) => (
+                <Animate key={i}>
+                  <div className="zv-timeline-entry">
+                    <div className="zv-timeline-year">{entry.year}</div>
+                    <div className="zv-timeline-milestone">{entry.milestone}</div>
+                    <div className="zv-timeline-desc">{entry.description}</div>
+                  </div>
+                </Animate>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why "Zero Vector" — Name Origin (teaser → full page) */}
       <section className="zv-section">
         <div className="zv-container">
@@ -114,6 +145,26 @@ function PhilosophyPage() {
             <Link to="/name" className="zv-name-teaser-cta">
               See the full animated story <ArrowIcon size={16} />
             </Link>
+          </Animate>
+        </div>
+      </section>
+
+      {/* Next Steps */}
+      <section className="zv-section">
+        <div className="zv-container">
+          <Animate>
+            <div className="zv-page-next-steps">
+              <h2 className="zv-section-title">See It In Practice</h2>
+              <p className="zv-body-text" style={{ marginBottom: 24 }}>The philosophy becomes real when you start building with it. See what Zero-Vector looks like in practice, or take the assessment to find out where you stand.</p>
+              <div className="zv-page-next-links">
+                <Link to="/for-builders" className="zv-cta">Start Building <ArrowIcon size={14} /></Link>
+                <Link to="/quiz" className="zv-cta zv-cta-outline">Take the Quiz <ArrowIcon size={14} /></Link>
+              </div>
+              <div style={{ marginTop: 32 }}>
+                <p className="zv-closing-notify-text">Get notified when new Zero Vector content drops.</p>
+                <NotifyForm variant="light" tag="zerovector" />
+              </div>
+            </div>
           </Animate>
         </div>
       </section>

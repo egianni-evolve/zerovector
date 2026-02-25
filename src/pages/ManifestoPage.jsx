@@ -141,7 +141,18 @@ function ManifestoPage() {
   const [booted, setBooted] = useState(() => {
     try { return !!sessionStorage.getItem('zv-booted'); } catch { return false; }
   });
+  const [declarationVisible, setDeclarationVisible] = useState(() => {
+    try { return !!sessionStorage.getItem('zv-booted'); } catch { return false; }
+  });
   const [heroPhase, setHeroPhase] = useState(0); // 0=start, 1=eyebrow done, 2=title done
+
+  // When boot completes, delay declaration to match fade timing
+  useEffect(() => {
+    if (booted && !declarationVisible) {
+      const timer = setTimeout(() => setDeclarationVisible(true), 750);
+      return () => clearTimeout(timer);
+    }
+  }, [booted, declarationVisible]);
   const [openPrinciples, setOpenPrinciples] = useState(new Set());
   const allPrinciplesOpen = openPrinciples.size === home.principles.items.length;
 
@@ -171,115 +182,125 @@ function ManifestoPage() {
 
   return (
     <div className="zv-manifesto">
-      <BootSequence onComplete={() => setBooted(true)} />
       <VectorField />
       <Nav />
 
       {/* Drifting Coordinates */}
       <div className="zv-coordinates">{home.hero.coordinates}</div>
 
-      {/* Hero */}
-      <section className="zv-section zv-hero">
+      {/* Combined Hero — Above the Fold */}
+      <section className="zv-section zv-hero-combined">
         <div className="zv-container">
-          <div className="zv-section-number">
-            <DecryptText
-              text={home.hero.pre}
-              ready={booted}
-              delay={200}
-              blinks={2}
-              blinkSpeed={130}
-              speed={115}
-              onComplete={() => setHeroPhase(1)}
-            />
+          {/* Title Block */}
+          <div className="zv-hero-title-block">
+            <div className="zv-section-number">
+              <DecryptText
+                text={home.hero.pre}
+                ready
+                delay={200}
+                blinks={2}
+                blinkSpeed={130}
+                speed={115}
+                onComplete={() => setHeroPhase(1)}
+              />
+            </div>
+            <h1 className="zv-hero-title">
+              <DecryptText
+                text={home.hero.title}
+                ready={heroPhase >= 1}
+                delay={100}
+                blinks={3}
+                blinkSpeed={160}
+                speed={200}
+                onComplete={() => setHeroPhase(2)}
+              />
+            </h1>
+            <p className={`zv-hero-subtitle ${heroPhase >= 2 ? 'zv-hero-decrypt-reveal' : 'zv-hero-decrypt-hidden'}`}>
+              {home.hero.subtitle}
+            </p>
           </div>
-          <h1 className="zv-hero-title">
-            <DecryptText
-              text={home.hero.title}
-              ready={heroPhase >= 1}
-              delay={100}
-              blinks={3}
-              blinkSpeed={160}
-              speed={200}
-              onComplete={() => setHeroPhase(2)}
-            />
-          </h1>
-          <p className={`zv-hero-subtitle ${heroPhase >= 2 ? 'zv-hero-decrypt-reveal' : 'zv-hero-decrypt-hidden'}`}>
-            {home.hero.subtitle}
-          </p>
-        </div>
-      </section>
 
-      {/* 002 — Declaration */}
-      <section className="zv-section zv-section--declaration">
-        <div className="zv-container">
-          <Animate>
-            <SectionHeader number={home.declaration.number} title={home.declaration.title} />
-          </Animate>
-          {home.declaration.paragraphs.map((paragraph, i) => (
-            <Animate key={i} delay={Math.min(i + 1, 4)}>
-              <p className="zv-body-text">{paragraph}</p>
-              {i === 2 && (
-                <blockquote className="zv-callout">{home.declaration.callout1}</blockquote>
+          {/* Two-Column Layout */}
+          <div className="zv-hero-columns">
+            {/* LEFT: Explainer */}
+            <div className="zv-hero-col-left">
+              <div className="zv-hero-declaration-label">
+                <span>001</span>
+                <span>The Starting Point</span>
+              </div>
+              <h2 className="zv-explainer-headline">{home.explainer.headline}</h2>
+              <p className="zv-explainer-body">{home.explainer.body}</p>
+              <p className="zv-explainer-audience">{home.explainer.audience}</p>
+              <div className="zv-explainer-paths">
+                {home.explainer.paths.map((path, i) => (
+                  <Link key={i} to={path.link} className="zv-explainer-path">
+                    {path.label} <ArrowIcon size={14} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT: Boot Terminal → Declaration */}
+            <div className="zv-hero-col-right">
+              {!booted && (
+                <BootSequence onComplete={() => setBooted(true)} />
               )}
-            </Animate>
-          ))}
-          <Animate>
-            <blockquote className="zv-callout">{home.declaration.callout2}</blockquote>
-          </Animate>
-          <Animate>
-            <a
-              href="https://open.substack.com/pub/eflowers/p/zero-vector-design-you-will-move"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="zv-declaration-article"
-            >
-              Read Erika's announcement on Substack &rarr;
-            </a>
-          </Animate>
+              {declarationVisible && (
+                <div className="zv-hero-declaration">
+                  <div className="zv-hero-declaration-label">
+                    <span>{home.declaration.number}</span>
+                    <span>{home.declaration.title}</span>
+                  </div>
+                  <p className="zv-hero-declaration-text">{home.declaration.paragraphs[0]}</p>
+                  <p className="zv-hero-declaration-text">{home.declaration.paragraphs[1]}</p>
+                  <blockquote className="zv-hero-declaration-callout">
+                    {home.declaration.callout2}
+                  </blockquote>
+                  <a
+                    href="https://open.substack.com/pub/eflowers/p/zero-vector-design-you-will-move"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="zv-declaration-article"
+                  >
+                    Read the full declaration &rarr;
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 003 — Timeline */}
-      <section className="zv-section zv-section--timeline">
+      {/* 003 — Pipeline */}
+      <section className="zv-section zv-section--pipeline">
         <div className="zv-container">
           <Animate>
-            <SectionHeader number={home.timeline.number} title={home.timeline.title} subtitle={home.timeline.subtitle} />
+            <SectionHeader number={home.pipeline.number} title={home.pipeline.title} />
+            <p className="zv-pipeline-header">{home.pipeline.header}</p>
           </Animate>
-          <div className="zv-timeline-layout">
-            <div className="zv-timeline-narrative">
-              {home.timeline.narrative.map((paragraph, i) => (
-                <Animate key={i} delay={Math.min(i + 1, 3)}>
+          <div className="zv-pipeline-intro-layout">
+            <div className="zv-pipeline-intro-left">
+              {home.pipeline.intro.map((paragraph, i) => (
+                <Animate key={i} delay={Math.min(i + 1, 2)}>
                   <p className="zv-body-text">{paragraph}</p>
                 </Animate>
               ))}
             </div>
-            <div className="zv-timeline">
-              {home.timeline.entries.map((entry, i) => (
-                <Animate key={i}>
-                  <div className="zv-timeline-entry">
-                    <div className="zv-timeline-year">{entry.year}</div>
-                    <div className="zv-timeline-milestone">{entry.milestone}</div>
-                    <div className="zv-timeline-desc">{entry.description}</div>
-                  </div>
-                </Animate>
-              ))}
+            <div className="zv-pipeline-intro-right">
+              <Animate>
+                <div className="zv-pipeline-phases-list">
+                  <div className="zv-pipeline-phases-label">The Pipeline</div>
+                  {home.pipeline.phases.map((phase, i) => (
+                    <div key={i} className="zv-pipeline-phases-item">
+                      <span className="zv-pipeline-phases-num">{String(i + 1).padStart(2, '0')}</span>
+                      <span>{phase.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </Animate>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 004 — Pipeline */}
-      <section className="zv-section zv-section--pipeline">
-        <div className="zv-container">
-          <Animate>
-            <SectionHeader number={home.pipeline.number} title={home.pipeline.title} subtitle={home.pipeline.header} />
-          </Animate>
-          {home.pipeline.intro.map((paragraph, i) => (
-            <Animate key={i} delay={Math.min(i + 1, 2)}>
-              <p className="zv-body-text">{paragraph}</p>
-            </Animate>
-          ))}
-          <div className="zv-pipeline" style={{ marginTop: 48 }}>
+          <div className="zv-pipeline" style={{ marginTop: 24 }}>
             {home.pipeline.phases.map((phase, i) => (
               <Animate key={i}>
                 <div className="zv-pipeline-phase">
@@ -299,44 +320,50 @@ function ManifestoPage() {
         </div>
       </section>
 
-      {/* 005 — The Seven Principles */}
+      {/* 004 — The Seven Principles */}
       <section className="zv-section zv-section--principles">
         <div className="zv-container">
           <Animate>
-            <div className="zv-principles-header">
-              <SectionHeader number={home.principles.number} title={home.principles.title} />
-              <button
-                className="zv-principles-expand-toggle"
-                onClick={toggleAllPrinciples}
-              >
-                {allPrinciplesOpen ? 'Collapse all' : 'Expand all'}
-              </button>
-            </div>
+            <SectionHeader number={home.principles.number} title={home.principles.title} />
           </Animate>
-          <Animate delay={1}>
-            <p className="zv-body-text zv-principles-intro">{home.principles.intro}</p>
-          </Animate>
-          <div className="zv-principles-grid">
-            {home.principles.items.map((p, i) => (
-              <Animate key={i}>
-                <PrincipleCard
-                  principle={p}
-                  open={openPrinciples.has(i)}
-                  onToggle={() => togglePrinciple(i)}
-                />
+          <div className="zv-principles-layout">
+            <div className="zv-principles-left">
+              <Animate delay={1}>
+                <p className="zv-body-text zv-principles-intro">{home.principles.intro}</p>
               </Animate>
-            ))}
-          </div>
-          <Animate>
-            <div className="zv-principle-zero-home">
-              <div className="zv-principle-zero-home-numeral">PRINCIPLE ZERO</div>
-              <div className="zv-principle-zero-home-text">{home.principles.principle_zero}</div>
+              <Animate>
+                <div className="zv-principle-zero-home">
+                  <div className="zv-principle-zero-home-numeral">PRINCIPLE ZERO</div>
+                  <div className="zv-principle-zero-home-text">{home.principles.principle_zero}</div>
+                </div>
+              </Animate>
             </div>
-          </Animate>
+            <div className="zv-principles-right">
+              <div className="zv-principles-expand-row">
+                <button
+                  className="zv-principles-expand-toggle"
+                  onClick={toggleAllPrinciples}
+                >
+                  {allPrinciplesOpen ? 'Collapse all' : 'Expand all'}
+                </button>
+              </div>
+              <div className="zv-principles-grid">
+                {home.principles.items.map((p, i) => (
+                  <Animate key={i}>
+                    <PrincipleCard
+                      principle={p}
+                      open={openPrinciples.has(i)}
+                      onToggle={() => togglePrinciple(i)}
+                    />
+                  </Animate>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 006 — What This Is Not. What This Is. */}
+      {/* 005 — What This Is Not. What This Is. */}
       <section className="zv-section zv-section--contrasts">
         <div className="zv-container">
           <Animate>
@@ -363,17 +390,16 @@ function ManifestoPage() {
         </div>
       </section>
 
-      {/* Why "Zero Vector" — Name Teaser */}
+      {/* 006 — Why "Zero Vector" — Name Teaser */}
       <section className="zv-section zv-name-teaser-section">
         <div className="zv-container">
           <Animate>
-            <SectionHeader number="---" title='Why "Zero Vector"?' />
+            <SectionHeader number="006" title='Why "Zero Vector"?' />
           </Animate>
           <Animate delay={1}>
             <ZeroVectorAnimation compact stages={en.name.stages} />
           </Animate>
           <Animate delay={2}>
-            <p className="zv-body-text">{en.name.teaser}</p>
             <Link to="/name" className="zv-name-teaser-cta">
               See the full story <ArrowIcon size={16} />
             </Link>

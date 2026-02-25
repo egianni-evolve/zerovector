@@ -157,6 +157,79 @@ a:hover {
    is its own statement. Builds, peaks, resolves.
    ============================================ */
 
+/* --- Explainer: What Is Zero Vector? --- */
+.zv-section--explainer {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.zv-explainer {
+  border: 1px solid var(--void-border);
+  background: var(--void-elevated);
+  padding: 48px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.zv-explainer-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 20px;
+}
+
+.zv-explainer-body {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0 0 16px;
+}
+
+.zv-explainer-audience {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin: 0 0 28px;
+}
+
+.zv-explainer-paths {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.zv-explainer-path {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid var(--void-border);
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zv-explainer-path:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .zv-explainer {
+    padding: 32px 24px;
+  }
+  .zv-explainer-paths {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 /* --- 002 Declaration: The First Breath --- */
 .zv-section--declaration {
   background: linear-gradient(
@@ -234,13 +307,63 @@ a:hover {
   color: #0a0a0a;
 }
 
-.zv-section--pipeline .zv-section-subtitle {
+.zv-pipeline-header {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
   color: #555;
+  margin-top: -20px;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.zv-pipeline-intro-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 8px;
 }
 
 .zv-section--pipeline .zv-body-text {
   color: #333;
-  max-width: 720px;
+}
+
+.zv-pipeline-phases-list {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 24px;
+}
+
+.zv-pipeline-phases-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #007a7a;
+  margin-bottom: 16px;
+}
+
+.zv-pipeline-phases-item {
+  font-size: 0.9rem;
+  color: #333;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.zv-pipeline-phases-item:last-child {
+  border-bottom: none;
+}
+
+.zv-pipeline-phases-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #007a7a;
+  opacity: 0.6;
 }
 
 .zv-section--pipeline .zv-pipeline-label {
@@ -267,6 +390,7 @@ a:hover {
 /* --- 004 Principles: The Commandments --- */
 .zv-section--principles {
   position: relative;
+  padding: 80px 0;
   background:
     radial-gradient(ellipse at 0% 0%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
     #0e0e16;
@@ -282,16 +406,7 @@ a:hover {
   background: linear-gradient(to right, var(--cyan), var(--cyan-dim) 30%, transparent 70%);
 }
 
-/* --- Principles Header + Expand/Collapse --- */
-.zv-principles-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.zv-principles-header .zv-section-header {
-  flex: 1;
-}
+/* --- Principles Expand/Collapse --- */
 
 .zv-principles-expand-toggle {
   flex-shrink: 0;
@@ -316,8 +431,8 @@ a:hover {
 
 /* --- Principle Zero (Homepage) --- */
 .zv-principle-zero-home {
-  margin-top: 48px;
-  padding: 64px 48px;
+  margin-top: 24px;
+  padding: 36px 32px;
   border: 2px solid var(--cyan);
   background: linear-gradient(135deg, rgba(0, 255, 255, 0.04) 0%, rgba(0, 255, 255, 0.01) 50%, rgba(0, 255, 255, 0.06) 100%);
   text-align: center;
@@ -341,19 +456,19 @@ a:hover {
 
 .zv-principle-zero-home-numeral {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--cyan);
   letter-spacing: 0.25em;
   line-height: 1;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   text-shadow: 0 0 20px var(--cyan-glow);
   position: relative;
 }
 
 .zv-principle-zero-home-text {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.35;
@@ -365,39 +480,64 @@ a:hover {
 
 @media (max-width: 768px) {
   .zv-principle-zero-home {
-    padding: 48px 24px;
+    padding: 24px 16px;
   }
 }
 
 /* --- Principle Cards --- */
+.zv-principles-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.zv-principles-left {
+  position: sticky;
+  top: 100px;
+}
+
+.zv-principles-right {
+  min-width: 0;
+}
+
+.zv-principles-expand-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
 .zv-principles-grid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 4px;
 }
 
 .zv-principle-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-left: 3px solid rgba(0, 255, 255, 0.15);
-  padding: 28px 36px;
-  transition: border-left-color 0.8s var(--ease-out), box-shadow 0.8s var(--ease-out), background 0.3s var(--ease-out);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 0;
+  transition: background 0.3s var(--ease-out);
+}
+
+.zv-principle-card:last-child {
+  border-bottom: none;
 }
 
 .zv-animate.zv-visible .zv-principle-card {
-  border-left-color: rgba(0, 255, 255, 0.4);
-  box-shadow: inset 4px 0 30px -12px rgba(0, 255, 255, 0.08);
+  box-shadow: none;
 }
 
 .zv-principle-card:hover {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .zv-principle-card-row {
   display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 24px;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
   align-items: start;
 }
 
@@ -414,33 +554,33 @@ a:hover {
 
 .zv-principle-card-numeral {
   font-family: var(--font-mono);
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--cyan);
   line-height: 1;
-  text-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
-  padding-top: 4px;
+  opacity: 0.6;
+  padding-top: 3px;
 }
 
 .zv-principle-card-title {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   line-height: 1.2;
 }
 
 .zv-principle-card-body {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  line-height: 1.7;
-  max-width: 720px;
+  line-height: 1.6;
 }
 
 .zv-principles-intro {
-  margin-bottom: 32px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
 }
 
 /* --- Principle Disclosure Toggle --- */
@@ -493,19 +633,18 @@ a:hover {
 }
 
 .zv-principle-card-detail-content {
-  margin-top: 24px;
-  margin-left: 24px;
-  padding: 28px 32px;
+  margin-top: 12px;
+  margin-left: 12px;
+  padding: 16px 20px;
   background: #ffffff;
   border-left: 3px solid var(--cyan);
 }
 
 .zv-principle-card-detail-text {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #333;
-  line-height: 1.8;
-  max-width: 720px;
+  line-height: 1.7;
 }
 
 .zv-principle-card-detail-text + .zv-principle-card-detail-text {
@@ -609,6 +748,7 @@ a:hover {
 /* --- 005 Contrasts: The Battleground (Peak) --- */
 .zv-section--contrasts {
   position: relative;
+  padding: 80px 0;
   background: #08080e;
 }
 
@@ -630,18 +770,16 @@ a:hover {
 
 .zv-section--contrasts .zv-contrast-pair {
   border-color: rgba(255, 255, 255, 0.08);
-  padding: 0;
-  gap: 0;
   overflow: hidden;
 }
 
 .zv-section--contrasts .zv-contrast-not {
-  padding: 32px;
+  padding: 20px 24px;
 }
 
 .zv-section--contrasts .zv-contrast-is {
   background: #ffffff;
-  padding: 32px;
+  padding: 20px 24px;
 }
 
 .zv-section--contrasts .zv-contrast-is .zv-contrast-label {
@@ -805,6 +943,25 @@ a:hover {
   font-size: 1rem;
   color: #888;
   margin-bottom: 20px;
+}
+
+/* --- Shared Page Next-Steps CTA Block --- */
+.zv-page-next-steps {
+  text-align: center;
+}
+
+.zv-page-next-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .zv-page-next-links {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* ========================================
@@ -1053,42 +1210,7 @@ a:hover {
   z-index: 999;
 }
 
-/* --- HUD Corner Brackets --- */
-/* Targeting reticle on principle cards — appear on scroll, intensify on hover */
-.zv-principle-card::before,
-.zv-principle-card::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  opacity: 0;
-  transition: opacity 0.6s var(--ease-out);
-  pointer-events: none;
-}
-
-.zv-principle-card::before {
-  top: -1px;
-  left: -1px;
-  border-top: 2px solid var(--cyan);
-  border-left: 2px solid var(--cyan);
-}
-
-.zv-principle-card::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 2px solid var(--cyan);
-  border-right: 2px solid var(--cyan);
-}
-
-.zv-animate.zv-visible .zv-principle-card::before,
-.zv-animate.zv-visible .zv-principle-card::after {
-  opacity: 0.3;
-}
-
-.zv-principle-card:hover::before,
-.zv-principle-card:hover::after {
-  opacity: 0.7;
-}
+/* --- HUD Corner Brackets (disabled — chrome stripped for compact layout) --- */
 
 /* --- Status Pulse Dots --- */
 /* Blinking system-alive indicator before each section number */
@@ -1175,44 +1297,10 @@ a:hover {
    Boot Sequence — System Initialization
    ============================================ */
 
-.zv-boot {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.7s ease-out;
-}
-
-.zv-boot--fading {
-  opacity: 0;
-}
-
-.zv-boot-terminal {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--cyan);
-  letter-spacing: 0.05em;
-  line-height: 2.2;
-  max-width: 480px;
-  padding: 24px;
-}
-
-.zv-boot-line {
-  animation: boot-line-in 0.15s ease-out;
-  white-space: nowrap;
-}
-
+/* Boot terminal keyframe animations (used by inline boot) */
 @keyframes boot-line-in {
   from { opacity: 0; transform: translateX(-8px); }
   to { opacity: 1; transform: translateX(0); }
-}
-
-.zv-boot-cursor {
-  color: var(--cyan);
-  animation: boot-blink 0.5s step-end infinite;
 }
 
 @keyframes boot-blink {
@@ -1730,6 +1818,78 @@ a:hover {
   margin-top: 8px;
 }
 
+/* --- Quiz Archetype Card --- */
+.zv-quiz-archetype {
+  text-align: center;
+  padding: 40px 32px;
+  border: 2px solid var(--void-border);
+  background: var(--void-elevated);
+  margin-bottom: 40px;
+}
+
+.zv-quiz-archetype .zv-quiz-score {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.zv-quiz-archetype .zv-quiz-score-label {
+  font-size: 1.5rem;
+}
+
+.zv-quiz-archetype-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.zv-quiz-archetype-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.zv-quiz-archetype-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.zv-quiz-archetype-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.zv-quiz-ctas {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.zv-quiz-ctas .zv-cta {
+  min-width: 280px;
+  text-align: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .zv-quiz-archetype {
+    padding: 28px 20px;
+  }
+  .zv-quiz-ctas .zv-cta {
+    min-width: unset;
+    width: 100%;
+  }
+}
+
 /* --- Typography --- */
 .zv-hero-title {
   font-family: var(--font-display);
@@ -2060,29 +2220,29 @@ a:hover {
 .zv-pipeline {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 20px;
 }
 
 .zv-pipeline-phase {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 16px;
   align-items: start;
 }
 
 .zv-pipeline-label {
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   grid-column: 1 / -1;
 }
 
 .zv-pipeline-old,
 .zv-pipeline-new {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .zv-pipeline-old {
@@ -2114,15 +2274,15 @@ a:hover {
 }
 
 .zv-pipeline-card {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  padding: 20px 24px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .zv-pipeline-card-new {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 122, 122, 0.2);
 }
 
 /* --- Navigation --- */
@@ -2561,11 +2721,144 @@ a:hover {
 }
 
 /* --- Hero --- */
-.zv-hero {
-  min-height: 100vh;
+/* Legacy hero — replaced by .zv-hero-combined */
+
+/* --- Combined Hero: Above the Fold --- */
+.zv-hero-combined {
+  padding-top: calc(56px + 40px);
+  padding-bottom: 48px;
+}
+
+.zv-hero-title-block {
+  margin-bottom: 40px;
+}
+
+.zv-hero-combined .zv-hero-subtitle {
+  margin-top: 16px;
+  max-width: 640px;
+}
+
+.zv-hero-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Left column: Explainer — left-aligned */
+.zv-hero-col-left .zv-explainer-headline {
+  text-align: left;
+}
+
+.zv-hero-col-left .zv-explainer-body {
+  text-align: left;
+}
+
+.zv-hero-col-left .zv-explainer-audience {
+  text-align: left;
+}
+
+.zv-hero-col-left .zv-explainer-paths {
+  justify-content: flex-start;
+}
+
+/* Right column: Boot / Declaration */
+.zv-hero-col-right {
+  border-left: 1px solid var(--void-border);
+  padding-left: 32px;
+  min-height: 320px;
+}
+
+/* Inline boot terminal */
+.zv-boot-inline {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+  line-height: 2.0;
+  transition: opacity 0.7s ease-out;
+}
+
+.zv-boot-inline--fading {
+  opacity: 0;
+}
+
+.zv-boot-line {
+  white-space: nowrap;
+  animation: boot-line-in 0.15s ease-out;
+}
+
+.zv-boot-cursor {
+  display: inline-block;
+  color: var(--cyan);
+  animation: boot-blink 0.5s step-end infinite;
+}
+
+/* Compact declaration in hero right column */
+.zv-hero-declaration {
+  animation: glyph-resolve 0.8s var(--ease-out) forwards;
+}
+
+.zv-hero-declaration-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  padding-top: 56px;
+  gap: 12px;
+}
+
+.zv-hero-declaration-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.zv-hero-declaration-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.zv-hero-declaration-callout {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 24px 0;
+  padding: 0;
+  padding-left: 16px;
+  border-left: 3px solid var(--cyan);
+  line-height: 1.4;
+}
+
+.zv-hero-declaration .zv-declaration-article {
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .zv-hero-combined {
+    padding-top: calc(56px + 24px);
+  }
+  .zv-hero-columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .zv-hero-col-right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--void-border);
+    padding-top: 24px;
+    min-height: unset;
+  }
 }
 
 /* --- Page Hero (subpages) --- */
@@ -3286,29 +3579,29 @@ a:hover {
 .zv-contrasts {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 16px;
 }
 
 .zv-contrast-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  padding: 32px;
+  gap: 0;
+  padding: 0;
   border: 1px solid var(--void-border);
   background: var(--void-elevated);
 }
 
 .zv-contrast-side {
-  padding: 8px 0;
+  padding: 20px 24px;
 }
 
 .zv-contrast-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .zv-contrast-not .zv-contrast-label {
@@ -3321,9 +3614,9 @@ a:hover {
 
 .zv-contrast-title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   line-height: 1.3;
 }
 
@@ -3354,8 +3647,8 @@ a:hover {
 
 .zv-contrast-body {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.8rem;
+  line-height: 1.6;
 }
 
 .zv-contrast-not .zv-contrast-body {
@@ -3935,6 +4228,129 @@ a:hover {
   line-height: 1.7;
 }
 
+.zv-model-outcome {
+  font-size: 0.9rem;
+  color: var(--accent);
+  line-height: 1.6;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--void-border);
+  font-style: italic;
+}
+
+/* --- Leaders Page — Before/After, For You --- */
+
+.zv-leaders-changes {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.zv-leaders-change-card {
+  border: 1px solid var(--void-border);
+  background: var(--void-elevated);
+  overflow: hidden;
+}
+
+.zv-leaders-change-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--void-border);
+}
+
+.zv-leaders-change-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.zv-leaders-change-before,
+.zv-leaders-change-after {
+  padding: 20px 28px;
+}
+
+.zv-leaders-change-before {
+  border-right: 1px solid var(--void-border);
+}
+
+.zv-leaders-change-before p,
+.zv-leaders-change-after p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.zv-leaders-change-after p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.zv-leaders-change-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.zv-leaders-change-before .zv-leaders-change-tag {
+  color: rgba(255, 100, 100, 0.6);
+}
+
+.zv-leaders-change-after .zv-leaders-change-tag {
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+.zv-leaders-foryou {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.zv-leaders-foryou-card {
+  padding: 28px;
+  border: 1px solid var(--void-border);
+  background: var(--void-elevated);
+}
+
+.zv-leaders-foryou-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+}
+
+.zv-leaders-foryou-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.zv-leaders-explore {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .zv-leaders-change-comparison {
+    grid-template-columns: 1fr;
+  }
+  .zv-leaders-change-before {
+    border-right: none;
+    border-bottom: 1px solid var(--void-border);
+  }
+  .zv-leaders-foryou {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Coming Soon Card --- */
 .zv-coming-soon-card {
   padding: 48px;
@@ -4103,6 +4519,10 @@ a:hover {
     gap: 16px;
   }
 
+  .zv-pipeline-intro-layout {
+    grid-template-columns: 1fr;
+  }
+
   .zv-coordinates {
     display: none;
   }
@@ -4216,26 +4636,27 @@ a:hover {
     padding-left: calc(var(--container-padding) + 16px);
   }
 
-  /* Principle cards: tighter on mobile */
-  .zv-principles-grid {
-    gap: 16px;
+  /* Principles: stack on mobile */
+  .zv-principles-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .zv-principles-left {
+    position: static;
   }
 
   .zv-principle-card {
-    padding: 20px 20px;
+    padding: 10px 0;
   }
 
   .zv-principle-card-row {
-    grid-template-columns: 48px 1fr;
-    gap: 16px;
-  }
-
-  .zv-principle-card-numeral {
-    font-size: 1.6rem;
+    grid-template-columns: 28px 1fr;
+    gap: 8px;
   }
 
   .zv-principle-card-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .zv-principle-card-detail-content {
@@ -4260,23 +4681,20 @@ a:hover {
   /* Contrasts: stack vertically */
   .zv-contrast-pair {
     grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 24px;
+    gap: 0;
+    padding: 0;
   }
 
-  .zv-contrast-not {
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--void-border);
+  .zv-contrast-side {
+    padding: 16px;
   }
 
-  /* Inverted contrast cards: tighter on mobile, no border between halves */
   .zv-section--contrasts .zv-contrast-not {
-    padding: 24px;
-    border-bottom: none;
+    padding: 16px;
   }
 
   .zv-section--contrasts .zv-contrast-is {
-    padding: 24px;
+    padding: 16px;
   }
 
   /* Inverted callouts: tighter padding on mobile */
@@ -11574,34 +11992,90 @@ a:hover {
    ENTERPRISE PAGE — Main Site
    ============================================ */
 
-.zv-enterprise-banner {
-  border: 1px solid rgba(0, 255, 136, 0.3);
+.zv-enterprise-challenge {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.zv-enterprise-challenge-card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
-  padding: 32px;
-  text-align: center;
-  background: rgba(0, 255, 136, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid rgba(255, 100, 100, 0.4);
 }
 
-.zv-enterprise-banner-badge {
-  display: inline-block;
+.zv-enterprise-challenge-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 12px;
+}
+
+.zv-enterprise-challenge-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.zv-enterprise-engagement {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.zv-enterprise-engagement-card {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.2s;
+}
+
+.zv-enterprise-engagement-card:hover {
+  border-color: rgba(0, 255, 136, 0.2);
+}
+
+.zv-enterprise-engagement-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.zv-enterprise-engagement-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.zv-enterprise-engagement-duration {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-size: 12px;
   color: #00ff88;
-  border: 1px solid rgba(0, 255, 136, 0.4);
-  border-radius: 4px;
-  padding: 4px 12px;
-  margin-bottom: 16px;
+  opacity: 0.7;
 }
 
-.zv-enterprise-banner-text {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 15px;
+.zv-enterprise-engagement-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.zv-enterprise-engagement-outcome {
+  font-size: 14px;
+  color: rgba(0, 255, 136, 0.8);
   line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-style: italic;
 }
 
 .zv-enterprise-preview {
@@ -11720,8 +12194,15 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  .zv-enterprise-challenge {
+    grid-template-columns: 1fr;
+  }
   .zv-enterprise-crosslinks {
     grid-template-columns: 1fr;
+  }
+  .zv-enterprise-engagement-header {
+    flex-direction: column;
+    gap: 4px;
   }
 }
 

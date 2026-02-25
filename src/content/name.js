@@ -4,12 +4,12 @@
 const name = {
   eyebrow: 'The Name',
   title: 'Zero Vector',
-  subtitle: 'It started as a punchline. It ended up describing a new discipline.',
+  subtitle: 'A name that means something different in every discipline. And the same thing in all of them.',
   stages: [
     {
-      id: 'joke',
-      label: 'The Punchline',
-      text: 'No more vector art tools. Figma, Illustrator, Sketch — stop designing in pictures. Zero vector. That was the joke.',
+      id: 'design',
+      label: 'The Design',
+      text: 'No more vector art tools. Figma, Illustrator, Sketch — stop designing in pictures. Work in the medium. Build the real thing. Zero vector.',
     },
     {
       id: 'physics',
@@ -33,11 +33,11 @@ const name = {
     },
   ],
   conclusion: [
-    'So yes, it started as "no more vector art tools."',
-    'It ended up meaning: zero distance between intent and artifact.',
-    'Sometimes the best ideas sneak in through the back door disguised as jokes.',
+    'Zero distance between intent and artifact.',
+    'No drift. No translation loss. No signal degradation.',
+    'The gap is zero. That is what the name means.',
   ],
-  teaser: 'It started as a joke about vector art tools. It became something much bigger.',
+  teaser: 'The name means something different in every discipline — and the same thing in all of them.',
 };
 
 export default name;
