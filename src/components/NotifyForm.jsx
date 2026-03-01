@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 /**
- * NotifyForm — Buttondown email signup with tag support.
- * Posts to the Fictioneer Buttondown account with a `zerovector` tag.
+ * NotifyForm — Email signup via Kestris subscribe proxy.
+ * Supports multiple tags (zerovector, enterprise, founding-contributor, etc.)
  *
  * @param {string} variant - 'dark' (white text on dark/blue bg) or 'light' (dark text on light bg)
  * @param {string} tag - Buttondown tag to apply (default: 'zerovector')
@@ -25,24 +25,23 @@ function NotifyForm({ variant = 'dark', tag = 'zerovector' }) {
     setErrorMessage('');
 
     try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('tag', tag);
-
-      const response = await fetch('https://buttondown.com/api/emails/embed-subscribe/fictioneer', {
+      const response = await fetch('https://kestris.ai/api/subscribe', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, tag }),
       });
 
-      if (response.ok || response.redirected) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setStatus('success');
         setEmail('');
       } else {
-        throw new Error('Subscription failed');
+        throw new Error(data.error || 'Subscription failed');
       }
     } catch (err) {
       setStatus('error');
-      setErrorMessage('Something went wrong. Please try again.');
+      setErrorMessage(err.message || 'Something went wrong. Please try again.');
     }
   };
 
