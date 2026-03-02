@@ -81,8 +81,14 @@ function LearnNav({ sidebarOpen, onToggle }) {
             <span />
           </span>
         </button>
-        <Link to="/open/learn" className="ovl-nav-brand">{learn.nav.brand}</Link>
+        <Link to="/open" className="ovl-nav-brand">{learn.nav.brand}</Link>
         <div className="ovl-nav-primary">
+          <Link
+            to="/open/learn"
+            className={`ovl-nav-tab ${pathname === '/open/learn' ? 'ovl-nav-tab--active' : ''}`}
+          >
+            Home
+          </Link>
           <Link
             to="/open/learn/curriculum"
             className={`ovl-nav-tab ${isCurriculum ? 'ovl-nav-tab--active' : ''}`}
@@ -112,6 +118,12 @@ function LearnNav({ sidebarOpen, onToggle }) {
             className={`ovl-nav-tab ${pathname.includes('/contribute') ? 'ovl-nav-tab--active' : ''}`}
           >
             Contribute
+          </Link>
+          <Link
+            to="/open/learn/about"
+            className={`ovl-nav-tab ${pathname.includes('/about') ? 'ovl-nav-tab--active' : ''}`}
+          >
+            About
           </Link>
         </div>
         <div className="ovl-nav-right">

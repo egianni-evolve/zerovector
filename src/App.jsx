@@ -25,6 +25,7 @@ import LessonPage from './pages/learn/LessonPage';
 import LearnResourcesPage from './pages/learn/LearnResourcesPage';
 import LearnChatPage from './pages/learn/LearnChatPage';
 import LearnContributePage from './pages/learn/LearnContributePage';
+import LearnAboutPage from './pages/learn/LearnAboutPage';
 import LearnFAQPage from './pages/learn/LearnFAQPage';
 import LearnChangelogPage from './pages/learn/LearnChangelogPage';
 import LearnProgressPage from './pages/learn/LearnProgressPage';
@@ -67,6 +68,7 @@ function App() {
         <Route path="resources" element={<LearnResourcesPage />} />
         <Route path="chat" element={<LearnChatPage />} />
         <Route path="contribute" element={<LearnContributePage />} />
+        <Route path="about" element={<LearnAboutPage />} />
         <Route path="faq" element={<LearnFAQPage />} />
         <Route path="changelog" element={<LearnChangelogPage />} />
         <Route path="progress" element={<LearnProgressPage />} />
