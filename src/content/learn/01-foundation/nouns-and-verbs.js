@@ -78,6 +78,14 @@ export default {
         ],
       },
       {
+        type: 'text',
+        heading: 'Nouns & Verbs in Zero Vector',
+        body: [
+          'In Zero Vector, nouns and verbs become the foundation of your data model and your API design. When you hand an AI agent a clear list of entities (nouns) and the actions they perform or receive (verbs), you are giving it the vocabulary of your system.',
+          'This matters because AI agents are remarkably good at building CRUD operations, API endpoints, and database schemas when the entities are well-defined. They struggle when the entities are fuzzy. "Build me a recipe app" produces mediocre results. "Build me an app with Recipes, Ingredients, Collections, and Shopping Lists, where users can scale recipes, search by ingredient, and generate shopping lists from selected recipes" produces something you can actually ship. The nouns and verbs are the prompt.',
+        ],
+      },
+      {
         type: 'exercise',
         title: 'Extract Your Architecture',
         body: 'Think of a project you want to build — or use this prompt: "A personal finance tracker where users log expenses, categorize spending, set monthly budgets, and view reports showing where their money goes." Write two or three sentences describing it. Underline every noun. Underline every verb. List the nouns on the left side of a page and the verbs on the right. Draw lines connecting verbs to the nouns they act on. Now look at your nouns list — those are your database tables. Look at your verbs list — those are your features. You just designed the skeleton of an application in five minutes.',

@@ -76,6 +76,14 @@ export default {
         ],
       },
       {
+        type: 'text',
+        heading: 'Architecture in Zero Vector',
+        body: [
+          'Zero Vector practitioners design the architecture before the first prompt. This is the single biggest differentiator between intentional creation and vibe coding. You know the shape of the thing before you ask the AI to build it.',
+          'Why does this matter so much with AI agents? Because an agent will happily build whatever you ask for, even if it contradicts what you asked for yesterday. Without architecture, you end up with a codebase that is a patchwork of disconnected decisions. With architecture, every piece the agent builds fits into a coherent whole. The architecture is your blueprint. The agent is the builder. Builders without blueprints make sheds, not houses.',
+        ],
+      },
+      {
         type: 'exercise',
         title: 'Sketch Before You Build',
         body: 'Think of a simple app — a to-do list, a recipe collection, a bookmark manager. Before writing any code, sketch its architecture on paper. Draw three boxes: frontend, backend, database. In each box, list what it is responsible for. Draw arrows showing what data flows between them. Now zoom into the frontend: draw the main components (layout, navigation, list, form, detail view). Draw arrows showing how data flows between them. Where does state live? This 10-minute sketch will save you hours of refactoring.',

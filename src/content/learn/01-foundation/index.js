@@ -5,6 +5,7 @@ import systemsThinking from './systems-thinking';
 import architecture from './architecture';
 import nounsAndVerbs from './nouns-and-verbs';
 import planning from './planning';
+import vectorMd from './vector-md';
 import dataModeling from './data-modeling';
 import informationArchitecture from './information-architecture';
 
@@ -21,6 +22,7 @@ export default {
     'Architect software before writing a line of code',
     'Identify nouns and verbs in any product idea',
     'Plan a project from concept to shipping',
+    'Understand vector.md as the central artifact of Zero Vector methodology',
     'Model data relationships like a designer',
     'Organize information so it makes sense to humans and machines',
   ],
@@ -29,6 +31,7 @@ export default {
     architecture,
     nounsAndVerbs,
     planning,
+    vectorMd,
     dataModeling,
     informationArchitecture,
   ],

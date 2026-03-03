@@ -83,6 +83,14 @@ export default {
         ],
       },
       {
+        type: 'text',
+        heading: 'Planning in Zero Vector',
+        body: [
+          'Your planning artifact in Zero Vector becomes your vector.md. This is the document that gives your AI agents the context they need to build what you actually envisioned, not what they hallucinated from a vague prompt.',
+          'Everything you plan in this lesson feeds directly into that artifact: the sequence of work, the dependencies between components, the milestones you are targeting. When you update your vector.md\'s Current State section after each sprint, you are keeping your AI agents oriented. They read it at the start of every session and know exactly where the project stands, what has been built, and what is next. Planning without a written artifact is just daydreaming with a deadline.',
+        ],
+      },
+      {
         type: 'exercise',
         title: 'Plan a Real Project',
         body: 'Pick a project you actually want to build (or use the reading tracker from this lesson). Write the problem in one sentence. Write what "done" looks like in three sentences. Decompose it into phases, with 3-5 tasks per phase. For each task, make sure it is small enough to complete in one sitting. Write a "Later" list with at least three ideas you deliberately exclude from version 1. You now have a plan. Tape it to your wall. Start at the top.',

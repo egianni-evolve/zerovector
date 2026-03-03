@@ -70,6 +70,14 @@ export default {
         ],
       },
       {
+        type: 'text',
+        heading: 'Systems Thinking in Zero Vector',
+        body: [
+          'In Zero Vector, systems thinking is the prerequisite for everything. Before you tell an AI agent what to build, you need to understand the system you are building within. An agent can write code fast, but it cannot decide what to build or why. That is your job. And you cannot do that job without seeing the whole system first.',
+          'This is what separates a Zero Vector practitioner from someone copy-pasting prompts. You understand the forces acting on the system. You see the feedback loops, the dependencies, the second-order effects. When you direct an agent with that understanding, the output is coherent. Without it, you get code that technically works but does not fit together.',
+        ],
+      },
+      {
         type: 'exercise',
         title: 'Map a System You Use Every Day',
         body: 'Pick an app you use daily — a music streaming service, a food delivery app, a social media platform. On paper (or a whiteboard), draw the major parts: the user, the content, the recommendation engine, the payment system, the content creators. Now draw arrows showing how they connect. What flows between them? Data? Money? Attention? Find one feedback loop in your diagram. Find one dependency chain (A needs B which needs C). You have just done systems thinking. This is the skill — seeing connections, not just parts.',

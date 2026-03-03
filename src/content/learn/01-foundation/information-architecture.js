@@ -86,6 +86,14 @@ export default {
         ],
       },
       {
+        type: 'text',
+        heading: 'Information Architecture in Zero Vector',
+        body: [
+          'Information architecture in Zero Vector extends beyond the user interface. It applies to your codebase as well. How you organize files, name folders, and structure components determines how effectively AI agents can navigate and contribute to your project.',
+          'An agent reading a project with clear information architecture — components grouped by domain, services separated from UI, utilities in a predictable location — can find what it needs and place new code where it belongs. An agent reading a project that grew organically with no IA will scatter new files randomly, duplicate existing utilities it could not find, and create the kind of structural debt that compounds with every session. Your project\'s IA is not just for human developers anymore. It is for your entire crew.',
+        ],
+      },
+      {
         type: 'exercise',
         title: 'Audit an IA You Use',
         body: 'Pick a website you use regularly — not one you have built. Open it and write down the top-level navigation items. For each one, try to predict what you will find inside before clicking. Now click. Were you right? Were you surprised? Find one label that could be clearer. Find one piece of content that feels like it is in the wrong section. Sketch a URL scheme that would make the site structure obvious. You have just done an IA audit. This is how you build the instinct for good information architecture.',

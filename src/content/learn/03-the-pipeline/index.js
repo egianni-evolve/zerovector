@@ -8,6 +8,7 @@ import ideation from './ideation';
 import prototyping from './prototyping';
 import validation from './validation';
 import shipping from './shipping';
+import investiture from './investiture';
 
 export default {
   slug: '03-the-pipeline',
@@ -23,6 +24,7 @@ export default {
     'Frame a product around jobs-to-be-done',
     'Ideate, prototype, and validate with AI as your crew',
     'Ship a product through the complete concept-to-customer arc',
+    'Use the Investiture scaffold to structure a new project from day one',
   ],
   lessons: [
     research,
@@ -32,5 +34,6 @@ export default {
     prototyping,
     validation,
     shipping,
+    investiture,
   ],
 };

@@ -80,6 +80,14 @@ export default {
         body: '// A recipe as JSON — this is what an API sends to the frontend:\n{\n  "id": "rec_001",\n  "title": "Pasta Aglio e Olio",\n  "description": "The simplest great pasta.",\n  "cookTime": 20,\n  "servings": 2,\n  "ingredients": [\n    "200g spaghetti",\n    "4 cloves garlic",\n    "Red pepper flakes",\n    "Extra virgin olive oil",\n    "Fresh parsley"\n  ],\n  "steps": [\n    "Boil pasta in salted water.",\n    "Slice garlic thinly, cook in olive oil until golden.",\n    "Add pepper flakes, then drained pasta.",\n    "Toss with pasta water and parsley."\n  ],\n  "author": {\n    "id": "usr_042",\n    "name": "Marcella"\n  }\n}',
       },
       {
+        type: 'text',
+        heading: 'Data Modeling in Zero Vector',
+        body: [
+          'In Zero Vector, your data model is one of the most important things you hand to an AI agent. A clear schema with well-named tables, explicit relationships, and documented constraints lets an agent generate migrations, build endpoints, and scaffold UI forms with remarkable accuracy.',
+          'The inverse is equally true. A vague or inconsistent data model produces vague, inconsistent code. If your model has a "stuff" table with columns named "data1" through "data5," no AI agent in the world can build something coherent on top of it. The quality of your data model directly determines the quality of AI-generated code. Invest the thinking here, and the build phase gets dramatically easier.',
+        ],
+      },
+      {
         type: 'exercise',
         title: 'Model Your Project',
         body: 'Take the project you planned in the Planning lesson (or the reading tracker). List every entity — the things your app needs to remember. For each entity, list its fields with types (title: string, pageCount: number, isFinished: boolean). Draw the relationships between entities: which ones reference each other? Mark each relationship as one-to-one, one-to-many, or many-to-many. Write one entity as a JSON object with sample data. You now have a data model. When you start building, this model becomes your database schema and your API contract.',
