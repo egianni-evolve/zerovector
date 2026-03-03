@@ -135,7 +135,7 @@ function PrincipleShare({ title, body }) {
   );
 }
 
-const { home } = en;
+const { home, recommendedReading } = en;
 
 function ManifestoPage() {
   const [booted, setBooted] = useState(() => {
@@ -445,10 +445,10 @@ function ManifestoPage() {
           </Animate>
           <Animate delay={4}>
             <div className="zv-reading">
-              <h3 className="zv-reading-headline">{home.recommendedReading.headline}</h3>
-              <p className="zv-reading-subtitle">{home.recommendedReading.subtitle}</p>
+              <h3 className="zv-reading-headline">{recommendedReading.headline}</h3>
+              <p className="zv-reading-subtitle">{recommendedReading.subtitle}</p>
               <div className="zv-reading-list">
-                {home.recommendedReading.articles.map((article, i) => (
+                {recommendedReading.articles.map((article, i) => (
                   <a
                     key={i}
                     href={article.url}

@@ -3,15 +3,16 @@
 // This file re-exports the combined object so existing imports work unchanged.
 //
 // To edit content for a specific page, open the corresponding file:
-//   home.js, philosophy.js, pipeline.js, approach.js, builders.js,
-//   leaders.js, media.js, origin.js, open.js, start.js, quiz.js,
-//   investiture.js, name.js
+//   home.js, philosophy.js, approach.js, builders.js, leaders.js,
+//   media.js, origin.js, open.js, start.js, quiz.js, investiture.js, name.js
+//
+// Shared content (used by multiple pages):
+//   recommended-reading.js — consumed by ManifestoPage + LearnHubPage
 //
 // The learn/ directory has its own modular structure (individual lesson files).
 
 import home from './home';
 import philosophy from './philosophy';
-import pipeline from './pipeline';
 import approach from './approach';
 import builders from './builders';
 import leaders from './leaders';
@@ -25,11 +26,11 @@ import name from './name';
 import enterprise from './enterprise';
 import join from './join';
 import learn from './learn';
+import recommendedReading from './recommended-reading';
 
 const en = {
   home,
   philosophy,
-  pipeline,
   approach,
   builders,
   leaders,
@@ -43,6 +44,7 @@ const en = {
   investiture,
   name,
   learn,
+  recommendedReading,
 };
 
 export default en;
