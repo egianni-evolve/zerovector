@@ -66,6 +66,22 @@ function InvestiturePage() {
         </div>
       </section>
 
+      {/* CTA — Start Building (inverted) */}
+      <section className="inv-section" style={{ paddingTop: 0 }}>
+        <div className="inv-container">
+          <Animate>
+            <div className="inv-cta-inverted">
+              <h2 className="inv-cta-inverted-title">Start Building</h2>
+              <p className="inv-cta-inverted-body">The scaffold is free. The knowledge is free. The only cost is your willingness to take the next step.</p>
+              <div className="inv-cta-inverted-buttons">
+                <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--dark">{inv.cta.primaryCta}</a>
+                <a href={inv.cta.secondaryUrl} target="_blank" rel="noopener noreferrer" className="inv-btn inv-btn--dark-outline">{inv.cta.secondaryCta}</a>
+              </div>
+            </div>
+          </Animate>
+        </div>
+      </section>
+
       {/* What It Is */}
       <section className="inv-section">
         <div className="inv-container">
