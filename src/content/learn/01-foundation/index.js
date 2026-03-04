@@ -22,7 +22,7 @@ export default {
     'Architect software before writing a line of code',
     'Identify nouns and verbs in any product idea',
     'Plan a project from concept to shipping',
-    'Understand vector.md as the central artifact of Zero Vector methodology',
+    'Understand VECTOR.md as the central artifact of Zero Vector methodology',
     'Model data relationships like a designer',
     'Organize information so it makes sense to humans and machines',
   ],

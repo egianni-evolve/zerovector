@@ -86,8 +86,8 @@ export default {
         type: 'text',
         heading: 'Planning in Zero Vector',
         body: [
-          'Your planning artifact in Zero Vector becomes your vector.md. This is the document that gives your AI agents the context they need to build what you actually envisioned, not what they hallucinated from a vague prompt.',
-          'Everything you plan in this lesson feeds directly into that artifact: the sequence of work, the dependencies between components, the milestones you are targeting. When you update your vector.md\'s Current State section after each sprint, you are keeping your AI agents oriented. They read it at the start of every session and know exactly where the project stands, what has been built, and what is next. Planning without a written artifact is just daydreaming with a deadline.',
+          'Your planning artifact in Zero Vector becomes your VECTOR.md. This is the document that gives your AI agents the context they need to build what you actually envisioned, not what they hallucinated from a vague prompt.',
+          'Everything you plan in this lesson feeds directly into that artifact: the sequence of work, the dependencies between components, the milestones you are targeting. When you update your VECTOR.md\'s Current State section after each sprint, you are keeping your AI agents oriented. They read it at the start of every session and know exactly where the project stands, what has been built, and what is next. Planning without a written artifact is just daydreaming with a deadline.',
         ],
       },
       {

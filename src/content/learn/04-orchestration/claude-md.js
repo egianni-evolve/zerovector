@@ -77,11 +77,11 @@ export default {
       },
       {
         type: 'text',
-        heading: 'The Full Context Stack: CLAUDE.md + vector.md',
+        heading: 'The Full Context Stack: CLAUDE.md + VECTOR.md',
         body: [
-          'CLAUDE.md tells your agent how to behave in this project. But it does not tell your agent why the project exists. That is what vector.md is for.',
-          'Together, they form the full Zero Vector context stack. vector.md is the project brief — the vision, the audience, the success criteria, the decisions that shaped the product. CLAUDE.md is the agent\'s job description — the conventions, the guardrails, the tone, the workflow rules. The brief tells the agent what you are building and why. The job description tells the agent how to build it and what to watch out for.',
-          'This pairing is what separates Zero Vector from ad hoc prompting. Without vector.md, your agent knows the rules but not the reasons. Without CLAUDE.md, your agent knows the vision but not the method. Both documents live at the root of your project, both are read automatically, and both should exist before the first line of code is written.',
+          'CLAUDE.md tells your agent how to behave in this project. But it does not tell your agent why the project exists. That is what VECTOR.md is for.',
+          'Together, they form the full Zero Vector context stack. VECTOR.md is the project brief — the vision, the audience, the success criteria, the decisions that shaped the product. CLAUDE.md is the agent\'s job description — the conventions, the guardrails, the tone, the workflow rules. The brief tells the agent what you are building and why. The job description tells the agent how to build it and what to watch out for.',
+          'This pairing is what separates Zero Vector from ad hoc prompting. Without VECTOR.md, your agent knows the rules but not the reasons. Without CLAUDE.md, your agent knows the vision but not the method. Both documents live at the root of your project, both are read automatically, and both should exist before the first line of code is written.',
         ],
       },
       {
