@@ -10,6 +10,7 @@ import ReadingPage from './pages/ReadingPage';
 import OriginPage from './pages/OriginPage';
 import OpenVectorPage from './pages/OpenVectorPage';
 import InvestiturePage from './pages/InvestiturePage';
+import ArroyoPage from './pages/ArroyoPage';
 import AskPage from './pages/AskPage';
 import QuizPage from './pages/QuizPage';
 import StartPage from './pages/StartPage';
@@ -80,6 +81,7 @@ function App() {
         <Route path="enterprise" element={<LearnEnterprisePage />} />
       </Route>
       <Route path="/investiture" element={<InvestiturePage />} />
+      <Route path="/arroyo" element={<ArroyoPage />} />
     </Routes>
   );
 }

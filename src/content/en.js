@@ -25,6 +25,7 @@ import investiture from './investiture';
 import name from './name';
 import enterprise from './enterprise';
 import join from './join';
+import arroyo from './arroyo';
 import learn from './learn';
 import recommendedReading from './recommended-reading';
 
@@ -36,6 +37,7 @@ const en = {
   leaders,
   enterprise,
   join,
+  arroyo,
   media,
   origin,
   open,
