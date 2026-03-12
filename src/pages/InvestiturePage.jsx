@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Animate from '../components/Animate';
 import useSEO from '../hooks/useSEO';
@@ -9,6 +9,16 @@ const { investiture: inv } = en;
 
 function InvestiturePage() {
   const { pathname } = useLocation();
+  const [copiedIdx, setCopiedIdx] = useState(null);
+  const [heroInput, setHeroInput] = useState('Investiture');
+  const [promptFocused, setPromptFocused] = useState(false);
+  const promptRef = useRef(null);
+
+  const copyCmd = (cmd, idx) => {
+    navigator.clipboard.writeText(cmd);
+    setCopiedIdx(idx);
+    setTimeout(() => setCopiedIdx(null), 1800);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,6 +36,11 @@ function InvestiturePage() {
     document.body.style.color = '#e8e0d0';
     document.body.style.margin = '0';
     document.body.style.minHeight = '100vh';
+    console.log(
+      '%c"The most important step a man can take is the next one." %c— Dalinar Kholin',
+      'color: #c9a84c; font-size: 14px; font-style: italic;',
+      'color: #8a9ab5; font-size: 12px;'
+    );
     return () => {
       document.body.style.background = '';
       document.body.style.color = '';
@@ -55,14 +70,47 @@ function InvestiturePage() {
       {/* Hero */}
       <section className="inv-section inv-hero">
         <div className="inv-container">
-          <div className="inv-label">{inv.hero.label}</div>
-          <div className="inv-badge">{inv.hero.badge}</div>
           <div className="inv-hero-glow" aria-hidden="true" />
-          <h1 className="inv-hero-title">
-            <span className="inv-hero-light">{inv.hero.title[0]}</span>
-            <span className="inv-hero-heavy">{inv.hero.title[1]}</span>
-          </h1>
-          <p className="inv-subtitle">{inv.hero.subtitle}</p>
+          <div className="inv-label">{inv.hero.label}</div>
+          <p className="inv-hero-epigraph">{inv.hero.epigraph[0]}<br />{inv.hero.epigraph[1]}</p>
+          <div className="inv-hero-ornament" aria-hidden="true" />
+          <h1 className="inv-sr-only">Investiture</h1>
+          {/* The title IS a prompt — Investiture is something you build */}
+          <div className="inv-hero-prompt-whisper" aria-hidden="true">"Say the words..."</div>
+          <label
+            className={`inv-hero-prompt${promptFocused ? ' inv-hero-prompt--focused' : ''}`}
+            onClick={() => promptRef.current?.focus()}
+          >
+            <span className="inv-hero-prompt-char" aria-hidden="true">&gt;</span>
+            <input
+              ref={promptRef}
+              className="inv-hero-prompt-input"
+              type="text"
+              value={heroInput}
+              onChange={(e) => setHeroInput(e.target.value)}
+              onFocus={() => {
+                setPromptFocused(true);
+                if (heroInput === 'Investiture') setHeroInput('');
+              }}
+              onBlur={() => {
+                setPromptFocused(false);
+                if (!heroInput.trim()) setHeroInput('Investiture');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && heroInput.trim() && heroInput !== 'Investiture') {
+                  e.target.blur();
+                }
+              }}
+              placeholder="What will you build?"
+              aria-label="Investiture — what will you build?"
+              spellCheck={false}
+              autoComplete="off"
+            />
+            {!promptFocused && heroInput === 'Investiture' && (
+              <span className="inv-hero-prompt-cursor" aria-hidden="true">_</span>
+            )}
+          </label>
+          <p className="inv-hero-creed">{inv.hero.subtitle}</p>
         </div>
       </section>
 
@@ -95,6 +143,39 @@ function InvestiturePage() {
             <div className="inv-card inv-card--steel" style={{ marginTop: 32 }}>
               <h3 className="inv-card-title">{inv.whatItIs.callout.title}</h3>
               <p className="inv-card-body">{inv.whatItIs.callout.body}</p>
+            </div>
+          </Animate>
+        </div>
+      </section>
+
+      {/* Skills — doctrine that enforces itself */}
+      <section className="inv-section">
+        <div className="inv-container">
+          <hr className="inv-rule" />
+          <Animate>
+            <div className="inv-label">{inv.skills.label}</div>
+            <h2 className="inv-section-headline">{inv.skills.headline}</h2>
+            <p className="inv-section-body">{inv.skills.body}</p>
+          </Animate>
+          <Animate delay={1}>
+            <div className="inv-filetree-wrapper" style={{ marginTop: 32, marginBottom: 40, maxWidth: 320 }}>
+              <div className="inv-terminal-bar">
+                <div className="inv-terminal-dots" aria-hidden="true">
+                  <span /><span /><span />
+                </div>
+                <span className="inv-terminal-title">manifest</span>
+              </div>
+              <pre className="inv-filetree">{inv.skills.manifest}</pre>
+            </div>
+          </Animate>
+          <Animate delay={2}>
+            <div className="inv-two-col">
+              {inv.skills.items.map((skill, i) => (
+                <div key={i} className="inv-card inv-card--gold">
+                  <h3 className="inv-card-title">{skill.name}</h3>
+                  <p className="inv-card-body">{skill.desc}</p>
+                </div>
+              ))}
             </div>
           </Animate>
         </div>
@@ -166,9 +247,17 @@ function InvestiturePage() {
               </div>
               <div className="inv-terminal-body">
                 {inv.quickstart.commands.map((cmd, i) => (
-                  <div key={i} className="inv-terminal-line">
+                  <div
+                    key={i}
+                    className={`inv-terminal-line inv-terminal-line--copyable${copiedIdx === i ? ' inv-terminal-line--copied' : ''}`}
+                    onClick={() => copyCmd(cmd, i)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && copyCmd(cmd, i)}
+                  >
                     <span className="inv-terminal-prompt">$</span>
                     <span className="inv-terminal-cmd">{cmd}</span>
+                    <span className="inv-terminal-copy-hint">{copiedIdx === i ? 'Copied!' : 'Click to copy'}</span>
                   </div>
                 ))}
                 <div className="inv-terminal-line">

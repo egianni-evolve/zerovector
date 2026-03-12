@@ -5998,7 +5998,6 @@ a:hover {
   background: #0a1628;
   color: #e8e0d0;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* Blueprint grid background */
@@ -6109,7 +6108,7 @@ a:hover {
 .inv-hero-glow {
   position: absolute;
   top: 50%;
-  left: 30%;
+  left: 50%;
   width: 500px;
   height: 400px;
   transform: translate(-50%, -50%);
@@ -6347,6 +6346,7 @@ a:hover {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.25) 20%, rgba(201, 168, 76, 0.25) 80%, transparent 100%);
   margin-bottom: 56px;
+  box-shadow: 0 0 16px rgba(201, 168, 76, 0.06), 0 0 4px rgba(201, 168, 76, 0.04);
 }
 
 /* Diamond ornament on quote rule */
@@ -6358,13 +6358,14 @@ a:hover {
 .inv-rule--diamond::after {
   content: '';
   position: absolute;
-  top: -5px;
+  top: -6px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   background: #c9a84c;
   opacity: 0.5;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
 }
 
 /* --- Labels & Typography --- */
@@ -6420,46 +6421,145 @@ a:hover {
 
 .inv-hero {
   padding-top: calc(56px + 120px);
-  padding-bottom: 40px;
+  padding-bottom: 80px;
+  text-align: center;
 }
 
-.inv-hero-title {
-  margin: 0 0 32px;
-  line-height: 1.05;
-}
-
-.inv-hero-light {
-  display: block;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3rem, 10vw, 7rem);
-  font-weight: 300;
+.inv-hero-epigraph {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-style: italic;
   color: #8a9ab5;
-  letter-spacing: -0.02em;
+  line-height: 1.8;
+  margin: 0 auto 36px;
+  max-width: 480px;
 }
 
-.inv-hero-heavy {
-  display: block;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(4rem, 14vw, 10rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  background: linear-gradient(135deg, #c9a84c 0%, #e8d89c 50%, #c9a84c 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.inv-hero-ornament {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+  margin: 0 auto 48px;
+  position: relative;
 }
 
-.inv-badge {
-  display: inline-block;
+.inv-hero-ornament::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 7px;
+  height: 7px;
+  background: #c9a84c;
+  opacity: 0.4;
+}
+
+/* "Say the words..." whisper */
+.inv-hero-prompt-whisper {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-style: italic;
+  color: rgba(201, 168, 76, 0.35);
+  margin-bottom: 16px;
+  letter-spacing: 0.03em;
+}
+
+/* Prompt — the title IS a terminal input */
+.inv-hero-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  margin-bottom: 32px;
+  cursor: text;
+  max-width: 100%;
+  background: rgba(6, 12, 24, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-radius: 12px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inv-hero-prompt:hover {
+  border-color: rgba(201, 168, 76, 0.25);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(201, 168, 76, 0.04);
+}
+
+.inv-hero-prompt--focused {
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 30px rgba(201, 168, 76, 0.06);
+}
+
+.inv-hero-prompt-char {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  color: rgba(201, 168, 76, 0.3);
+  flex-shrink: 0;
+  user-select: none;
+  line-height: 1;
+}
+
+.inv-hero-prompt-input {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 500;
   color: #c9a84c;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  min-width: 0;
+  width: 22ch;
+  max-width: 60vw;
+  caret-color: #c9a84c;
+  line-height: 1;
+}
+
+.inv-hero-prompt-input::placeholder {
+  color: rgba(201, 168, 76, 0.2);
+  font-style: italic;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 400;
+}
+
+.inv-hero-prompt-cursor {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  color: #c9a84c;
+  animation: inv-prompt-blink 1s step-end infinite;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+@keyframes inv-prompt-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Visually hidden but SEO/accessibility visible */
+.inv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.inv-hero-creed {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  color: rgba(201, 168, 76, 0.55);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  padding: 4px 14px;
-  margin-top: 8px;
+  margin: 0;
 }
 
 /* --- Cards --- */
@@ -6483,12 +6583,24 @@ a:hover {
   transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 
-.inv-card--gold {
-  border-left: 3px solid rgba(201, 168, 76, 0.4);
+.inv-card--gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(201, 168, 76, 0.7), rgba(201, 168, 76, 0.05));
 }
 
-.inv-card--steel {
-  border-left: 3px solid rgba(138, 154, 181, 0.4);
+.inv-card--steel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(138, 154, 181, 0.6), rgba(138, 154, 181, 0.05));
 }
 
 .inv-card:hover {
@@ -6600,7 +6712,7 @@ a:hover {
 
 .inv-section-headline {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   background: linear-gradient(135deg, #c9a84c 0%, #e8d89c 50%, #c9a84c 100%);
@@ -6608,6 +6720,7 @@ a:hover {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0 0 24px;
+  filter: drop-shadow(0 0 20px rgba(201, 168, 76, 0.08));
 }
 
 .inv-section-body {
@@ -6816,16 +6929,17 @@ a:hover {
 
 .inv-quote-section {
   text-align: center;
+  padding: 120px 0;
 }
 
 .inv-quote {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-style: italic;
   color: #e8e0d0;
-  line-height: 1.7;
-  margin: 0 auto 20px;
-  max-width: 700px;
+  line-height: 1.6;
+  margin: 0 auto 24px;
+  max-width: 760px;
 }
 
 .inv-quote::before { content: '\201C'; }
@@ -6852,15 +6966,15 @@ a:hover {
 
 /* --- CTA Inverted (top of page) --- */
 .inv-cta-inverted {
-  background: #ffffff;
-  padding: 48px;
+  background: #0d1f3c;
+  padding: 56px 48px;
   text-align: center;
   position: relative;
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  border: 1px solid rgba(201, 168, 76, 0.25);
   box-shadow:
-    0 0 40px rgba(201, 168, 76, 0.08),
-    0 0 80px rgba(201, 168, 76, 0.04),
-    inset 0 0 60px rgba(201, 168, 76, 0.03);
+    0 0 80px rgba(201, 168, 76, 0.06),
+    0 0 160px rgba(201, 168, 76, 0.03),
+    inset 0 1px 0 rgba(201, 168, 76, 0.15);
   overflow: hidden;
 }
 
@@ -6888,15 +7002,18 @@ a:hover {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
-  color: #1a1408;
+  background: linear-gradient(135deg, #c9a84c 0%, #e8d89c 50%, #c9a84c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 0 0 12px;
-  text-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
+  text-shadow: none;
 }
 
 .inv-cta-inverted-body {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  color: #444;
+  color: #8a9ab5;
   line-height: 1.6;
   margin: 0 0 32px;
 }
@@ -6909,27 +7026,26 @@ a:hover {
 }
 
 .inv-btn--dark {
-  background: linear-gradient(135deg, #1a1408 0%, #2a2010 50%, #1a1408 100%);
-  color: #c9a84c;
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: #c9a84c;
+  color: #0a1628;
+  border: none;
 }
 
 .inv-btn--dark:hover {
-  background: linear-gradient(135deg, #2a2010 0%, #3a3020 50%, #2a2010 100%);
-  box-shadow: 0 4px 24px rgba(201, 168, 76, 0.2), 0 0 12px rgba(201, 168, 76, 0.1);
-  border-color: rgba(201, 168, 76, 0.5);
+  background: #e8d89c;
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
 }
 
 .inv-btn--dark-outline {
   background: transparent;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  color: #8a7a3c;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  color: #c9a84c;
 }
 
 .inv-btn--dark-outline:hover {
   background: rgba(201, 168, 76, 0.08);
   border-color: rgba(201, 168, 76, 0.6);
-  color: #7a6a2c;
+  color: #e8d89c;
 }
 
 @media (max-width: 768px) {
@@ -6953,7 +7069,26 @@ a:hover {
 
 .inv-cta-section {
   text-align: center;
-  padding-bottom: 120px;
+  padding: 100px 0 140px;
+  position: relative;
+}
+
+.inv-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(201, 168, 76, 0.05) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inv-cta-buttons {
+  position: relative;
+  z-index: 1;
 }
 
 .inv-cta-title {
@@ -7011,6 +7146,133 @@ a:hover {
   color: #0a1628;
 }
 
+/* --- Delight: Hero Entrance Choreography --- */
+
+.inv-hero .inv-label,
+.inv-hero .inv-hero-epigraph,
+.inv-hero .inv-hero-ornament,
+.inv-hero .inv-hero-prompt-whisper,
+.inv-hero .inv-hero-prompt,
+.inv-hero .inv-hero-creed {
+  animation: inv-hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.inv-hero .inv-label { animation-delay: 0.1s; }
+.inv-hero .inv-hero-epigraph { animation-delay: 0.3s; }
+.inv-hero .inv-hero-ornament { animation-delay: 0.5s; }
+.inv-hero .inv-hero-prompt-whisper { animation-delay: 0.65s; }
+.inv-hero .inv-hero-prompt { animation-delay: 0.7s; }
+.inv-hero .inv-hero-creed { animation-delay: 0.95s; }
+
+@keyframes inv-hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Delight: Button Hover Lift + Active Press --- */
+
+.inv-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inv-btn:hover {
+  transform: translateY(-2px);
+}
+
+.inv-btn:active {
+  transform: translateY(1px);
+  transition-duration: 0.08s;
+}
+
+/* --- Delight: Nav Brand Shimmer --- */
+
+.inv-nav-brand {
+  background: linear-gradient(
+    120deg,
+    #c9a84c 0%, #c9a84c 40%,
+    #e8d89c 50%,
+    #c9a84c 60%, #c9a84c 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: inv-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes inv-shimmer {
+  0%, 100% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+}
+
+/* --- Delight: Terminal Click-to-Copy Lines --- */
+
+.inv-terminal-line--copyable {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.inv-terminal-line--copyable:hover {
+  background: rgba(201, 168, 76, 0.06);
+}
+
+.inv-terminal-copy-hint {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgba(201, 168, 76, 0.3);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.inv-terminal-line--copyable:hover .inv-terminal-copy-hint {
+  opacity: 1;
+}
+
+.inv-terminal-line--copied .inv-terminal-copy-hint {
+  opacity: 1;
+  color: #c9a84c;
+}
+
+.inv-terminal-line--copied {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+/* --- Delight: Reduced Motion --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .inv-hero .inv-label,
+  .inv-hero .inv-hero-epigraph,
+  .inv-hero .inv-hero-ornament,
+  .inv-hero .inv-hero-prompt-whisper,
+  .inv-hero .inv-hero-prompt,
+  .inv-hero .inv-hero-creed {
+    animation: none;
+    opacity: 1;
+  }
+  .inv-hero-prompt-cursor {
+    animation: none;
+  }
+  .inv-nav-brand {
+    animation: none;
+    background-position: 0% 50%;
+  }
+  .inv-btn:hover {
+    transform: none;
+  }
+}
+
 /* --- Responsive: 768px --- */
 
 @media (max-width: 768px) {
@@ -7020,14 +7282,21 @@ a:hover {
 
   .inv-hero {
     padding-top: calc(56px + 80px);
+    padding-bottom: 56px;
   }
 
-  .inv-hero-light {
-    font-size: clamp(2rem, 10vw, 4rem);
+  .inv-hero-prompt-input,
+  .inv-hero-prompt-char,
+  .inv-hero-prompt-cursor {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
   }
 
-  .inv-hero-heavy {
-    font-size: clamp(3rem, 14vw, 6rem);
+  .inv-hero-prompt-input {
+    width: 14ch;
+  }
+
+  .inv-hero-epigraph {
+    font-size: 1rem;
   }
 
   .inv-two-col,
@@ -7093,12 +7362,18 @@ a:hover {
 /* --- Responsive: 480px --- */
 
 @media (max-width: 480px) {
-  .inv-hero-heavy {
-    font-size: clamp(2.5rem, 16vw, 4rem);
+  .inv-hero-prompt-input,
+  .inv-hero-prompt-char,
+  .inv-hero-prompt-cursor {
+    font-size: clamp(1.25rem, 6vw, 2rem);
   }
 
-  .inv-hero-light {
-    font-size: clamp(1.75rem, 10vw, 2.5rem);
+  .inv-hero-prompt-input {
+    width: 12ch;
+  }
+
+  .inv-hero-creed {
+    letter-spacing: 0.12em;
   }
 
   .inv-card {

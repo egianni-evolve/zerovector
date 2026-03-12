@@ -10,8 +10,9 @@ const investiture = {
 
   hero: {
     label: 'A Zero-Vector Scaffold',
-    title: ['The Next', 'Step'],
-    subtitle: 'Start every project with doctrine, not just dependencies. VECTOR.md tells agents and teammates why this project exists before a line of code is written.',
+    epigraph: ['Before the architecture, the intent.', 'Before the code, the conviction.'],
+    title: 'Investiture',
+    subtitle: 'Intent before implementation.',
     badge: 'Free & Open Source',
   },
 
@@ -23,6 +24,31 @@ const investiture = {
       title: 'What This Is Not',
       body: 'Not Tailwind. Not Bootstrap. Not a UI kit. Investiture is unopinionated about your design. It only cares about where your code lives, how your agents onboard, and what your project knows about itself. Bring your own design system, or ask Claude to build one.',
     },
+  },
+
+  skills: {
+    label: 'Skills',
+    headline: 'Doctrine that enforces itself.',
+    body: 'Most scaffolds give you files. Investiture gives you files that fight back. Skills are declared in invest.md \u2014 each one reads your doctrine and holds your project to the standard you set for it.',
+    manifest: `# invest.md\nskills:\n  - alignment\n  - architecture\n  - provenance\n  - onboarding`,
+    items: [
+      {
+        name: 'Alignment',
+        desc: 'Every feature traced to a user need defined in VECTOR.md. If it doesn\u2019t serve someone you\u2019ve identified, the Skill asks why.',
+      },
+      {
+        name: 'Architecture',
+        desc: 'File structure, layer boundaries, naming conventions \u2014 enforced from ARCHITECTURE.md. Not guidelines. Constraints.',
+      },
+      {
+        name: 'Provenance',
+        desc: 'Design decisions linked to research artifacts in /vector. Build on evidence, not intuition.',
+      },
+      {
+        name: 'Onboarding',
+        desc: 'New agents and teammates read the doctrine stack before they contribute. The reading order is the first oath.',
+      },
+    ],
   },
 
   whatYouGet: {
@@ -72,13 +98,13 @@ const investiture = {
     versions: [
       {
         version: 'v1.3',
-        title: 'Parameters',
-        body: 'Choose your stack. React or Vue or Svelte. FastAPI or Express. Supabase or Firebase. One command, configured your way.',
+        title: 'Skills',
+        body: 'Doctrine that enforces itself. Declare Skills in invest.md and your project holds itself to the standard you set. Alignment, architecture, provenance, onboarding \u2014 active from the first commit.',
       },
       {
         version: 'v2.0',
         title: 'Seeded Init',
-        body: 'Tell Investiture what you are building and who it is for. It sets up the project and seeds your research with first hypotheses and assumptions to validate.',
+        body: 'Tell Investiture what you are building and who it is for. Choose your stack, activate the right Skills, and seed your research with first hypotheses \u2014 all from a single command.',
       },
     ],
   },
