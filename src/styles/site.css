@@ -6482,7 +6482,7 @@ a:hover {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 24px;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .inv-rule {
