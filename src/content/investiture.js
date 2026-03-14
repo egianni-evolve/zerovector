@@ -57,7 +57,7 @@ const investiture = {
 
   whatYouGet: {
     label: 'What You Get',
-    intro: 'Clone one repo. Get a working scaffold with doctrine, architecture, and research schemas built in.',
+    intro: 'One command. Doctrine, architecture, and research schemas injected into any project.',
     fileTree: `investiture/
 \u251C\u2500\u2500 VECTOR.md              \u2190 Project doctrine (read first)
 \u251C\u2500\u2500 CLAUDE.md              \u2190 Contributor onboarding (read second)
@@ -90,13 +90,25 @@ const investiture = {
 
   quickstart: {
     label: 'Quick Start',
-    intro: 'Three commands. Doctrine, architecture, and a working scaffold.',
-    commands: [
-      'git clone https://github.com/erikaflowers/investiture.git my-project',
-      'cd my-project && bash install.sh',
-      'open VECTOR.md',
-    ],
-    after: 'Fill in your project identity. Open Claude Code. Start building. The magic is not just that the scaffold works. It is that your AI collaborator already understands the project because VECTOR.md told it everything it needs to know.',
+    existing: {
+      headline: 'Add to an existing project',
+      intro: 'Already have a codebase? One command injects the skill chain and research schemas without touching your code.',
+      commands: [
+        'npx investiture init',
+      ],
+      after: 'Then open Claude Code and run /invest-backfill. It surveys your codebase and generates VECTOR.md, CLAUDE.md, and ARCHITECTURE.md.',
+      alt: 'bash <(curl -fsSL https://raw.githubusercontent.com/erikaflowers/investiture/main/inject.sh)',
+      altLabel: 'No npm? Use curl:',
+    },
+    fresh: {
+      headline: 'Start a new project',
+      intro: 'Use the full scaffold with React, Vite, and the doctrine system built in.',
+      commands: [
+        'git clone https://github.com/erikaflowers/investiture.git my-project',
+        'cd my-project && bash install.sh',
+      ],
+      after: 'Fill in VECTOR.md with your project identity. Open Claude Code. Start building.',
+    },
   },
 
   roadmap: {
@@ -105,13 +117,18 @@ const investiture = {
       {
         version: 'v1.3',
         title: 'Skill Chain',
-        body: 'Three skills (backfill, doctrine, architecture) that read your project doctrine at runtime and enforce it. Copy the skills into any repo.',
+        body: 'Three skills (backfill, doctrine, architecture) that read your project doctrine at runtime and enforce it. npx investiture init injects them into any repo.',
         shipped: true,
+      },
+      {
+        version: 'v1.4',
+        title: 'Forward-Looking Skills',
+        body: 'New skills that look ahead instead of back. Threat modeling, dependency audit, accessibility gates, and pre-launch checklists — all reading your doctrine to know what matters.',
       },
       {
         version: 'v2.0',
         title: 'Seeded Init',
-        body: 'Tell Investiture what you are building and who it is for. Choose your stack, activate the right Skills, and seed your research with first hypotheses, all from a single command.',
+        body: 'Tell Investiture what you are building and who it is for. Choose your stack, activate the right skills, and seed your research with first hypotheses — all from a single command.',
       },
     ],
   },
@@ -182,7 +199,7 @@ const investiture = {
   },
 
   cta: {
-    primaryCta: 'Clone Investiture',
+    primaryCta: 'Get Investiture',
     primaryUrl: 'https://github.com/erikaflowers/investiture',
     secondaryCta: 'Read the Docs',
     secondaryUrl: 'https://github.com/erikaflowers/investiture#readme',

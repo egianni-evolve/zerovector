@@ -5998,7 +5998,6 @@ a:hover {
   background: #0a1628;
   color: #e8e0d0;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* Blueprint grid background */
@@ -6354,6 +6353,47 @@ a:hover {
   color: rgba(200, 90, 68, 0.6);
 }
 
+.inv-section--blueprint .inv-quickstart-headline {
+  color: #c85a44;
+}
+
+.inv-section--blueprint .inv-quickstart-intro {
+  color: #3a3025;
+}
+
+.inv-section--blueprint .inv-after {
+  color: #5a4e42;
+}
+
+.inv-section--blueprint .inv-quickstart-alt-label {
+  color: #5a4e42;
+}
+
+.inv-section--blueprint .inv-quickstart-alt-cmd {
+  background: rgba(200, 90, 68, 0.06);
+  color: #c85a44;
+}
+
+.inv-section--blueprint .inv-quickstart-alt-cmd:hover {
+  background: rgba(200, 90, 68, 0.12);
+}
+
+.inv-section--blueprint .inv-quickstart-alt-hint {
+  color: rgba(200, 90, 68, 0.5);
+}
+
+.inv-section--blueprint .inv-quickstart-alt-cmd:hover .inv-quickstart-alt-hint {
+  color: rgba(200, 90, 68, 0.7);
+}
+
+.inv-section--blueprint .inv-quickstart-alt-cmd--copied .inv-quickstart-alt-hint {
+  color: #c85a44;
+}
+
+.inv-section--blueprint .inv-terminal {
+  border-color: rgba(200, 90, 68, 0.25);
+}
+
 /* --- Stormlight: Infused Layer Numbers --- */
 /* Architecture layer numbers glow like gemstones */
 
@@ -6434,7 +6474,31 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+}
+
+.inv-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inv-nav-back {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a9ab5;
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out);
+}
+
+.inv-nav-back:hover {
+  color: #c9a84c;
+}
+
+.inv-nav-sep {
+  color: rgba(201, 168, 76, 0.3);
+  font-size: 14px;
+  user-select: none;
 }
 
 .inv-nav-brand {
@@ -6444,32 +6508,41 @@ a:hover {
   color: #c9a84c;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
-.inv-nav-back {
-  margin-right: auto;
+.inv-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.inv-nav-back,
-.inv-nav-link {
+.inv-nav-btn {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: #8a9ab5;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0a1628;
+  background: #c9a84c;
   text-decoration: none;
-  transition: color 0.3s var(--ease-out);
+  padding: 5px 14px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, color 0.2s;
 }
 
-.inv-nav-link + .inv-nav-link {
-  margin-left: 20px;
+.inv-nav-btn:hover {
+  background: #d4b860;
 }
 
-.inv-nav-back:hover,
-.inv-nav-link:hover {
+.inv-nav-btn--outline {
+  background: transparent;
+  color: #8a9ab5;
+  border: 1px solid rgba(138, 154, 181, 0.25);
+}
+
+.inv-nav-btn--outline:hover {
   color: #c9a84c;
+  border-color: rgba(201, 168, 76, 0.4);
+  background: transparent;
 }
 
 /* --- Layout --- */
@@ -6482,7 +6555,6 @@ a:hover {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 24px;
-  overflow-x: hidden;
 }
 
 .inv-rule {
@@ -6516,7 +6588,7 @@ a:hover {
 
 .inv-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: 600;
   color: #c9a84c;
   text-transform: uppercase;
@@ -6543,7 +6615,6 @@ a:hover {
   color: #8a9ab5;
   line-height: 1.8;
   margin-bottom: 48px;
-  max-width: 720px;
 }
 
 .inv-subtitle {
@@ -6551,7 +6622,6 @@ a:hover {
   font-size: 1.125rem;
   color: #8a9ab5;
   line-height: 1.8;
-  max-width: 720px;
   margin-bottom: 32px;
 }
 
@@ -6562,10 +6632,89 @@ a:hover {
   margin-top: 24px;
 }
 
+/* --- Quick Start --- */
+
+.inv-quickstart-headline {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: #c9a84c;
+  margin: 0 0 12px;
+}
+
+.inv-quickstart-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: #c0b99a;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.inv-terminal--hero {
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.inv-terminal--hero .inv-terminal-cmd {
+  color: #c9a84c;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.inv-quickstart-alt {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #6b7a94;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inv-quickstart-alt-label {
+  color: #8a9ab5;
+}
+
+.inv-quickstart-alt-cmd {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: #5facc8;
+  background: rgba(95, 172, 200, 0.08);
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: background 0.2s;
+  word-break: break-all;
+}
+
+.inv-quickstart-alt-cmd:hover {
+  background: rgba(95, 172, 200, 0.15);
+}
+
+.inv-quickstart-alt-hint {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: #6b7a94;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.inv-quickstart-alt-cmd:hover .inv-quickstart-alt-hint {
+  color: #8a9ab5;
+}
+
+.inv-quickstart-alt-cmd--copied .inv-quickstart-alt-hint {
+  color: #c9a84c;
+}
+
 /* --- Hero --- */
 
 .inv-hero {
-  padding-top: calc(56px + 120px);
+  padding-top: calc(56px + 50px);
   padding-bottom: 80px;
   text-align: center;
 }
@@ -6870,14 +7019,12 @@ a:hover {
   font-size: 1.05rem;
   color: #8a9ab5;
   line-height: 1.8;
-  max-width: 780px;
   margin: 0;
 }
 
 /* --- File Tree (What You Get) --- */
 
 .inv-filetree-wrapper {
-  max-width: 720px;
   background: #080e1a;
   border: 1px solid rgba(201, 168, 76, 0.2);
   overflow: hidden;
@@ -6990,7 +7137,6 @@ a:hover {
 /* --- Terminal --- */
 
 .inv-terminal {
-  max-width: 720px;
   background: #080e1a;
   border: 1px solid rgba(201, 168, 76, 0.2);
   overflow: hidden;
@@ -7081,7 +7227,6 @@ a:hover {
   color: #e8e0d0;
   line-height: 1.6;
   margin: 0 auto 24px;
-  max-width: 760px;
 }
 
 .inv-quote::before { content: '\201C'; }
@@ -7101,7 +7246,6 @@ a:hover {
   font-size: 0.95rem;
   color: rgba(232, 224, 208, 0.35);
   line-height: 1.7;
-  max-width: 600px;
   margin: 48px auto 0;
   text-align: center;
 }
@@ -7468,8 +7612,9 @@ a:hover {
     font-size: 12px;
   }
 
-  .inv-nav-link {
-    display: none;
+  .inv-nav-center .inv-nav-btn {
+    font-size: 11px;
+    padding: 4px 10px;
   }
 
   .inv-terminal-line {
