@@ -22,7 +22,7 @@ import investiture from './investiture';
 import name from './name';
 import enterprise from './enterprise';
 import join from './join';
-import arroyo from './arroyo';
+
 import recommendedReading from './recommended-reading';
 
 const en = {
@@ -33,7 +33,7 @@ const en = {
   leaders,
   enterprise,
   join,
-  arroyo,
+
   media,
   origin,
   start,

@@ -9,7 +9,7 @@ import ReadingPage from './pages/ReadingPage';
 import OriginPage from './pages/OriginPage';
 import InvestiturePage from './pages/InvestiturePage';
 import InvestitureChangelogPage from './pages/InvestitureChangelogPage';
-import ArroyoPage from './pages/ArroyoPage';
+
 import AskPage from './pages/AskPage';
 import QuizPage from './pages/QuizPage';
 import StartPage from './pages/StartPage';
@@ -48,7 +48,6 @@ function App() {
       </Route>
       <Route path="/investiture/changelog" element={<InvestitureChangelogPage />} />
       <Route path="/investiture" element={<InvestiturePage />} />
-      <Route path="/arroyo" element={<ArroyoPage />} />
     </Routes>
   );
 }

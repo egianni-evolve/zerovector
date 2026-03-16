@@ -31,6 +31,12 @@
   to = "https://open.zerovector.design/"
   status = 301
 
+# Arroyo Labs 301 redirect → arroyo.zerovector.design
+[[redirects]]
+  from = "/arroyo"
+  to = "https://arroyo.zerovector.design/"
+  status = 301
+
 # SPA fallback (must be LAST)
 [[redirects]]
   from = "/*"
