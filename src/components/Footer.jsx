@@ -7,7 +7,7 @@ function Footer() {
         <div className="zv-footer-inner">
           <div className="zv-footer-brand">ZERO-VECTOR DESIGN</div>
           <div className="zv-footer-links">
-            <Link to="/open">Open Vector</Link>
+            <a href="https://open.zerovector.design">Open Vector</a>
             <Link to="/investiture">Investiture</Link>
             <Link to="/start">Get Started</Link>
             <Link to="/quiz">Quiz</Link>

@@ -20,7 +20,7 @@ const quiz = {
       tagline: 'You are pasting prompts into ChatGPT and calling it a workflow.',
       description: 'You are at the beginning of the journey. AI is a novelty in your process, not a collaborator. The good news: the gap between where you are and where you could be is massive — and the path is clear.',
       color: '#ff6464',
-      cta: { label: 'Start from the beginning', link: '/open/learn' },
+      cta: { label: 'Start from the beginning', link: 'https://open.zerovector.design/learn' },
     },
     {
       min: 20, max: 39,
@@ -44,7 +44,7 @@ const quiz = {
       tagline: 'You are already building the future. Now make it systematic.',
       description: 'You are doing real work with AI agents. You are collapsing handoffs. You are shipping at a velocity that surprises people. The next step is making it repeatable, principled, and scalable — not just for you, but for your team.',
       color: '#64d3ff',
-      cta: { label: 'Go deeper', link: '/open/learn' },
+      cta: { label: 'Go deeper', link: 'https://open.zerovector.design/learn' },
     },
     {
       min: 80, max: 100,

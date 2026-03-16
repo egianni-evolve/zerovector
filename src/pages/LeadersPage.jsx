@@ -148,9 +148,9 @@ function LeadersPage() {
               <Link to="/for-enterprise" className="zv-cta zv-cta-outline" style={{ marginTop: 24 }}>
                 See Enterprise Transformation <ArrowIcon size={14} />
               </Link>
-              <Link to="/open/learn" className="zv-cta zv-cta-outline" style={{ marginTop: 12 }}>
+              <a href="https://open.zerovector.design/learn" className="zv-cta zv-cta-outline" style={{ marginTop: 12 }}>
                 Explore the Open Vector Curriculum <ArrowIcon size={14} />
-              </Link>
+              </a>
             </div>
           </Animate>
         </div>

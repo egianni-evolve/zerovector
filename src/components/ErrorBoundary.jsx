@@ -17,7 +17,6 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      const isLearn = window.location.pathname.startsWith('/open/learn');
       return (
         <div className="zv-error-boundary">
           <div className="zv-error-boundary-content">
@@ -28,17 +27,17 @@ class ErrorBoundary extends Component {
             </p>
             <div className="zv-error-boundary-actions">
               <button
-                className="ovl-btn ovl-btn-primary"
+                className="zv-error-boundary-btn"
                 onClick={() => window.location.reload()}
               >
                 Refresh Page
               </button>
               <Link
-                to={isLearn ? '/open/learn' : '/'}
-                className="ovl-btn ovl-btn-outline"
+                to="/"
+                className="zv-error-boundary-btn"
                 onClick={() => this.setState({ hasError: false })}
               >
-                {isLearn ? 'Back to Open Vector' : 'Back to Home'}
+                Back to Home
               </Link>
             </div>
           </div>

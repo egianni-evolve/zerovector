@@ -159,12 +159,12 @@ function EnterprisePage() {
               </Link>
             </Animate>
             <Animate delay={2}>
-              <Link to="/open/learn" className="zv-enterprise-crosslink">
+              <a href="https://open.zerovector.design/learn" className="zv-enterprise-crosslink">
                 <div className="zv-enterprise-crosslink-eyebrow">{enterprise.crosslinks.learn.eyebrow}</div>
                 <h3 className="zv-enterprise-crosslink-title">{enterprise.crosslinks.learn.title}</h3>
                 <p className="zv-enterprise-crosslink-desc">{enterprise.crosslinks.learn.description}</p>
                 <span className="zv-enterprise-crosslink-arrow">&rarr;</span>
-              </Link>
+              </a>
             </Animate>
           </div>
         </div>

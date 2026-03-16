@@ -436,12 +436,12 @@ function ManifestoPage() {
             </div>
           </Animate>
           <Animate delay={4}>
-            <Link to={home.closing.openVector.link} className="zv-open-vector-card">
+            <a href={home.closing.openVector.link} className="zv-open-vector-card">
               <span className="zv-open-vector-card-badge">{home.closing.openVector.badge}</span>
               <span className="zv-open-vector-card-title">{home.closing.openVector.title}</span>
               <span className="zv-open-vector-card-desc">{home.closing.openVector.description}</span>
               <span className="zv-open-vector-card-cta">{home.closing.openVector.cta} <ArrowIcon size={16} /></span>
-            </Link>
+            </a>
           </Animate>
           <Animate delay={4}>
             <div className="zv-reading">

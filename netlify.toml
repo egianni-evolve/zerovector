@@ -20,6 +20,18 @@
   to = "/.netlify/functions/kestrel-checkin"
   status = 200
 
+# Open Vector 301 redirects → open.zerovector.design
+[[redirects]]
+  from = "/open/learn/*"
+  to = "https://open.zerovector.design/learn/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/open"
+  to = "https://open.zerovector.design/"
+  status = 301
+
+# SPA fallback (must be LAST)
 [[redirects]]
   from = "/*"
   to = "/index.html"

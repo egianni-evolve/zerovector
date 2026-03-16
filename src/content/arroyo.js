@@ -158,7 +158,7 @@ const arroyo = {
     links: [
       { label: 'Zero Vector', href: '/' },
       { label: 'Investiture', href: '/investiture' },
-      { label: 'Open Vector', href: '/open' },
+      { label: 'Open Vector', href: 'https://open.zerovector.design' },
     ],
   },
 };

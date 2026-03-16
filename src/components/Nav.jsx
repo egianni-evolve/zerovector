@@ -112,12 +112,12 @@ function Nav() {
           {navGroups.map(group => (
             <NavDropdown key={group.label} group={group} pathname={pathname} />
           ))}
-          <Link
-            to="/open"
-            className={`zv-nav-link ${pathname === '/open' || pathname.startsWith('/open/') ? 'zv-nav-link-active' : ''}`}
+          <a
+            href="https://open.zerovector.design"
+            className="zv-nav-link"
           >
             Open Vector
-          </Link>
+          </a>
           <a
             href="https://ko-fi.com/erikaflowers"
             target="_blank"
@@ -212,13 +212,13 @@ function Nav() {
               )}
             </div>
           ))}
-          <Link
-            to="/open"
-            className={`zv-nav-mobile-link ${pathname === '/open' || pathname.startsWith('/open/') ? 'zv-nav-link-active' : ''}`}
+          <a
+            href="https://open.zerovector.design"
+            className="zv-nav-mobile-link"
             onClick={() => setMenuOpen(false)}
           >
             Open Vector
-          </Link>
+          </a>
           <a
             href="https://ko-fi.com/erikaflowers"
             target="_blank"

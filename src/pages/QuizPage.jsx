@@ -247,12 +247,18 @@ function QuizPage() {
 
                     {/* Post-Result CTAs */}
                     <div className="zv-quiz-ctas">
-                      <Link to={archetype.cta.link} className="zv-cta">
-                        {archetype.cta.label} <ArrowIcon size={14} />
-                      </Link>
-                      <Link to="/open/learn" className="zv-cta zv-cta-outline">
+                      {archetype.cta.link.startsWith('http') ? (
+                        <a href={archetype.cta.link} className="zv-cta">
+                          {archetype.cta.label} <ArrowIcon size={14} />
+                        </a>
+                      ) : (
+                        <Link to={archetype.cta.link} className="zv-cta">
+                          {archetype.cta.label} <ArrowIcon size={14} />
+                        </Link>
+                      )}
+                      <a href="https://open.zerovector.design/learn" className="zv-cta zv-cta-outline">
                         Explore the Open Vector Curriculum <ArrowIcon size={14} />
-                      </Link>
+                      </a>
                     </div>
 
                     <button className="zv-cta zv-cta-outline" onClick={reset} style={{ marginTop: 16 }}>

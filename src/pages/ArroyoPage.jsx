@@ -278,7 +278,11 @@ function ArroyoPage() {
           </div>
           <div className="arr-footer-links">
             {arr.footer.links.map((link, i) => (
-              <Link key={i} to={link.href} className="arr-footer-link">{link.label}</Link>
+              link.href.startsWith('http') ? (
+                <a key={i} href={link.href} className="arr-footer-link">{link.label}</a>
+              ) : (
+                <Link key={i} to={link.href} className="arr-footer-link">{link.label}</Link>
+              )
             ))}
           </div>
         </div>

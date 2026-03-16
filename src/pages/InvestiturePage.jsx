@@ -67,7 +67,7 @@ function InvestiturePage() {
           </div>
           <div className="inv-nav-center">
             <a href={inv.cta.primaryUrl} target="_blank" rel="noopener noreferrer" className="inv-nav-btn">{inv.cta.primaryCta}</a>
-            <Link to="/open/learn/curriculum/03-the-pipeline/investiture" className="inv-nav-btn inv-nav-btn--outline">Learn</Link>
+            <a href="https://open.zerovector.design/learn/curriculum/03-the-pipeline/investiture" className="inv-nav-btn inv-nav-btn--outline">Learn</a>
             <Link to="/investiture/changelog" className="inv-nav-btn inv-nav-btn--outline">{inv.nav.changelog}</Link>
           </div>
         </div>

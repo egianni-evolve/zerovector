@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import SiteLayout from './layouts/SiteLayout';
-import LearnLayout from './layouts/LearnLayout';
 import ManifestoPage from './pages/ManifestoPage';
 import PhilosophyPage from './pages/PhilosophyPage';
 import PipelinePage from './pages/PipelinePage';
@@ -8,7 +7,6 @@ import BuildersPage from './pages/BuildersPage';
 import LeadersPage from './pages/LeadersPage';
 import ReadingPage from './pages/ReadingPage';
 import OriginPage from './pages/OriginPage';
-import OpenVectorPage from './pages/OpenVectorPage';
 import InvestiturePage from './pages/InvestiturePage';
 import InvestitureChangelogPage from './pages/InvestitureChangelogPage';
 import ArroyoPage from './pages/ArroyoPage';
@@ -18,24 +16,9 @@ import StartPage from './pages/StartPage';
 import NamePage from './pages/NamePage';
 import EnterprisePage from './pages/EnterprisePage';
 import JoinPage from './pages/JoinPage';
-import LearnEnterprisePage from './pages/learn/LearnEnterprisePage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import NotFoundPage from './pages/NotFoundPage';
-import LearnHubPage from './pages/learn/LearnHubPage';
-import LearnIndexPage from './pages/learn/LearnIndexPage';
-import LevelPage from './pages/learn/LevelPage';
-import LessonPage from './pages/learn/LessonPage';
-import LearnResourcesPage from './pages/learn/LearnResourcesPage';
-import LearnChatPage from './pages/learn/LearnChatPage';
-import LearnContributePage from './pages/learn/LearnContributePage';
-import LearnAboutPage from './pages/learn/LearnAboutPage';
-import LearnFAQPage from './pages/learn/LearnFAQPage';
-import LearnChangelogPage from './pages/learn/LearnChangelogPage';
-import LearnProgressPage from './pages/learn/LearnProgressPage';
-import LearnGlossaryPage from './pages/learn/LearnGlossaryPage';
-import ApproachIndexPage from './pages/learn/ApproachIndexPage';
-import GuidePage from './pages/learn/GuidePage';
 
 function App() {
   return (
@@ -62,24 +45,6 @@ function App() {
         <Route path="/reading" element={<Navigate to="/media" replace />} />
         <Route path="/resources" element={<Navigate to="/media" replace />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Route>
-      <Route path="/open" element={<OpenVectorPage />} />
-      <Route path="/open/learn" element={<LearnLayout />}>
-        <Route index element={<LearnHubPage />} />
-        <Route path="curriculum" element={<LearnIndexPage />} />
-        <Route path="curriculum/:levelSlug" element={<LevelPage />} />
-        <Route path="curriculum/:levelSlug/:lessonSlug" element={<LessonPage />} />
-        <Route path="approach" element={<ApproachIndexPage />} />
-        <Route path="approach/:guideSlug" element={<GuidePage />} />
-        <Route path="resources" element={<LearnResourcesPage />} />
-        <Route path="chat" element={<LearnChatPage />} />
-        <Route path="contribute" element={<LearnContributePage />} />
-        <Route path="about" element={<LearnAboutPage />} />
-        <Route path="faq" element={<LearnFAQPage />} />
-        <Route path="changelog" element={<LearnChangelogPage />} />
-        <Route path="progress" element={<LearnProgressPage />} />
-        <Route path="glossary" element={<LearnGlossaryPage />} />
-        <Route path="enterprise" element={<LearnEnterprisePage />} />
       </Route>
       <Route path="/investiture/changelog" element={<InvestitureChangelogPage />} />
       <Route path="/investiture" element={<InvestiturePage />} />

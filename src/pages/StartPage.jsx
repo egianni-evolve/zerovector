@@ -50,12 +50,12 @@ function StartPage() {
               </Link>
             </Animate>
             <Animate delay={1}>
-              <Link to={start.actions.openVector.url} className="zv-start-action-card">
+              <a href={start.actions.openVector.url} className="zv-start-action-card">
                 <div className="zv-start-action-eyebrow">{start.actions.openVector.eyebrow}</div>
                 <h3 className="zv-start-action-title">{start.actions.openVector.title}</h3>
                 <p className="zv-start-action-desc">{start.actions.openVector.description}</p>
                 <span className="zv-start-action-cta">{start.actions.openVector.cta} <ArrowIcon size={16} /></span>
-              </Link>
+              </a>
             </Animate>
           </div>
         </div>
